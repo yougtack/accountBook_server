@@ -23,6 +23,18 @@ dependencies {
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    runtime('org.springframework.boot:spring-boot-devtools')
+    runtime('mysql:mysql-connector-java')
+    compile('org.springframework.boot:spring-boot-starter-jdbc')
+    compile('org.springframework.boot:spring-boot-starter-data-jpa')
+    compile('org.springframework.boot:spring-boot-starter-security')
+    compile('org.springframework.security:spring-security-oauth2-client')
+    compile('org.springframework.boot:spring-boot-starter-mustache')
+
+    compile("org.mybatis.spring.boot:mybatis-spring-boot-starter:2.1.0")
+    compile("org.mybatis:mybatis-spring")
+    compile("org.mybatis:mybatis")
 }
 
 test {
