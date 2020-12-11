@@ -32,14 +32,14 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService {
 
     @Override
     public OAuth2User loadUser(OAuth2UserRequest userRequest){
-//        System.out.println("userRequest:"+userRequest);
-//        System.out.println("getClientRegistration:"+userRequest.getClientRegistration());
-//        System.out.println("getAccessToken:"+userRequest.getAccessToken());
+        System.out.println("userRequest:"+userRequest);
+        System.out.println("getClientRegistration:"+userRequest.getClientRegistration());
+        System.out.println("getAccessToken:"+userRequest.getAccessToken());
 //
-//        System.out.println("loadUser:"+super.loadUser((userRequest)).getAttributes());
+        System.out.println("loadUser:"+super.loadUser((userRequest)).getAttributes());
 
         OAuth2User oAuth2User = super.loadUser(userRequest);
-//        System.out.println("getAttributes"+oAuth2User.getAttributes());
+        System.out.println("getAttributes"+oAuth2User.getAttributes());
 
 
         OAuth2UserInfo auth2UserInfo = null;
@@ -51,14 +51,14 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService {
             auth2UserInfo = new FacebookUserInfo(oAuth2User.getAttributes());
         }else if(userRequest.getClientRegistration().getRegistrationId().equals("naver")){
             System.out.println("네이버 로그인");
-            auth2UserInfo = new NaverUserInfo((Map)oAuth2User.getAttributes());
+            auth2UserInfo = new NaverUserInfo(oAuth2User.getAttributes());
         }else{
             System.out.println("구글, 페이스북, 네이버만 로그인 가능");
         }
 
         String provide = auth2UserInfo.getProvider();
         String providerId = auth2UserInfo.getProviderId();
-        String username = provide+"_"+providerId;
+        String username = auth2UserInfo.getName();
         String password = bCryptPasswordEncoder.encode("겟인데어");
         String email = auth2UserInfo.getEmail();
         String role = "ROLE_USER";
