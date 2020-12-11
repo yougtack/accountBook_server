@@ -1,0 +1,281 @@
+/* list */
+
+@media all and (max-width: 1024px) {
+    #nav {
+        position: absolute;
+        margin-left: -220px;
+        z-index: 1;
+    }
+}
+
+.nav_wrapper {
+    width: 219px;
+    height: 890px;
+    background-color: #F1EFEF;
+    border-right: 1px solid #7F7F7F;
+    float: left;
+}
+
+.nav_container {
+    display: inline-block;
+}
+
+.nav_list {
+    width: auto;
+    height: 130px;
+}
+
+.list_target {
+    width: 209px;
+    height: 30px;
+    padding-left: 10px;
+    cursor: pointer;
+    text-align: left;
+}
+
+.list_target:hover {
+    background-color: #D7DBDC;
+}
+
+.list_content {
+    padding-top: 7px;
+    text-align: left;
+}
+
+.list_icon {
+    height: 16px;
+}
+
+.list_text {
+    font-size: 14px;
+    display: inline-block;
+}
+
+/* month */
+
+.month_content:hover {
+    background-color: #D7DBDC;
+}
+
+.month_text {
+    margin-top: 7px;
+    font-size: 13px;
+}
+
+.month_day {
+    margin-top: 5px;
+    font-size: 12px;
+    font-weight: 100;
+}
+
+.month_money {
+    margin-top: 10px;
+    padding-left: 25px;
+}
+
+.month_money > li {
+    margin-top: 5px;
+}
+
+.income {
+    color: #3080de;
+}
+
+.spend {
+    color: #0ba506;
+ }
+ 
+.symbol {
+    font-weight: 700;
+}
+
+.money_text {
+    margin-left: 2px;
+    font-size: 12px;
+}
+
+.money {
+    margin-right: 30px;
+    float: right;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.sub_income {
+    margin-left: 12px;
+    color: #808080;
+    font-weight: 200;
+    display: block;
+}
+
+.sub_money {
+    margin-right: 30px;
+    float: right;
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.month_arrow {
+    font-size: 8px; 
+}
+
+.minus {
+    margin-left: 3px;
+}
+
+/* spend */
+
+.percent_container {
+    width: 100%;
+    height: auto;
+    padding-left: 20px;
+}
+
+.percent {
+    width: 80%;
+    height: 14px;
+    border: 1px solid #BEBDBD;
+    border-radius: 4px;
+    background-color:#F4F4F4;
+}
+
+.saving_percent {
+    height: 14px;
+    background-color: #02BAFD;
+    float: left;
+}
+
+.spend_percent {
+    height: 14px;
+    background-color: #03DE2F;
+    float: right;
+}
+
+.saving_text {
+    left: 22px;
+    padding-top: 1px;
+    padding-left: 5px;
+    color: #54555b;
+    font-size: 11px;
+    position: absolute;
+}
+
+.spend_text {
+    padding-top: 1px;
+    left: 175px;
+    color: #54555b;
+    font-size: 11px;
+    position: absolute;
+}
+
+.percent_label {
+    width: 80%;
+    margin-top: 3px;
+    margin-bottom: 15px;
+}
+
+.percent_label > span {
+    margin-right: 5px;
+    font-size: 11px;
+}
+
+.saving_color {
+    width: 8px;
+    height: 8px;
+    background-color: #02BAFD;
+    display: inline-block;
+}
+
+.spend_color {
+    width: 8px;
+    height: 8px;
+    background-color: #03DE2F;
+    display: inline-block;
+}
+
+.graph_ranking {
+    width: 80%;
+    height: auto;
+}
+
+.graph_space {
+    margin-top: 7px;
+}
+
+.graph_div {
+    width: 100%;
+    height: 15px;
+    display: flex;
+}
+
+.graph {
+    width: 50%;
+    height: 10px;
+    border: 1px solid #BEBDBD;
+    border-radius: 4px;
+    background-color:#F4F4F4;
+    display: inline-block;
+}
+
+.graph_percent {
+    margin-left: 5px;
+    color: #54555b;
+    font-size: 12px;
+}
+
+.graph_text {
+    margin-left: 28px;
+    color: #54555b;
+    font-size: 12px;
+}
+
+/* property */
+
+.property_money {
+    margin-top: 5px;
+    padding-left: 25px;
+}
+
+.property_text {
+    font-size: 12px;
+}
+
+.property_sub_text {
+    margin-top: 3px;
+    margin-left: 6px;
+    color: #808080;
+    font-weight: 200;
+    display: block;
+}
+
+/* static */
+
+.nav_line {
+    border-top: 1px solid#D1D0D0;
+}
+
+.nav_frame {
+    width: auto;
+    height: auto;
+}
+
+.arrow_target {
+    height: 24px;
+    cursor: pointer;
+}
+
+.nav_content {
+    height: auto;
+    padding-top: 9px;
+    padding-left: 10px;
+    padding-bottom: 10px;
+    display: flex;
+}
+
+.nav_content:hover {
+    background-color: #D7DBDC;
+}
+
+.nav_space {
+    padding-bottom: 20px;
+}
