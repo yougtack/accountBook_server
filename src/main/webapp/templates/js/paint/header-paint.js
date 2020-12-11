@@ -1,3 +1,7 @@
+const USER = {
+    data: []
+}
+
 let header_login_paint =
 `<header class="header_wrapper">
     <div class="header_container">
@@ -24,10 +28,11 @@ document.write(header_login_paint);
     xhttp.onreadystatechange = () => {
         if (xhttp.status !== 200) {
             console.log("HTTP ERROR", xhttp.status, xhttp.statusText);
+        } else {
+            USER.data = JSON.parse(xhttp.responseText);
+            console.log(USER.data);
         }
     };
     xhttp.setRequestHeader("Content-Type", "application/json");
     xhttp.send();
-
-    console.log(xhttp.responseText);
 })();
