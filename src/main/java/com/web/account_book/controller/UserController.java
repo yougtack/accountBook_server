@@ -6,10 +6,7 @@ import com.web.account_book.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 
@@ -38,6 +35,6 @@ public class UserController {
         user.setPassword(encPassword);
         user.setRole("ROLE_USER");
         userRepository.save(user);
-        return "loginForm";
+        return "회원가입";
     }
 }

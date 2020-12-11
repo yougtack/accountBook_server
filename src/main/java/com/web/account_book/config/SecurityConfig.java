@@ -34,7 +34,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .loginPage("/templates/loginForm")
                 .loginProcessingUrl("/login")
-                .defaultSuccessUrl("/user")
+                .defaultSuccessUrl("/templates/write.html")
                 .and()
                 .oauth2Login()
                 .loginPage("/templates/loginForm")
