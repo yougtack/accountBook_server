@@ -1,4 +1,4 @@
-let header_paint = 
+let header_login_paint =
 `<header class="header_wrapper">
     <div class="header_container">
         <img id="nav_icon" class="nav_icon" src="image/list_icon.png" alt="list" />
@@ -10,5 +10,24 @@ let header_paint =
     </div>
 </header>`;
 
+let header_paint;
 
-document.write(header_paint);
+
+document.write(header_login_paint);
+
+(function test() {
+    let xhttp = new XMLHttpRequest();
+    const URL = "http://localhost:8080";
+
+    xhttp.open("get", URL + `/user`, false);
+
+    xhttp.onreadystatechange = () => {
+        if (xhttp.status !== 200) {
+            console.log("HTTP ERROR", xhttp.status, xhttp.statusText);
+        }
+    };
+    xhttp.setRequestHeader("Content-Type", "application/json");
+    xhttp.send();
+
+    console.log(xhttp.responseText);
+})();
