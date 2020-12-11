@@ -24,19 +24,19 @@ public class AccountBook {
     @CreationTimestamp
     private Timestamp AB_write_date;
     private String AB_where_to_use;
-    private int cash_id;
-    private int card_id;
+    private int cash_cost;
+    private int card_cost;
     private String type;
 
     @Builder
     public AccountBook(int AB_id, String username, Timestamp AB_write_date, String AB_where_to_use,
-                       int cash_id, int card_id, String type){
+                       int cash_cost, int card_cost, String type){
         this.AB_id = AB_id;
         this.username = username;
         this.AB_write_date = AB_write_date;
         this.AB_where_to_use = AB_where_to_use;
-        this.cash_id = cash_id;
-        this.card_id = card_id;
+        this.cash_cost = cash_cost;
+        this.card_cost = card_cost;
         this.type = type;
     }
 }
