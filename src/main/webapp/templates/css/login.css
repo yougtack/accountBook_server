@@ -1,6 +1,6 @@
 .login_container {
     height: 100vh;
-    background-image: url('../image/aa.gif');
+    background-image: url('../image/snow.gif');
     background-size: cover;
     display: flex;
 }
@@ -9,7 +9,7 @@
     height: 350px;
     margin: 60px auto;
     background-color: white;
-    border: 1px solid black;
+    border: 1px solid gray;
     display: flex;
 }
 
@@ -39,7 +39,7 @@
 }
 
 .login_btn_frame {
-    width: 177px;
+    width: 175px;
     margin: 20px auto;
     padding-top: 10px;
     padding-bottom: 10px;
