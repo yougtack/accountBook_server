@@ -1,6 +1,6 @@
 .signup_container {
     height: 100vh;
-    background-image: url('../image/aa.gif');
+    background-image: url('../image/snow.gif');
     background-size: cover;
     display: flex;
 }
@@ -10,7 +10,7 @@
     height: 300px;
     margin: 60px auto;
     padding-bottom: 20px;
-    border: 1px solid black;
+    border: 1px solid gray;
     background-color: white;
     text-align: center;
     justify-content: center;
