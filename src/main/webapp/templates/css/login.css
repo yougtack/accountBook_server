@@ -1,0 +1,80 @@
+.login_container {
+    height: 100vh;
+    background-image: url('../image/aa.gif');
+    background-size: cover;
+    display: flex;
+}
+
+.login_content {
+    height: 350px;
+    margin: 60px auto;
+    background-color: white;
+    border: 1px solid black;
+    display: flex;
+}
+
+.input_frame {
+    width: 400px;
+    margin-top: 30px;
+    margin-right: 50px;
+    margin-left: 50px;
+    text-align: center;
+}
+
+.input_div {
+    width: 177px;
+    margin: 20px auto;
+}
+
+.input_label {
+    font-size: 13px;
+    font-weight: 600;
+    text-align: left;
+    display: block;
+}
+
+.input_box {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.login_btn_frame {
+    width: 177px;
+    margin: 20px auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border: 1px solid black;
+    cursor: pointer;
+}
+
+.login_btn_frame:hover {
+    background-color: #E6E5E5;
+    border-color: #E6E5E5;
+}
+
+.login_btn_text {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.login_image {
+    height: 36px;
+    cursor: pointer;
+}
+
+.signup_text {
+    width: auto;
+    margin-top: 15px;
+    font-size: 14px;
+    font-weight: 600;
+    display: block;
+    cursor: pointer;
+}
+
+.home_btn {
+    margin-top: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    display: block;
+    cursor: pointer;
+}

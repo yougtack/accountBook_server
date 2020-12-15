@@ -6,36 +6,36 @@ window.addEventListener('load', () => {
     today.innerText = now.getFullYear() + "." + (now.getMonth() + 1) + "." + now.getDate() + ".(" + day[now.getDay()] + ")";
 });
 
-let bottom_btn = document.getElementsByClassName('bottom_btn');
+let bottomBtn = document.getElementsByClassName('bottom_btn');
 
 window.addEventListener('load', () => {
-    bottom_btn[0].style.borderBottom = 'none';
-    bottom_btn[0].style.fontWeight = '500';
+    bottomBtn[0].style.borderBottom = 'none';
+    bottomBtn[0].style.fontWeight = '500';
 });
 
-bottom_btn[0].addEventListener('click', () => {
-    bottom_btn[0].style.borderBottom = 'none';
-    bottom_btn[0].style.fontWeight = '500';
-    bottom_btn[1].style.borderBottom = '1px solid #908F8F';
-    bottom_btn[1].style.fontWeight = '200';
-    bottom_btn[2].style.borderBottom = '1px solid #908F8F';
-    bottom_btn[2].style.fontWeight = '200';
+bottomBtn[0].addEventListener('click', () => {
+    bottomBtn[0].style.borderBottom = 'none';
+    bottomBtn[0].style.fontWeight = '500';
+    bottomBtn[1].style.borderBottom = '1px solid #908F8F';
+    bottomBtn[1].style.fontWeight = '200';
+    bottomBtn[2].style.borderBottom = '1px solid #908F8F';
+    bottomBtn[2].style.fontWeight = '200';
 });
 
-bottom_btn[1].addEventListener('click', () => {
-    bottom_btn[1].style.borderBottom = 'none';
-    bottom_btn[1].style.fontWeight = '500';
-    bottom_btn[0].style.borderBottom = '1px solid #908F8F';
-    bottom_btn[0].style.fontWeight = '200';
-    bottom_btn[2].style.borderBottom = '1px solid #908F8F';
-    bottom_btn[2].style.fontWeight = '200';
+bottomBtn[1].addEventListener('click', () => {
+    bottomBtn[1].style.borderBottom = 'none';
+    bottomBtn[1].style.fontWeight = '500';
+    bottomBtn[0].style.borderBottom = '1px solid #908F8F';
+    bottomBtn[0].style.fontWeight = '200';
+    bottomBtn[2].style.borderBottom = '1px solid #908F8F';
+    bottomBtn[2].style.fontWeight = '200';
 });
 
-bottom_btn[2].addEventListener('click', () => {
-    bottom_btn[2].style.borderBottom = 'none';
-    bottom_btn[2].style.fontWeight = '500';
-    bottom_btn[0].style.borderBottom = '1px solid #908F8F';
-    bottom_btn[0].style.fontWeight = '200';
-    bottom_btn[1].style.borderBottom = '1px solid #908F8F';
-    bottom_btn[1].style.fontWeight = '200';
+bottomBtn[2].addEventListener('click', () => {
+    bottomBtn[2].style.borderBottom = 'none';
+    bottomBtn[2].style.fontWeight = '500';
+    bottomBtn[0].style.borderBottom = '1px solid #908F8F';
+    bottomBtn[0].style.fontWeight = '200';
+    bottomBtn[1].style.borderBottom = '1px solid #908F8F';
+    bottomBtn[1].style.fontWeight = '200';
 });

@@ -1,4 +1,4 @@
-let footer_paint = 
+let footerPaint =
 `<footer class="footer_wrapper">
     <div class="footer_container">
         <span class="footer_text font">이달의예산</span>
@@ -6,4 +6,4 @@ let footer_paint =
 </footer>`;
 
 
-document.write(footer_paint);
+document.write(footerPaint);

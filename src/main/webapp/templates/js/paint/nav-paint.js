@@ -1,4 +1,4 @@
-let nav_paint = 
+let navPaint =
 `<nav id="nav" class="nav_wrapper">
     <div class="nav_container">
         <div class="nav_list nav_line">
@@ -190,4 +190,4 @@ let nav_paint =
     </div>
 </nav>`;
 
-document.write(nav_paint);
+document.write(navPaint);
