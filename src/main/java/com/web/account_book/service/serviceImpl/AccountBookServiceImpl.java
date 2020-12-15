@@ -43,7 +43,7 @@ public class AccountBookServiceImpl implements AccountBookService {
                     .build();
             accountBookRepository.save(accountBookEntity);
 
-            if(accountBook.getCash_cost() >= 0){
+            if(accountBook.getCash_cost() > 0){
 
                 Cash cashEntity = Cash.builder()
                         .AB_id(accountBookRepository.findByIdentifier())
@@ -51,7 +51,7 @@ public class AccountBookServiceImpl implements AccountBookService {
                         .cash_cost(accountBook.getCash_cost())
                         .build();
                 cashRepository.save(cashEntity);
-            }else if(accountBook.getCard_cost() >= 0){
+            }else if(accountBook.getCard_cost() > 0){
                 Card cardEntity = Card.builder()
                         .AB_id(accountBookRepository.findByIdentifier())
                         .username(accountBook.getUsername())
