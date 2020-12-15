@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>money</title>
+        <link rel="stylesheet" type="text/css" href="css/reset.css" />
+        <link rel="stylesheet" type="text/css" href="css/signUp.css" />
+    </head>
+    <body>
+        <div class="signup_container">
+            <div class="signup_content">
+                <form id="signup_form" action="/user/join" method="POST">
+                    <div class="signup_input_container">
+                        <span class="signup_label font">UserName</span>
+                        <input id="username" class="signup_input" type="text" name="username" placeholder="Username"/>
+                    </div>
+                    <div class="signup_input_container">
+                        <span class="signup_label font">Email</span>
+                        <input id="email" class="signup_input" name="email" placeholder="Email"/>
+                    </div>
+                    <div class="signup_input_container">
+                        <span class="signup_label font">PassWord</span>
+                        <input id="password" class="signup_input" type="password" name="password" placeholder="Password"/>
+                    </div>
+                    <div class="signup_btn">
+                        <span id="signup_btn" class="signup_btn_text font">회원가입</span>
+                    </div>
+                </form>
+                <span class="home_btn font" onclick="location.href='write.html'">홈으로</span>
+            </div>
+        </div>
+    </body>
+    <script src="js/signup.js"></script>
+</html>
