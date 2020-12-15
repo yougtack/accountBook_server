@@ -1,12 +1,17 @@
 .signup_container {
-    width: 100%;
+    height: 100vh;
+    background-image: url('../image/aa.gif');
+    background-size: cover;
+    display: flex;
 }
 
 .signup_content {
-    width: 40%;
-    margin: 50px auto;
+    width: 500px;
+    height: 300px;
+    margin: 60px auto;
     padding-bottom: 20px;
     border: 1px solid black;
+    background-color: white;
     text-align: center;
     justify-content: center;
 }
@@ -18,7 +23,7 @@
 
 .signup_input_container {
     width: 177px;
-    margin: 10px auto;
+    margin: 20px auto;
 }
 
 .signup_label {
