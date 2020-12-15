@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
 
@@ -28,13 +29,16 @@ public class UserController {
     }
 
     @PostMapping(value = "/join")
-    public String join(User user) {
+    public ModelAndView join(User user) {
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("redirect:/templates/login.html");
+
         System.out.println("회원가입 진행 : " + user);
         String rawPassword = user.getPassword();
         String encPassword = bCryptPasswordEncoder.encode(rawPassword);
         user.setPassword(encPassword);
         user.setRole("ROLE_USER");
         userRepository.save(user);
-        return "회원가입";
+        return mav;
     }
 }
