@@ -58,6 +58,10 @@ public class AccountBookController {
 
         return incomeThisMonth;
     }
+    @PostMapping(value = "/budget")
+    public void budget(){
+
+    }
 }
 
 
