@@ -10,9 +10,9 @@ public class DateUtil {
         Calendar cal = Calendar.getInstance();
         String format = "yyyy-MM";
         SimpleDateFormat sdf = new SimpleDateFormat(format);
-        this_month = sdf.format(cal.getTime())+"%";
+        this.this_month = sdf.format(cal.getTime())+"%";
 
         cal.add(cal.MONTH, -1);
-        last_month = sdf.format(cal.getTime())+"%";
+        this.last_month = sdf.format(cal.getTime())+"%";
     }
 }

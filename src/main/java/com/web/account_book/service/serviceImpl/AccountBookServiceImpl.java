@@ -3,6 +3,7 @@ package com.web.account_book.service.serviceImpl;
 import com.web.account_book.model.*;
 import com.web.account_book.repository.*;
 import com.web.account_book.service.AccountBookService;
+import com.web.account_book.util.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -96,5 +97,31 @@ public class AccountBookServiceImpl implements AccountBookService {
     @Override
     public int expenditure_this_month_card(AccountBook accountBook, String date){
         return accountBookRepository.findByExpenditure_card(date, accountBook.getUsername());
+    }
+
+    @Override
+    public IncomeThisMonth spending(AccountBook accountBook){
+        DateUtil dateUtil = new DateUtil();
+        ExpenditureModel expenditureModel = new ExpenditureModel();
+        IncomeModel incomeModel = new IncomeModel();
+        IncomeThisMonth incomeThisMonth = new IncomeThisMonth();
+
+        expenditureModel.setExpenditure_card(accountBookRepository.findByExpenditure_card(DateUtil.this_month, accountBook.getUsername()));
+        expenditureModel.setExpenditure_cash(accountBookRepository.findByExpenditure_cash(DateUtil.this_month, accountBook.getUsername()));
+        incomeThisMonth.setExpenditure_type(expenditureModel);
+
+        incomeModel.setIncome(incomeRepository.findByIncome_date(DateUtil.this_month, accountBook.getUsername()));
+        incomeModel.setIncome_last_month(
+            incomeRepository.findByIncome_date(DateUtil.last_month, accountBook.getUsername())-
+            (accountBookRepository.findByExpenditure_card(DateUtil.last_month, accountBook.getUsername())+
+             accountBookRepository.findByExpenditure_cash(DateUtil.last_month, accountBook.getUsername()))
+        );
+        incomeThisMonth.setIncome_type(incomeModel);
+
+        incomeThisMonth.setIncomeThisMonth(incomeModel.getIncome()+incomeModel.getIncome_last_month());
+        incomeThisMonth.setExpenditure(expenditureModel.getExpenditure_card()+expenditureModel.getExpenditure_cash());
+        incomeThisMonth.setTotal(incomeThisMonth.getIncomeThisMonth()-incomeThisMonth.getExpenditure());
+
+        return incomeThisMonth;
     }
 }

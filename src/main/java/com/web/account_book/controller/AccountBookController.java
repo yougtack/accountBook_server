@@ -30,31 +30,9 @@ public class AccountBookController {
         return accountBookService.save_income(income);
     }
 
-    @GetMapping(value = "/spending")
+    @GetMapping(value = "/spending") //이거 서비스로 옮겨야함
     public IncomeThisMonth total(@RequestBody AccountBook accountBook){
-        DateUtil dateUtil = new DateUtil();
-        ExpenditureModel expenditureModel = new ExpenditureModel();
-        IncomeModel incomeModel = new IncomeModel();
-        IncomeThisMonth incomeThisMonth = new IncomeThisMonth();
-
-        expenditureModel.setExpenditure_card(accountBookService.expenditure_this_month_card(accountBook, dateUtil.this_month));
-        expenditureModel.setExpenditure_cash(accountBookService.expenditure_this_month_cash(accountBook, dateUtil.this_month));
-        incomeThisMonth.setExpenditure_type(expenditureModel);
-
-        incomeModel.setIncome(accountBookService.income_this_month(accountBook, dateUtil.this_month));
-        incomeModel.setIncome_last_month(
-                accountBookService.income_this_month(accountBook, dateUtil.last_month)-
-                (accountBookService.expenditure_this_month_card(accountBook, dateUtil.last_month)+
-                 accountBookService.expenditure_this_month_cash(accountBook, dateUtil.last_month))
-        );
-        incomeThisMonth.setIncome_type(incomeModel);
-
-
-        incomeThisMonth.setIncomeThisMonth(incomeModel.getIncome()+incomeModel.getIncome_last_month());
-        incomeThisMonth.setExpenditure(expenditureModel.getExpenditure_card()+expenditureModel.getExpenditure_cash());
-        incomeThisMonth.setTotal(incomeThisMonth.getIncomeThisMonth()-incomeThisMonth.getExpenditure());
-
-        return incomeThisMonth;
+        return accountBookService.spending(accountBook);
     }
     @PostMapping(value = "/budget")
     public void budget(){

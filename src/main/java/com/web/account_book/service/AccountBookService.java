@@ -14,4 +14,6 @@ public interface AccountBookService {
     int income_this_month(AccountBook accountBook, String this_month);
     int expenditure_this_month_cash(AccountBook accountBook, String this_month);
     int expenditure_this_month_card(AccountBook accountBook, String this_month);
+
+    IncomeThisMonth spending(AccountBook accountBook);
 }

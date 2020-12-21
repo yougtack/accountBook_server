@@ -23,8 +23,8 @@ public class UserController {
 
     @GetMapping(value = {"","/"})
     public User login(@AuthenticationPrincipal PrincipalDetails principalDetails, HttpSession session){
-        session.setAttribute("asd", principalDetails.getUser().getEmail());
-        System.out.println("session.get"+session.getAttribute("asd"));
+        session.setAttribute("username", principalDetails.getUser().getEmail());
+        System.out.println("session.get"+session.getAttribute("username"));
         return principalDetails.getUser();
     }
 
