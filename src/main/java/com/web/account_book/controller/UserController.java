@@ -26,7 +26,7 @@ public class UserController {
         if(principalDetails != null){
             session.setAttribute("username", principalDetails.getUser().getEmail());
             System.out.println("session.get"+session.getAttribute("username"));
-            return principalDetails.getUser().getUsername();
+            return principalDetails.getUser().getUsername()+", "+principalDetails.getUser().getEmail();
         }else{
             return "로그인이 되지 않아 정보를 불러 올 수 없습니다.";
         }
