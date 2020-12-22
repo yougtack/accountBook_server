@@ -1,6 +1,6 @@
 package com.web.account_book.config.auth;
 
-import com.web.account_book.model.User;
+import com.web.account_book.model.entity.User;
 import com.web.account_book.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;

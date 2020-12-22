@@ -1,6 +1,6 @@
 package com.web.account_book.config.auth;
 
-import com.web.account_book.model.User;
+import com.web.account_book.model.entity.User;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

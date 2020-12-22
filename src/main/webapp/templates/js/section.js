@@ -150,13 +150,19 @@ document.getElementById('write_submit').addEventListener('click', () => {
     let xhttp = new XMLHttpRequest();
     let writeForm = document.getElementById('write_form');
 
-    let formdata = new FormData();
+    function deleteComma(str) {
+        let num = parseInt(str.replace(/,/g,""))
 
-    formdata.append('Username', USER.data[0]);
-    formdata.append('AB_where_to_use',writeForm.AB_where_to_use.value);
-    formdata.append('cash_cost', writeForm.cash_cost.value);
-    formdata.append('card_cost',  0);
-    formdata.append('Type',  document.getElementById('Type').textContent);
+        return num;
+    }
+
+    let data = {
+        username: USER.data[0],
+        ab_where_to_use: writeForm.AB_where_to_use.value,
+        cash_cost: deleteComma(writeForm.cash_cost.value),
+        card_cost: deleteComma(writeForm.card_cost.value),
+        type: document.getElementById('Type').textContent
+    }
 
     xhttp.open("POST", `http://localhost:8080/accountBook`, false);
 
@@ -164,15 +170,10 @@ document.getElementById('write_submit').addEventListener('click', () => {
         if (xhttp.status !== 200) {
             console.log("HTTP ERROR", xhttp.status, xhttp.statusText);
         } else {
-            MONTH_MONEY.data = (JSON.parse(xhttp.responseText));
+            location.reload();
         }
     };
 
     xhttp.setRequestHeader("Content-Type", "application/json");
-    xhttp.send(formdata);
-    console.log(formdata.get('Username'));
-    console.log(formdata.get('AB_where_to_use'));
-    console.log(formdata.get('cash_cost'));
-    console.log(formdata.get('card_cost'));
-    console.log( document.getElementById('Type').textContent);
+    xhttp.send(JSON.stringify(data));
 });

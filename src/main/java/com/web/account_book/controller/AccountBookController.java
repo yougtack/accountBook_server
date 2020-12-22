@@ -33,7 +33,7 @@ public class AccountBookController {
     }
 
     //지출
-    @GetMapping(value = "/spending")
+    @PostMapping(value = "/spending")
     public IncomeThisMonth total(@RequestBody AccountBook accountBook){
         return accountBookService.spending(accountBook);
     }
