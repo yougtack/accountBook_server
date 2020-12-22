@@ -5,8 +5,8 @@ const MONTH_MONEY = {
 Number.prototype.format = function(){
     if(this==0) return 0;
 
-    var reg = /(^[+-]?\d+)(\d{3})/;
-    var n = (this + '');
+    let reg = /(^[+-]?\d+)(\d{3})/;
+    let n = (this + '');
 
     while (reg.test(n)) n = n.replace(reg, '$1' + ',' + '$2');
 

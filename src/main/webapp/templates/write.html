@@ -44,22 +44,56 @@
                                     <tr>
                                         <td class="section_write_b" width="1%" style="text-align: center;"><input type="checkbox" /></td>
                                         <td class="table_text section_write_b font" width="6%">날짜</td>
-                                        <td class="table_text section_write_b font">사용내역</td>
-                                        <td class="table_text section_write_b font">현금</td>
-                                        <td class="table_text section_write_b font">카드</td>
-                                        <td class="table_text section_write_b font">분류</td>
+                                        <td class="table_text section_write_b font" width="24%">사용내역</td>
+                                        <td class="table_text section_write_b font" width="15%">현금</td>
+                                        <td class="table_text section_write_b font" width="15%">카드</td>
+                                        <td class="table_text section_write_b font" width="20%">분류</td>
                                     </tr>
                                     <tr>
                                         <td class="section_write_b" width="1%" style="text-align: center;"><input type="checkbox" /></td>
                                         <td class="write_text section_write_b font">2020.12.21</td>
-                                        <td class="write_text section_write_b font"><input  type="text" style="width: 97%"></td>
-                                        <td class="write_text section_write_b font"><input class="write_money" type="number" style="width: 97%"/></td>
-                                        <td class="write_text section_write_b font"><input class="write_money" type="number" style="width: 97%"/></td>
+                                        <td class="write_text section_write_b font"><input  type="text" style="width: 97%" /></td>
                                         <td class="write_text section_write_b font">
-                                            <select>
-                                                <option>test</option>
-                                                <option>test</option>
-                                            </select>
+                                            <input  class="write_money"
+                                                    type="text" onkeyup="this.value = SetComma(this.value)"
+                                                    onfocus="this.value = SetComma(this.value)"
+                                                    maxlength="13"
+                                                    style="width: 96%"
+                                            />
+                                        </td>
+                                        <td class="write_text section_write_b font">
+                                            <input class="write_money"
+                                                   type="text" onkeyup="this.value = SetComma(this.value)"
+                                                   onfocus="this.value = SetComma(this.value)"
+                                                   maxlength="13"
+                                                   style="width: 96%"
+                                            />
+                                        </td>
+                                        <td class="write_text section_write_b font">
+                                            <div class="select" data-role="selectBox">
+                                                <span date-value="optValue" class="selected-option font"><!-- 선택된 옵션 값이 출력되는 부분 --></span>
+                                                <!-- 옵션 영역 -->
+                                                <ul class="hide">
+                                                    <li id="test">
+                                                        <span class="font">식비</span>
+                                                    </li>
+                                                    <div id="test1">
+                                                        <li class="sub_class font">식비>주식</li>
+                                                        <li class="sub_class font">식비>부식</li>
+                                                        <li class="sub_class font">식비>간식</li>
+                                                        <li class="sub_class font">식비>외식</li>
+                                                        <li class="sub_class font">식비>커피/음료</li>
+                                                        <li class="sub_class font">식비>술/유흥</li>
+                                                        <li class="sub_class font">식비>기타</li>
+                                                    </div>
+                                                    <li>
+                                                        <span>주거/통신</span>
+                                                    </li>
+                                                    <li>
+                                                        <span>생활용품</span>
+                                                    </li>
+                                                </ul>
+                                            </div>
                                         </td>
                                     </tr>
                                 </table>
