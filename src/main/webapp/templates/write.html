@@ -18,7 +18,7 @@
                 <div class="section_top">
                     <div class="section_top_content">
                         <span id="section_top_label" class="section_top_label font">쓰기</span>
-                        <span>button event</span>
+                        <img id="btn_money_hide" class="btn_money_hide" src="image/btn_money_off.png" alt="btn_money" />
                         <span id="today" class="today font"></span>
                     </div>
                 </div>
@@ -39,15 +39,28 @@
 <!--                        </div>-->
                         <div class="section_write">
                             <form>
-                                <table class="section_write_b" style="width: 100%">
+                                <table style="width: 100%">
                                     <!-- 번호 foucs -->
                                     <tr>
-                                        <td class="section_write_b" width="3%" style="text-align: center;"><input type="checkbox" /></td>
-                                        <td class="section_write_b">날짜</td>
-                                        <td class="section_write_b">사용내역</td>
-                                        <td class="section_write_b">현금</td>
-                                        <td class="section_write_b">카드</td>
-                                        <td class="section_write_b">분류</td>
+                                        <td class="section_write_b" width="1%" style="text-align: center;"><input type="checkbox" /></td>
+                                        <td class="table_text section_write_b font" width="6%">날짜</td>
+                                        <td class="table_text section_write_b font">사용내역</td>
+                                        <td class="table_text section_write_b font">현금</td>
+                                        <td class="table_text section_write_b font">카드</td>
+                                        <td class="table_text section_write_b font">분류</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="section_write_b" width="1%" style="text-align: center;"><input type="checkbox" /></td>
+                                        <td class="write_text section_write_b font">2020.12.21</td>
+                                        <td class="write_text section_write_b font"><input  type="text" style="width: 97%"></td>
+                                        <td class="write_text section_write_b font"><input class="write_money" type="number" style="width: 97%"/></td>
+                                        <td class="write_text section_write_b font"><input class="write_money" type="number" style="width: 97%"/></td>
+                                        <td class="write_text section_write_b font">
+                                            <select>
+                                                <option>test</option>
+                                                <option>test</option>
+                                            </select>
+                                        </td>
                                     </tr>
                                 </table>
                             </form>

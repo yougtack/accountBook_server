@@ -12,8 +12,7 @@ const USER = {
         if (xhttp.status !== 200) {
             console.log("HTTP ERROR", xhttp.status, xhttp.statusText);
         } else {
-            USER.data = JSON.parse(xhttp.responseText);
-            console.log(USER.data);
+            USER.data = xhttp.responseText.split(",");
         }
     };
     xhttp.setRequestHeader("Content-Type", "application/json");
@@ -25,16 +24,16 @@ let signupPaint =
             <div class="header_container">
                 <img id="nav_icon" class="nav_icon" src="image/list_icon.png" alt="list" />
                 <a class="header_logo font" href="write.html">가계부</a>`;
-if (USER.data) {
+if (USER.data.length === 1) {
     signupPaint +=`
         <div class="profile_content">
-            <img class="profile" src="image/info.gif" alt="profile"/>
-            <p class="profile_name font">${USER.data.username}</p>
+            <span class="header_login font" onclick="location.href = 'login.html'">로그인</span>
         </div>`;
 } else {
     signupPaint +=`
         <div class="profile_content">
-            <span class="header_login font" onclick="location.href = 'login.html'">로그인</span>
+            <img class="profile" src="image/info.gif" alt="profile"/>
+            <p class="profile_name font">${USER.data[1]}</p>
         </div>`;
 }
 signupPaint +=`

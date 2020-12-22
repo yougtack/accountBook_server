@@ -1,3 +1,40 @@
+const MONTH_MONEY = {
+    data: []
+};
+
+Number.prototype.format = function(){
+    if(this==0) return 0;
+
+    var reg = /(^[+-]?\d+)(\d{3})/;
+    var n = (this + '');
+
+    while (reg.test(n)) n = n.replace(reg, '$1' + ',' + '$2');
+
+    return n;
+};
+
+(function accountBook() {
+    let xhttp = new XMLHttpRequest();
+    const URL = "http://localhost:8080";
+
+    let data = {
+        username:USER.data[0]
+    }
+
+    xhttp.open("POST", URL + `/accountBook/spending`, false);
+
+    xhttp.onreadystatechange = () => {
+        if (xhttp.status !== 200) {
+            console.log("HTTP ERROR", xhttp.status, xhttp.statusText);
+        } else {
+            MONTH_MONEY.data = (JSON.parse(xhttp.responseText));
+        }
+    };
+
+    xhttp.setRequestHeader("Content-Type", "application/json");
+    xhttp.send(JSON.stringify(data));
+})();
+
 let navPaint =
 `<nav id="nav" class="nav_wrapper">
     <div class="nav_container">
@@ -44,37 +81,37 @@ let navPaint =
                 <li class="income">
                     <span class="symbol font">+</span>
                     <span class="money_text font">수입</span>
-                    <span class="money font">0</span>
+                    <span class="money font">${MONTH_MONEY.data.incomeThisMonth.format()}</span>
                 </li>
                 <li class="sub_income">
                     <span class="month_arrow font">└</span>
                     <span class="money_text font">이달의 수입</span>
-                    <span class="sub_money font">0</span>
+                    <span class="sub_money font">${MONTH_MONEY.data.income_type.income.format()}</span>
                 </li>
                 <li class="sub_income">
                     <span class="month_arrow font">└</span>
                     <span class="money_text font">전월이월</span>
-                    <span class="sub_money font">0</span>
+                    <span class="sub_money font">${MONTH_MONEY.data.income_type.income_last_month.format()}</span>
                 </li>
                 <li class="spend font">
                     <span class="symbol minus font">-</span>
                     <span class="money_text font">지출</span>
-                    <span class="money font">0</span>
+                    <span class="money font">${MONTH_MONEY.data.expenditure.format()}</span>
                 </li>
                 <li class="sub_income">
                     <span class="month_arrow font">└</span>
                     <span class="money_text font">현금지출</span>
-                    <span class="sub_money font">0</span>
+                    <span class="sub_money font">${MONTH_MONEY.data.expenditure_type.expenditure_cash.format()}</span>
                 </li>
                 <li class="sub_income">
                     <span class="month_arrow font">└</span>
                     <span class="money_text font">카드지출</span>
-                    <span class="sub_money font">0</span>
+                    <span class="sub_money font">${MONTH_MONEY.data.expenditure_type.expenditure_card.format()}</span>
                 </li>
                 <li>
                     <span class="symbol font">=</span>
                     <span class="money_text font">수입 - 지출</span>
-                    <span class="money font">0</span>
+                    <span class="money font">${MONTH_MONEY.data.total.format()}</span>
                 </li>
             </ul>
         </div>

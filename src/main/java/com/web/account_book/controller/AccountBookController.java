@@ -30,8 +30,9 @@ public class AccountBookController {
         return accountBookService.save_income(income);
     }
 
-    @GetMapping(value = "/spending") //이거 서비스로 옮겨야함
+    @PostMapping(value = "/spending") //이거 서비스로 옮겨야함
     public IncomeThisMonth total(@RequestBody AccountBook accountBook){
+        System.out.println("HI");
         return accountBookService.spending(accountBook);
     }
     @PostMapping(value = "/budget")
