@@ -172,6 +172,7 @@ input[type="number"]::-webkit-inner-spin-button {
 .sub_class {
     padding: 2px;
     border: 1px solid #908F8F;
+    font-size: 12px;
     display: block;
     position: relative;
     cursor: pointer;

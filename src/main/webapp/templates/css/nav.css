@@ -20,6 +20,12 @@
     display: inline-block;
 }
 
+@media all and (max-width: 1024px) {
+    .nav_list {
+        display: none;
+    }
+}
+
 .nav_list {
     width: auto;
     height: 130px;
