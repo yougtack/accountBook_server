@@ -1,4 +1,4 @@
-package com.web.account_book.model;
+package com.web.account_book.model.entity;
 
 import lombok.Builder;
 import lombok.Data;
@@ -12,20 +12,20 @@ import javax.persistence.Id;
 @Data
 @Entity
 @NoArgsConstructor
-public class Cash {
+public class Card {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long cash_id;
+    private long card_id;
 
     private String username;
     private long AB_id;
-    private long cash_cost;
+    private int card_cost;
 
     @Builder
-    public Cash(long cash_id, String username, long AB_id, long cash_cost){
-        this.cash_id = cash_id;
+    public Card(long card_id, String username, long AB_id, int card_cost){
+        this.card_id = card_id;
         this.username = username;
         this.AB_id = AB_id;
-        this.cash_cost = cash_cost;
+        this.card_cost = card_cost;
     }
 }

@@ -1,6 +1,7 @@
 package com.web.account_book.service.serviceImpl;
 
 import com.web.account_book.model.*;
+import com.web.account_book.model.entity.*;
 import com.web.account_book.repository.*;
 import com.web.account_book.service.AccountBookService;
 import com.web.account_book.util.DateUtil;
@@ -8,12 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 @Service
 public class AccountBookServiceImpl implements AccountBookService {
+    DateUtil dateUtil = new DateUtil();
+
     @Autowired
     AccountBookRepository accountBookRepository;
 
@@ -25,6 +26,9 @@ public class AccountBookServiceImpl implements AccountBookService {
 
     @Autowired
     IncomeRepository incomeRepository;
+
+    @Autowired
+    BudgetRepository budgetRepository;
 
     @Override
     public List<AccountBook> getAccountBookList(AccountBookSelectModel accountBookSelectModel){
@@ -86,22 +90,7 @@ public class AccountBookServiceImpl implements AccountBookService {
     }
 
     @Override
-    public int income_this_month(AccountBook accountBook, String date){
-        return incomeRepository.findByIncome_date(date, accountBook.getUsername());
-    }
-
-    @Override
-    public int expenditure_this_month_cash(AccountBook accountBook, String date){
-        return accountBookRepository.findByExpenditure_cash(date, accountBook.getUsername());
-    }
-    @Override
-    public int expenditure_this_month_card(AccountBook accountBook, String date){
-        return accountBookRepository.findByExpenditure_card(date, accountBook.getUsername());
-    }
-
-    @Override
     public IncomeThisMonth spending(AccountBook accountBook){
-        DateUtil dateUtil = new DateUtil();
         ExpenditureModel expenditureModel = new ExpenditureModel();
         IncomeModel incomeModel = new IncomeModel();
         IncomeThisMonth incomeThisMonth = new IncomeThisMonth();
@@ -123,5 +112,43 @@ public class AccountBookServiceImpl implements AccountBookService {
         incomeThisMonth.setTotal(incomeThisMonth.getIncomeThisMonth()-incomeThisMonth.getExpenditure());
 
         return incomeThisMonth;
+    }
+
+    @Override
+    public List<BudgetModel> getBudget(BudgetFindModel budgetFindModel) {
+        return budgetRepository.findTotal_cost(budgetFindModel.getUsername(), budgetFindModel.getDate()+"%");
+    }
+
+    @Override
+    public int save_budget(Budget budget) {
+        try{
+            Budget budgetEntity = Budget.builder()
+                    .username(budget.getUsername())
+                    .budget(budget.getBudget())
+                    .budget_type(budget.getBudget_type())
+                    .build();
+            budgetRepository.save(budgetEntity);
+        }catch(Exception e) {
+            e.printStackTrace();
+            return 0;
+        }finally {
+            return 1;
+        }
+    }
+
+    @Override
+    public CumulativeModel getCumulative(AccountBook accountBook) {
+        accountBookRepository.findByCumulative(accountBook.getUsername());
+        return null;
+    }
+
+    @Override
+    public SpendingThisMonthModel spending_this_month(AccountBook accountBook) {
+        SpendingThisMonthModel spendingThisMonthModel = new SpendingThisMonthModel();
+        spendingThisMonthModel.setInsurance(accountBookRepository.findByInsurance(accountBook.getUsername(), DateUtil.this_month, "저축/보험>%"));
+        spendingThisMonthModel.setSpending(accountBookRepository.findBySpending(accountBook.getUsername(), DateUtil.this_month, "저축/보험>%"));
+        spendingThisMonthModel.setSpendingRanks(accountBookRepository.findBySpendingRank(accountBook.getUsername(), DateUtil.this_month));
+
+        return spendingThisMonthModel;
     }
 }

@@ -1,4 +1,4 @@
-package com.web.account_book.model;
+package com.web.account_book.model.entity;
 
 
 import lombok.Builder;
