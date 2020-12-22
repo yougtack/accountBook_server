@@ -1,6 +1,6 @@
 package com.web.account_book.repository;
 
-import com.web.account_book.model.Card;
+import com.web.account_book.model.entity.Card;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

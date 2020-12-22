@@ -1,6 +1,6 @@
 package com.web.account_book.repository;
 
-import com.web.account_book.model.User;
+import com.web.account_book.model.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

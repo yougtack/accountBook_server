@@ -1,6 +1,6 @@
 package com.web.account_book.repository;
 
-import com.web.account_book.model.Income;
+import com.web.account_book.model.entity.Income;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;

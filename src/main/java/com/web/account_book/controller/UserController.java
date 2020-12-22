@@ -1,12 +1,15 @@
 package com.web.account_book.controller;
 
 import com.web.account_book.config.auth.PrincipalDetails;
-import com.web.account_book.model.User;
+import com.web.account_book.model.entity.User;
 import com.web.account_book.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
@@ -24,7 +27,7 @@ public class UserController {
     @GetMapping(value = {"","/"})
     public String login(@AuthenticationPrincipal PrincipalDetails principalDetails, HttpSession session){
         if(principalDetails != null){
-            session.setAttribute("username", principalDetails.getUser().getEmail());
+            session.setAttribute("username", principalDetails.getUser().getUsername());
             System.out.println("session.get"+session.getAttribute("username"));
             return principalDetails.getUser().getUsername()+", "+principalDetails.getUser().getEmail();
         }else{
