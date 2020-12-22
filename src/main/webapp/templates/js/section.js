@@ -26,6 +26,10 @@ window.addEventListener('load', () => {
     let day = new Array('일', '월', '화', '수', '목', '금', '토');
 
     today.innerText = now.getFullYear() + "." + (now.getMonth() + 1) + "." + now.getDate() + ".(" + day[now.getDay()] + ")";
+
+    const test2 = document.getElementById('test_today');
+    test2.value = now.getFullYear() + "." + (now.getMonth() + 1) + "." + now.getDate();
+
 });
 
 let bottomBtn = document.getElementsByClassName('bottom_btn');
@@ -74,19 +78,21 @@ function SetComma(str) {
 }
 
 const body = document.querySelector('body');
-const select = document.querySelector(`[data-role="selectBox"]`);
-const values = select.querySelector(`[date-value="optValue"]`);
+const select = document.querySelector('.select');
+const values = select.querySelector('.selected-option');
 const option = select.querySelector('ul');
-const opts = option.querySelectorAll('li');
+const opts = option.querySelectorAll('span');
+const selectTarget = document.getElementsByClassName('main_class');
+const selectSubTarget = document.getElementsByClassName('sub_class_frame');
 
 /* 셀렉트영역 클릭 시 옵션 숨기기, 보이기 */
 function selects(e){
     e.stopPropagation();
-    option.setAttribute('style',`top:${select.offsetHeight}px`)
-    if(option.classList.contains('hide')){
+    option.setAttribute('style', `top:${select.offsetHeight}px`)
+    if (option.classList.contains('hide')) {
         option.classList.remove('hide');
         option.classList.add('show');
-    }else{
+    } else {
         option.classList.add('hide');
         option.classList.remove('show');
     }
@@ -99,8 +105,11 @@ function selectOpt(){
         const innerValue = opt.innerHTML;
         function changeValue(){
             values.innerHTML = innerValue;
+            for(value of selectSubTarget){
+                value.style.display = 'none';
+            }
         }
-        opt.addEventListener('click',changeValue)
+        opt.addEventListener('click',changeValue);
     });
 }
 
@@ -115,6 +124,9 @@ function hideSelect(){
     if(option.classList.contains('show')){
         option.classList.add('hide');
         option.classList.remove('show');
+        for(value of selectSubTarget){
+            value.style.display = 'none';
+        }
     }
 }
 
@@ -122,15 +134,14 @@ selectFirst();
 select.addEventListener('click',selects);
 body.addEventListener('click',hideSelect);
 
-document.getElementById('test').addEventListener('mouseover', () => {
-    document.getElementById('test1').style.display = 'block';
-});
-
-document.getElementById('test1').addEventListener('mouseout', () => {
-    console.log("HI");
-    document.getElementById('test1').style.display = 'none';
-});
-
-document.getElementById('test1').addEventListener('click', () => {
-    document.getElementById('test1').style.display = 'none';
-});
+for(let i = 0; i < selectTarget.length; i++) {
+    selectTarget[i].addEventListener('mouseover', () => {
+        for (let j = 0; j < selectSubTarget.length; j++){
+            if (i === j){
+                continue;
+            }
+            selectSubTarget[j].style.display = 'none';
+        }
+        selectSubTarget[i].style.display = 'block';
+    });
+}

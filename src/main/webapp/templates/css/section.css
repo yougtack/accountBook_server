@@ -144,23 +144,32 @@ input[type="number"]::-webkit-inner-spin-button {
     position: absolute;
     cursor: pointer;
 }
+
 .select ul li{
-    padding: 5px;
-    border: 1px solid #908F8F;
+    padding-top: 3px;
+    padding-bottom: 3px;
 }
-.select ul li:hover{
+
+.class_list {
+    z-index: 1;
+    position: relative;
+}
+
+.main_class {
+    z-index: 2;
+}
+
+.main_class:hover {
     background-color: #D7DBDC;
 }
 
-#test1 {
+.sub_class_frame {
     top: 10px;
-    right: -30px;
-    width: 50%;
-    margin-right: 30px;
+    left: 0;
+    width: 99%;
     border: 1px solid #908F8F;
     background-color: white;
     display: none;
-    position: absolute;
     cursor: pointer;
     z-index: 1;
 }
@@ -171,9 +180,12 @@ input[type="number"]::-webkit-inner-spin-button {
 
 .sub_class {
     padding: 2px;
-    border: 1px solid #908F8F;
     font-size: 12px;
     display: block;
     position: relative;
     cursor: pointer;
+}
+
+input {
+    border: none;
 }
