@@ -31,8 +31,8 @@ public class AccountBookServiceImpl implements AccountBookService {
     BudgetRepository budgetRepository;
 
     @Override
-    public List<AccountBook> getAccountBookList(AccountBookSelectModel accountBookSelectModel){
-        return accountBookRepository.findByDate(accountBookSelectModel.getUsername(), accountBookSelectModel.getStart(), accountBookSelectModel.getEnd());
+    public List<AccountBook> getAccountBookList(String username, String start, String end){
+        return accountBookRepository.findByDate(username, start, end);
     }
 
     @Override
@@ -42,6 +42,7 @@ public class AccountBookServiceImpl implements AccountBookService {
             AccountBook accountBookEntity = AccountBook.builder()
                     .username(accountBook.getUsername())
                     .AB_where_to_use(accountBook.getAB_where_to_use())
+                    .AB_write_date(accountBook.getAB_write_date())
                     .card_cost(accountBook.getCard_cost())
                     .cash_cost(accountBook.getCash_cost())
                     .type(accountBook.getType())
@@ -90,20 +91,20 @@ public class AccountBookServiceImpl implements AccountBookService {
     }
 
     @Override
-    public IncomeThisMonth spending(AccountBook accountBook){
+    public IncomeThisMonth spending(String username){
         ExpenditureModel expenditureModel = new ExpenditureModel();
         IncomeModel incomeModel = new IncomeModel();
         IncomeThisMonth incomeThisMonth = new IncomeThisMonth();
 
-        expenditureModel.setExpenditure_card(accountBookRepository.findByExpenditure_card(DateUtil.this_month, accountBook.getUsername()));
-        expenditureModel.setExpenditure_cash(accountBookRepository.findByExpenditure_cash(DateUtil.this_month, accountBook.getUsername()));
+        expenditureModel.setExpenditure_card(accountBookRepository.findByExpenditure_card(DateUtil.this_month, username));
+        expenditureModel.setExpenditure_cash(accountBookRepository.findByExpenditure_cash(DateUtil.this_month, username));
         incomeThisMonth.setExpenditure_type(expenditureModel);
 
-        incomeModel.setIncome(incomeRepository.findByIncome_date(DateUtil.this_month, accountBook.getUsername()));
+        incomeModel.setIncome(incomeRepository.findByIncome_date(DateUtil.this_month, username));
         incomeModel.setIncome_last_month(
-            incomeRepository.findByIncome_date(DateUtil.last_month, accountBook.getUsername())-
-            (accountBookRepository.findByExpenditure_card(DateUtil.last_month, accountBook.getUsername())+
-             accountBookRepository.findByExpenditure_cash(DateUtil.last_month, accountBook.getUsername()))
+            incomeRepository.findByIncome_date(DateUtil.last_month, username)-
+            (accountBookRepository.findByExpenditure_card(DateUtil.last_month, username)+
+             accountBookRepository.findByExpenditure_cash(DateUtil.last_month, username))
         );
         incomeThisMonth.setIncome_type(incomeModel);
 
@@ -115,8 +116,8 @@ public class AccountBookServiceImpl implements AccountBookService {
     }
 
     @Override
-    public List<BudgetModel> getBudget(BudgetFindModel budgetFindModel) {
-        return budgetRepository.findTotal_cost(budgetFindModel.getUsername(), budgetFindModel.getDate()+"%");
+    public List<BudgetModel> getBudget(String username, String date) {
+        return budgetRepository.findTotal_cost(username, date+"%");
     }
 
     @Override
@@ -136,18 +137,18 @@ public class AccountBookServiceImpl implements AccountBookService {
         }
     }
 
-    @Override
-    public CumulativeModel getCumulative(AccountBook accountBook) {
-        accountBookRepository.findByCumulative(accountBook.getUsername());
+    @Override //구현중
+    public CumulativeModel getCumulative(String username) {
+        accountBookRepository.findByCumulative(username);
         return null;
     }
 
     @Override
-    public SpendingThisMonthModel spending_this_month(AccountBook accountBook) {
+    public SpendingThisMonthModel spending_this_month(String username){
         SpendingThisMonthModel spendingThisMonthModel = new SpendingThisMonthModel();
-        spendingThisMonthModel.setInsurance(accountBookRepository.findByInsurance(accountBook.getUsername(), DateUtil.this_month, "저축/보험>%"));
-        spendingThisMonthModel.setSpending(accountBookRepository.findBySpending(accountBook.getUsername(), DateUtil.this_month, "저축/보험>%"));
-        spendingThisMonthModel.setSpendingRanks(accountBookRepository.findBySpendingRank(accountBook.getUsername(), DateUtil.this_month));
+        spendingThisMonthModel.setInsurance(accountBookRepository.findByInsurance(username, DateUtil.this_month, "저축/보험>%"));
+        spendingThisMonthModel.setSpending(accountBookRepository.findBySpending(username, DateUtil.this_month, "저축/보험>%"));
+        spendingThisMonthModel.setSpendingRanks(accountBookRepository.findBySpendingRank(username, DateUtil.this_month));
 
         return spendingThisMonthModel;
     }

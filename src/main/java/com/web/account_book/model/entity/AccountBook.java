@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.sql.Timestamp;
+import java.util.Date;
 
 @Data
 @Entity
@@ -21,15 +22,14 @@ public class AccountBook {
 
     private String username;
 
-    @CreationTimestamp
-    private Timestamp AB_write_date;
+    private String AB_write_date;
     private String AB_where_to_use;
     private int cash_cost;
     private int card_cost;
     private String type;
 
     @Builder
-    public AccountBook(int AB_id, String username, Timestamp AB_write_date, String AB_where_to_use,
+    public AccountBook(int AB_id, String username, String AB_write_date, String AB_where_to_use,
                        int cash_cost, int card_cost, String type){
         this.AB_id = AB_id;
         this.username = username;

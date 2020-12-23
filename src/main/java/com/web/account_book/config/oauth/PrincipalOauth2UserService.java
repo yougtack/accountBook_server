@@ -5,7 +5,7 @@ import com.web.account_book.config.oauth.provider.FacebookUserInfo;
 import com.web.account_book.config.oauth.provider.GoogleUserInfo;
 import com.web.account_book.config.oauth.provider.NaverUserInfo;
 import com.web.account_book.config.oauth.provider.OAuth2UserInfo;
-import com.web.account_book.model.User;
+import com.web.account_book.model.entity.User;
 import com.web.account_book.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -13,11 +13,6 @@ import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserServ
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.util.Map;
 
 
