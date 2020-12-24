@@ -8,15 +8,15 @@ import com.web.account_book.model.entity.Income;
 import java.util.List;
 
 public interface AccountBookService {
-    List<AccountBook> getAccountBookList(AccountBookSelectModel accountBookSelectModel);
+    List<AccountBook> getAccountBookList(String username, String start, String end);
     int save_account_book(AccountBook accountBook);
     int save_income(Income income);
 
-    IncomeThisMonth spending(AccountBook accountBook);
-    List<BudgetModel> getBudget(BudgetFindModel budgetFindModel);
+    IncomeThisMonth spending(String username);
+    List<BudgetModel> getBudget(String username, String date);
     int save_budget(Budget budget);
 
-    CumulativeModel getCumulative(AccountBook accountBook);
+    CumulativeModel getCumulative(String username);
 
-    SpendingThisMonthModel spending_this_month(AccountBook accountBook);
+    SpendingThisMonthModel spending_this_month(String username);
 }

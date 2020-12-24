@@ -24,11 +24,11 @@ public class Income {
     @CreationTimestamp
     private Timestamp income_date;
     private String income_where_to_get;
-    private long income_cost;
+    private int income_cost;
     private String income_type;
 
     @Builder
-    public Income(String username, String income_where_to_get, long income_cost, String income_type){
+    public Income(String username, String income_where_to_get, int income_cost, String income_type){
         this.username = username;
         this.income_where_to_get = income_where_to_get;
         this.income_cost = income_cost;

@@ -8,6 +8,7 @@ import com.web.account_book.service.AccountBookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @RestController
@@ -17,9 +18,9 @@ public class AccountBookController {
     @Autowired
     AccountBookService accountBookService;
 
-    @GetMapping(value = "")
-    public List<AccountBook> accountBootList(@RequestBody AccountBookSelectModel accountBookSelectModel){
-        return accountBookService.getAccountBookList(accountBookSelectModel);
+    @GetMapping(value = "/{username}/{start}/{end}")
+    public List<AccountBook> accountBootList(@PathVariable String username, @PathVariable String start, @PathVariable String end){
+        return accountBookService.getAccountBookList(username, start, end);
     }
 
     @PostMapping(value = "")
@@ -33,33 +34,36 @@ public class AccountBookController {
     }
 
     //지출
-    @PostMapping(value = "/spending")
-    public IncomeThisMonth total(@RequestBody AccountBook accountBook){
-        return accountBookService.spending(accountBook);
+    @GetMapping(value = "/spending/{username}")
+    public IncomeThisMonth total(@PathVariable String username, HttpSession session){
+        //인증
+        //입력받은 username과 세션의 session.getAttribute("username")으로 비교해야함
+        return accountBookService.spending(username);
     }
 
     //예산
-    @GetMapping(value = "/budget")
-    public List<BudgetModel> budget(@RequestBody BudgetFindModel budgetFindModel){
-        return accountBookService.getBudget(budgetFindModel);
+    @GetMapping(value = "/budget/{username}/{date}")
+    public List<BudgetModel> budget(@PathVariable String username, @PathVariable String date){
+        return accountBookService.getBudget(username, date);
     }
 
+    //예산 쓰기
     @PostMapping(value = "/budget")
     public int budgetInsert(@RequestBody Budget budget){
         return accountBookService.save_budget(budget);
     }
 
-    //누적 자산
-    @GetMapping(value = "/cumulative")
-    public CumulativeModel getCumulative(@RequestBody AccountBook accountBook){
-        return accountBookService.getCumulative(accountBook);
+    //누적 자산(구현 중임)
+    @GetMapping(value = "/cumulative/{username}")
+    public CumulativeModel getCumulative(@PathVariable String username, HttpSession session){
+        return accountBookService.getCumulative(username);
     }
 
-    @GetMapping(value = "/spending_month")
-    public SpendingThisMonthModel spending_this_month(@RequestBody AccountBook accountBook){
-        return accountBookService.spending_this_month(accountBook);
+    //이달의 지
+    @GetMapping(value = "/spending_month/{username}")
+    public SpendingThisMonthModel spending_this_month(@PathVariable String username){
+        return accountBookService.spending_this_month(username);
     }
-
 }
 
 
