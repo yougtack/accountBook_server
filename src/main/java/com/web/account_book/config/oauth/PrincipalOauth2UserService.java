@@ -5,7 +5,7 @@ import com.web.account_book.config.oauth.provider.FacebookUserInfo;
 import com.web.account_book.config.oauth.provider.GoogleUserInfo;
 import com.web.account_book.config.oauth.provider.NaverUserInfo;
 import com.web.account_book.config.oauth.provider.OAuth2UserInfo;
-import com.web.account_book.model.User;
+import com.web.account_book.model.entity.User;
 import com.web.account_book.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;

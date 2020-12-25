@@ -1,5 +1,6 @@
 const MONTH_MONEY = {
-    data: []
+    data: [],
+    spendingMonth : []
 };
 
 Number.prototype.format = function(){
@@ -21,7 +22,7 @@ Number.prototype.format = function(){
         username:USER.data[0]
     }
 
-    xhttp.open("POST", URL + `/accountBook/spending`, false);
+    xhttp.open("GET", URL + `/accountBook/spending/${USER.data[0]}`, false);
 
     xhttp.onreadystatechange = () => {
         if (xhttp.status !== 200) {
@@ -32,8 +33,39 @@ Number.prototype.format = function(){
     };
 
     xhttp.setRequestHeader("Content-Type", "application/json");
-    xhttp.send(JSON.stringify(data));
+    xhttp.send();
 })();
+
+(function spendingMonth() {
+    let xhttp = new XMLHttpRequest();
+    const URL = "http://localhost:8080";
+
+    let data = {
+        username:USER.data[0]
+    }
+
+    xhttp.open("GET", URL + `/accountBook/spending_month/${USER.data[0]}`, false);
+
+    xhttp.onreadystatechange = () => {
+        if (xhttp.status !== 200) {
+            console.log("HTTP ERROR", xhttp.status, xhttp.statusText);
+        } else {
+            MONTH_MONEY.spendingMonth = (JSON.parse(xhttp.responseText));
+            console.log(MONTH_MONEY.spendingMonth);
+        }
+    };
+
+    xhttp.setRequestHeader("Content-Type", "application/json");
+    xhttp.send();
+})();
+
+/* percent */
+let percentTotal = MONTH_MONEY.spendingMonth.insurance + MONTH_MONEY.spendingMonth.spending;
+let percentSpending = MONTH_MONEY.spendingMonth.spending;
+let savingPercent = Math.round(MONTH_MONEY.spendingMonth.insurance / percentTotal * 100);
+let spendPercent = Math.round(MONTH_MONEY.spendingMonth.spending / percentTotal * 100);
+
+/* percent */
 
 let navPaint =
 `<nav id="nav" class="nav_wrapper">
@@ -126,8 +158,8 @@ let navPaint =
                 <div class="percent">
                     <div class="saving_percent"></div>
                     <div class="spend_percent"></div>
-                    <span id="saving_text" class="saving_text font">0%</span>
-                    <span id="spend_text" class="spend_text font">0%</span>
+                    <span id="saving_text" class="saving_text font">${savingPercent}%</span>
+                    <span id="spend_text" class="spend_text font">${spendPercent}%</span>
                 </div>
                 <div class="percent_label">
                     <div class="saving_color"></div>
@@ -135,8 +167,30 @@ let navPaint =
                     <div class="spend_color"></div>
                     <span class="font">소비지출</span>
                 </div>
-                <ul>
-                    <li class="graph_space">
+                <ul>`;
+
+function test(cost, type) {
+    let total = Math.round(cost/ percentSpending * 100);
+    navPaint +=
+                `<li class="graph_space">
+                        <div class="graph_ranking">
+                            <div class="graph_div">
+                                <div class="graph">
+                                    <div></div>
+                                </div>
+                                <span class="graph_percent font">${total}%</span>
+                                <span class="graph_text font">${type}</span>
+                            </div>
+                        </div>
+                    </li>`;
+}
+
+for(let i = 0; i < 4; i++){
+    console.log(MONTH_MONEY.spendingMonth.spendingRanks[i] === undefined);
+    (MONTH_MONEY.spendingMonth.spendingRanks[i] !== undefined) ?
+        test(MONTH_MONEY.spendingMonth.spendingRanks[i].cost, MONTH_MONEY.spendingMonth.spendingRanks[i].type)
+        : navPaint +=
+            `<li class="graph_space">
                         <div class="graph_ranking">
                             <div class="graph_div">
                                 <div class="graph"></div>
@@ -144,35 +198,11 @@ let navPaint =
                                 <span class="graph_text font">미분류</span>
                             </div>
                         </div>
-                    </li>
-                    <li class="graph_space">
-                        <div class="graph_ranking">
-                            <div class="graph_div">
-                                <div class="graph"></div>
-                                <span class="graph_percent font">0%</span>
-                                <span class="graph_text font">미분류</span>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="graph_space">
-                        <div class="graph_ranking">
-                            <div class="graph_div">
-                                <div class="graph"></div>
-                                <span class="graph_percent font">0%</span>
-                                <span class="graph_text font">미분류</span>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="graph_space">
-                        <div class="graph_ranking">
-                            <div class="graph_div">
-                                <div class="graph"></div>
-                                <span class="graph_percent font">0%</span>
-                                <span class="graph_text font">미분류</span>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
+                    </li>`;
+
+}
+navPaint +=
+                `</ul>
             </div>
         </div>
         <div class="nav_frame nav_line">

@@ -216,7 +216,8 @@
 }
 
 .graph {
-    width: 50%;
+    width: 25%;
+    padding-left: 50px;
     height: 10px;
     border: 1px solid #BEBDBD;
     border-radius: 4px;
@@ -231,7 +232,6 @@
 }
 
 .graph_text {
-    margin-left: 28px;
     color: #54555b;
     font-size: 12px;
 }
