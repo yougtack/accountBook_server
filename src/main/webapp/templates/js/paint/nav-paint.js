@@ -62,9 +62,10 @@ Number.prototype.format = function(){
 /* percent */
 let percentTotal = MONTH_MONEY.spendingMonth.insurance + MONTH_MONEY.spendingMonth.spending;
 let percentSpending = MONTH_MONEY.spendingMonth.spending;
-let savingPercent = Math.round(MONTH_MONEY.spendingMonth.insurance / percentTotal * 100);
-let spendPercent = Math.round(MONTH_MONEY.spendingMonth.spending / percentTotal * 100);
-
+let savingPercent = (!!Math.round(MONTH_MONEY.spendingMonth.insurance / percentTotal * 100))
+    ? Math.round(MONTH_MONEY.spendingMonth.insurance / percentTotal * 100) : 0;
+let spendPercent = (!!Math.round(MONTH_MONEY.spendingMonth.spending / percentTotal * 100))
+    ? Math.round(MONTH_MONEY.spendingMonth.spending / percentTotal * 100) : 0;
 /* percent */
 
 let navPaint =
@@ -169,15 +170,19 @@ let navPaint =
                 </div>
                 <ul>`;
 
-function test(cost, type) {
+function rankGraph(cost, type, i) {
     let total = Math.round(cost/ percentSpending * 100);
+    console.log(i);
     navPaint +=
                 `<li class="graph_space">
                         <div class="graph_ranking">
                             <div class="graph_div">
-                                <div class="graph">
-                                    <div></div>
-                                </div>
+                                <div class="graph_frame">`;
+    (total >= 50)
+        ? navPaint += `<div class="graph graph_color_${i}" style="width:100%"></div>`
+        : navPaint += `<div class="graph graph_color_${i}" style="width: ${total}%"></div>`;
+    navPaint +=
+                                `</div>
                                 <span class="graph_percent font">${total}%</span>
                                 <span class="graph_text font">${type}</span>
                             </div>
@@ -186,14 +191,13 @@ function test(cost, type) {
 }
 
 for(let i = 0; i < 4; i++){
-    console.log(MONTH_MONEY.spendingMonth.spendingRanks[i] === undefined);
     (MONTH_MONEY.spendingMonth.spendingRanks[i] !== undefined) ?
-        test(MONTH_MONEY.spendingMonth.spendingRanks[i].cost, MONTH_MONEY.spendingMonth.spendingRanks[i].type)
+        rankGraph(MONTH_MONEY.spendingMonth.spendingRanks[i].cost, MONTH_MONEY.spendingMonth.spendingRanks[i].type, i)
         : navPaint +=
             `<li class="graph_space">
                         <div class="graph_ranking">
                             <div class="graph_div">
-                                <div class="graph"></div>
+                                <div class="graph_frame"></div>
                                 <span class="graph_percent font">0%</span>
                                 <span class="graph_text font">미분류</span>
                             </div>

@@ -212,12 +212,10 @@
 .graph_div {
     width: 100%;
     height: 15px;
-    display: flex;
 }
 
-.graph {
-    width: 25%;
-    padding-left: 50px;
+.graph_frame {
+    width: 50%;
     height: 10px;
     border: 1px solid #BEBDBD;
     border-radius: 4px;
@@ -225,8 +223,25 @@
     display: inline-block;
 }
 
+.graph {
+    height: 10px;
+    float: left;
+}
+
+.graph_color_0 {
+    background-color: #AF7EC4;
+}
+.graph_color_1 {
+    background-color: #64BDDC;
+}
+.graph_color_2 {
+    background-color: #ED76E1;
+}
+.graph_color_3 {
+    background-color: #91E5B2;
+}
+
 .graph_percent {
-    margin-left: 5px;
     color: #54555b;
     font-size: 12px;
 }
@@ -234,6 +249,8 @@
 .graph_text {
     color: #54555b;
     font-size: 12px;
+    position: relative;
+    float: right;
 }
 
 /* property */
