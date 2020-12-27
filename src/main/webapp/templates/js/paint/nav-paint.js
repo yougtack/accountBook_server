@@ -1,4 +1,4 @@
-const MONTH_MONEY = {
+    const MONTH_MONEY = {
     data: [],
     spendingMonth : []
 };
