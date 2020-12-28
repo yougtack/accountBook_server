@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -165,5 +166,17 @@ public class AccountBookServiceImpl implements AccountBookService {
         spendingThisMonthModel.setSpendingRanks(accountBookRepository.findBySpendingRank(username, DateUtil.this_month));
 
         return spendingThisMonthModel;
+    }
+
+    @Override
+    public BudgetThisMonth budget_this_month(String username) {
+        BudgetThisMonth budgetThisMonth = new BudgetThisMonth();
+        budgetThisMonth.setSpending_this_month(
+                accountBookRepository.findByExpenditure_cash(DateUtil.this_month, username)+
+                    accountBookRepository.findByExpenditure_card(DateUtil.this_month, username)
+        );
+        budgetThisMonth.setBudget_this_month(budgetRepository.findByBudgetThisMonth(username, DateUtil.this_month));
+
+        return budgetThisMonth;
     }
 }

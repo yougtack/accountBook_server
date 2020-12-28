@@ -64,6 +64,12 @@ public class AccountBookController {
     public SpendingThisMonthModel spending_this_month(@PathVariable String username){
         return accountBookService.spending_this_month(username);
     }
+
+    //이달의 예산
+    @GetMapping(value = "/budget_month/{username}")
+    public BudgetThisMonth income_this_month(@PathVariable String username){
+        return accountBookService.budget_this_month(username);
+    }
 }
 
 

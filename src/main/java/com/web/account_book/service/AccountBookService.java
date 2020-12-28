@@ -19,4 +19,6 @@ public interface AccountBookService {
     CumulativeModel getCumulative(String username);
 
     SpendingThisMonthModel spending_this_month(String username);
+
+    BudgetThisMonth budget_this_month(String username);
 }
