@@ -77,6 +77,7 @@
 }
 
 .btn_money_hide {
+    cursor: pointer;
     vertical-align: middle;
 }
 
@@ -189,4 +190,14 @@ input[type="number"]::-webkit-inner-spin-button {
 
 input {
     border: none;
+}
+
+.write_btn {
+    top: 15px;
+    margin-left: 15px;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: #31b0e5;
+    border: 1px solid #31b0e5;
+    position: relative;
 }

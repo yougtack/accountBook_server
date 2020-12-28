@@ -51,7 +51,6 @@ Number.prototype.format = function(){
             console.log("HTTP ERROR", xhttp.status, xhttp.statusText);
         } else {
             MONTH_MONEY.spendingMonth = (JSON.parse(xhttp.responseText));
-            console.log(MONTH_MONEY.spendingMonth);
         }
     };
 
@@ -172,7 +171,6 @@ let navPaint =
 
 function rankGraph(cost, type, i) {
     let total = Math.round(cost/ percentSpending * 100);
-    console.log(i);
     navPaint +=
                 `<li class="graph_space">
                         <div class="graph_ranking">
