@@ -79,6 +79,7 @@ public class AccountBookServiceImpl implements AccountBookService {
         try{
             Income incomeEntity = Income.builder()
                     .username(income.getUsername())
+                    .income_date(income.getIncome_date())
                     .income_where_to_get(income.getIncome_where_to_get())
                     .income_cost(income.getIncome_cost())
                     .income_type(income.getIncome_type())
