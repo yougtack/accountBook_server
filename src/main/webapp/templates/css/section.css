@@ -153,6 +153,7 @@ input[type="number"]::-webkit-inner-spin-button {
 .class_list {
     z-index: 1;
     position: relative;
+    background-color: #F7F6F6;
 }
 
 .main_class {

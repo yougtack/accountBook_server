@@ -38,7 +38,7 @@
 <!--                            그래프 출력-->
 <!--                        </div>-->
                         <div class="section_write">
-                            <form>
+                            <form id="write_form" method="POST">
                                 <table style="width: 100%">
                                     <!-- 번호 foucs -->
                                     <tr>
@@ -56,11 +56,14 @@
                                             <input type="checkbox" />
                                         </td>
                                         <td class="write_text section_write_b font">
-                                            <input id="test_today" class="font" type="text" />
+                                            <input id="test_today" class="font" name="ab_write_date" type="text" />
                                         </td>
-                                        <td class="write_text section_write_b font"><input  type="text" style="width: 97%" /></td>
+                                        <td class="write_text section_write_b font">
+                                            <input type="text" name="AB_where_to_use" style="width: 97%" />
+                                        </td>
                                         <td class="write_text section_write_b font">
                                             <input  class="write_money"
+                                                    name="cash_cost"
                                                     type="text" onkeyup="this.value = SetComma(this.value)"
                                                     onfocus="this.value = SetComma(this.value)"
                                                     maxlength="13"
@@ -69,6 +72,7 @@
                                         </td>
                                         <td class="write_text section_write_b font">
                                             <input class="write_money"
+                                                   name="card_cost"
                                                    type="text" onkeyup="this.value = SetComma(this.value)"
                                                    onfocus="this.value = SetComma(this.value)"
                                                    maxlength="13"
@@ -77,7 +81,7 @@
                                         </td>
                                         <td class="write_text section_write_b font">
                                             <div class="select">
-                                                <span class="selected-option font"><!-- 선택된 옵션 값이 출력되는 부분 --></span>
+                                                <span id="Type" class="selected-option font"><!-- 선택된 옵션 값이 출력되는 부분 --></span>
                                                 <!-- 옵션 영역 -->
                                                 <ul class="hide class_list">
                                                     <li class="main_class">
@@ -208,7 +212,7 @@
                                             <span class="font">가격</span>
                                         </td>
                                         <td class="section_write_b" rowspan="2">
-                                            <span class="font">저장하기</span>
+                                            <span id="write_submit" class="font">저장하기</span>
                                         </td>
                                     </tr>
                                     <tr>
