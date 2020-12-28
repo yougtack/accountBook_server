@@ -35,4 +35,14 @@ public interface BudgetRepository extends JpaRepository<Budget, Long> {
             "       ORDER BY 1"
             , nativeQuery = true)
     List<BudgetModel> findTotal_cost(String username, String month);
+
+    @Query(value = "SELECT" +
+            "           ifnull(sum(budget),0)" +
+            "       FROM" +
+            "           budget" +
+            "       WHERE" +
+            "           username = ?1" +
+            "       AND " +
+            "           insert_date like ?2",nativeQuery = true)
+    int findByBudgetThisMonth(String username, String month);
 }
