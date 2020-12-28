@@ -139,8 +139,22 @@ public class AccountBookServiceImpl implements AccountBookService {
 
     @Override //구현중
     public CumulativeModel getCumulative(String username) {
-        accountBookRepository.findByCumulative(username);
-        return null;
+        CumulativeModel cumulativeModel = new CumulativeModel();
+        cumulativeModel.setSum_money(incomeRepository.findByIncome(username) - accountBookRepository.findBySumCash_money(username));
+        cumulativeModel.setDeposit(accountBookRepository.findByDeposit(username));
+        cumulativeModel.setSave_money(accountBookRepository.findBySave_money(username));
+        cumulativeModel.setFund(accountBookRepository.findByFund(username));
+        cumulativeModel.setInsurance(accountBookRepository.findByInsurance_total(username));
+        cumulativeModel.setInvestment(accountBookRepository.findByInvestment(username));
+        cumulativeModel.setEtc(accountBookRepository.findByEtc(username));
+        cumulativeModel.setTotal_cost(cumulativeModel.getSum_money()+
+                cumulativeModel.getDeposit()+
+                cumulativeModel.getSave_money()+
+                cumulativeModel.getFund()+
+                cumulativeModel.getInsurance()+
+                cumulativeModel.getInvestment()+
+                cumulativeModel.getEtc());
+        return cumulativeModel;
     }
 
     @Override
