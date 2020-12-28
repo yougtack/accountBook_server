@@ -53,13 +53,13 @@ public class AccountBookController {
         return accountBookService.save_budget(budget);
     }
 
-    //누적 자산(구현 중임)
+    //총 누적 자산(구현 중임)
     @GetMapping(value = "/cumulative/{username}")
-    public CumulativeModel getCumulative(@PathVariable String username, HttpSession session){
+    public CumulativeModel getCumulative(@PathVariable String username){
         return accountBookService.getCumulative(username);
     }
 
-    //이달의 지
+    //이달의 지춟 분석
     @GetMapping(value = "/spending_month/{username}")
     public SpendingThisMonthModel spending_this_month(@PathVariable String username){
         return accountBookService.spending_this_month(username);
