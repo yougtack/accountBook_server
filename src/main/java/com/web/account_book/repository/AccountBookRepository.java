@@ -49,7 +49,7 @@ public interface AccountBookRepository extends JpaRepository<AccountBook, Long>{
     @Query(value = "SELECT ifnull(sum(cash_cost+card_cost), 0) AS cost FROM account_book where type like '저축/보험>기타' and username = ?1", nativeQuery = true)
     int findByEtc(String username);
 
-    @Query(value = "select subString(type,1,2) AS type, ifnull(sum(cash_cost+card_cost), 0) AS cost from account_book where username = ?1 and ab_write_date like ?2 group by substring(type,1,2) limit 0, 4",nativeQuery = true)
+    @Query(value = "select subString(type,1,2) AS type, ifnull(sum(cash_cost+card_cost), 0) AS cost from account_book where username = ?1 and ab_write_date like ?2 and type not like '저축/보험>%'group by substring(type,1,2) limit 0, 4",nativeQuery = true)
     List<SpendingRankModel> findBySpendingRank(String username, String this_month);
 
 }
