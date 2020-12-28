@@ -1,3 +1,21 @@
+let writeView = document.getElementById('section_write');
+let incomeView = document.getElementById('section_income');
+
+(function reset() {
+    writeView.style.display = 'block';
+    incomeView.style.display = 'none';
+})();
+
+document.getElementById('write_view').addEventListener('click', () => {
+    writeView.style.display = 'block';
+    incomeView.style.display = 'none';
+});
+
+document.getElementById('income_view').addEventListener('click', () => {
+    writeView.style.display = 'none';
+    incomeView.style.display = 'block';
+});
+
 document.getElementById('write_submit').addEventListener('click', () => {
     let xhttp = new XMLHttpRequest();
     let writeForm = document.getElementById('write_form');
