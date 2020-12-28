@@ -48,3 +48,83 @@ document.getElementById('write_submit').addEventListener('click', () => {
     xhttp.setRequestHeader("Content-Type", "application/json");
     xhttp.send(JSON.stringify(data));
 });
+
+function SetComma(str) {
+    str = str.replace(/,/g, '');
+    let retValue = "";
+    if (isNaN(str) == false) {
+        for (let i = 1; i <= str.length; i++) {
+            if (i > 1 && (i % 3) == 1) retValue = str.charAt(str.length - i) + "," + retValue; else retValue = str.charAt(str.length - i) + retValue;
+        }
+    }
+    return retValue;
+}
+
+const body = document.querySelector('body');
+const select = document.querySelector('.select');
+const values = select.querySelector('.selected-option');
+const option = select.querySelector('ul');
+const opts = option.querySelectorAll('span');
+const selectTarget = document.getElementsByClassName('main_class');
+const selectSubTarget = document.getElementsByClassName('sub_class_frame');
+
+/* 셀렉트영역 클릭 시 옵션 숨기기, 보이기 */
+function selects(e){
+    e.stopPropagation();
+    option.setAttribute('style', `top:${select.offsetHeight}px`)
+    if (option.classList.contains('hide')) {
+        option.classList.remove('hide');
+        option.classList.add('show');
+    } else {
+        option.classList.add('hide');
+        option.classList.remove('show');
+    }
+    selectOpt();
+}
+
+/* 옵션선택 */
+function selectOpt(){
+    opts.forEach(opt=>{
+        const innerValue = opt.innerHTML;
+        function changeValue(){
+            values.innerHTML = innerValue;
+            for(value of selectSubTarget){
+                value.style.display = 'none';
+            }
+        }
+        opt.addEventListener('click',changeValue);
+    });
+}
+
+/* 렌더링 시 옵션의 첫번째 항목 기본 선택 */
+function selectFirst(){
+    const firstValue = opts[0].innerHTML;
+    values.innerHTML = `${firstValue}`
+}
+
+/* 옵션밖의 영역(=바디) 클릭 시 옵션 숨김 */
+function hideSelect(){
+    if(option.classList.contains('show')){
+        option.classList.add('hide');
+        option.classList.remove('show');
+        for(value of selectSubTarget){
+            value.style.display = 'none';
+        }
+    }
+}
+
+selectFirst();
+select.addEventListener('click',selects);
+body.addEventListener('click',hideSelect);
+
+for(let i = 0; i < selectTarget.length; i++) {
+    selectTarget[i].addEventListener('mouseover', () => {
+        for (let j = 0; j < selectSubTarget.length; j++){
+            if (i === j){
+                continue;
+            }
+            selectSubTarget[j].style.display = 'none';
+        }
+        selectSubTarget[i].style.display = 'block';
+    });
+}
