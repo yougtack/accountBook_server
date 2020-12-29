@@ -26,7 +26,8 @@ public class Income {
     private String income_type;
 
     @Builder
-    public Income(String username, String income_date, String income_where_to_get, int income_cost, String income_type){
+    public Income(long income_id, String username, String income_date, String income_where_to_get, int income_cost, String income_type){
+        this.income_id = income_id;
         this.username = username;
         this.income_date = income_date;
         this.income_where_to_get = income_where_to_get;
