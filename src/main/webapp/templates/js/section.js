@@ -27,8 +27,8 @@ window.addEventListener('load', () => {
 
     today.innerText = now.getFullYear() + "." + (now.getMonth() + 1) + "." + now.getDate() + ".(" + day[now.getDay()] + ")";
 
-    const test2 = document.getElementById('test_today');
-    test2.value = now.getFullYear() + "." + (now.getMonth() + 1) + "." + now.getDate();
+    document.getElementById('write_today').value = now.getFullYear() + "." + (now.getMonth() + 1) + "." + now.getDate();
+    document.getElementById('income_today').value = now.getFullYear() + "." + (now.getMonth() + 1) + "." + now.getDate();
 
 });
 

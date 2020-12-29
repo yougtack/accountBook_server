@@ -56,7 +56,7 @@
                                             <input type="checkbox" />
                                         </td>
                                         <td class="write_text section_write_b font">
-                                            <input id="test_today" class="font" name="ab_write_date" type="text" />
+                                            <input id="write_today" class="font" name="ab_write_date" type="text" />
                                         </td>
                                         <td class="write_text section_write_b font">
                                             <input type="text" name="AB_where_to_use" style="width: 97%" />
@@ -221,7 +221,6 @@
                         <div id="section_income" class="section_income">
                             <form method="POST">
                                 <table style="width: 100%">
-                                    <!-- 번호 foucs -->
                                     <tr>
                                         <td class="section_write_b" style="text-align: center; width:1%">
                                             <input type="checkbox" />
@@ -237,7 +236,7 @@
                                             <input type="checkbox" />
                                         </td>
                                         <td class="write_text section_write_b font">
-                                            <input id="test_today" class="font" name="ab_write_date" type="text" />
+                                            <input id="income_today" class="font" name="ab_write_date" type="text" />
                                         </td>
                                         <td class="write_text section_write_b font">
                                             <input type="text" name="AB_where_to_use" style="width: 97%" />
@@ -261,116 +260,38 @@
                                             />
                                         </td>
                                         <td class="write_text section_write_b font">
-                                            <div class="select">
-                                                <span class="selected-option font"><!-- 선택된 옵션 값이 출력되는 부분 --></span>
-                                                <!-- 옵션 영역 -->
+                                            <div class="select_income select">
+                                                <span class="selected-option-income font">미분류</span>
                                                 <ul class="hide class_list">
-                                                    <li class="main_class">
-                                                        <span class="font">식비</span>
+                                                    <li class="main_class income_main">
+                                                        <span class="font">주수입</span>
                                                     </li>
-                                                    <li class="sub_class_frame">
-                                                        <span class="sub_class font">식비>주식</span>
-                                                        <span class="sub_class font">식비>부식</span>
-                                                        <span class="sub_class font">식비>간식</span>
-                                                        <span class="sub_class font">식비>외식</span>
-                                                        <span class="sub_class font">식비>커피/음료</span>
-                                                        <span class="sub_class font">식비>술/유흥</span>
-                                                        <span class="sub_class font">식비>기타</span>
+                                                    <li class="sub_income_frame">
+                                                        <span class="sub_class font">주수입>급여</span>
+                                                        <span class="sub_class font">주수입>상여</span>
+                                                        <span class="sub_class font">주수입>사업소득</span>
+                                                        <span class="sub_class font">주수입>기타</span>
                                                     </li>
-                                                    <li class="main_class">
-                                                        <span class="font">주거통신</span>
+                                                    <li class="main_class income_main">
+                                                        <span class="font">부수입</span>
                                                     </li>
-                                                    <li class="sub_class_frame">
-                                                        <span class="sub_class font">주거통신>관리비</span>
-                                                        <span class="sub_class font">주거통신>공과금</span>
-                                                        <span class="sub_class font">주거통신>이동통신</span>
-                                                        <span class="sub_class font">주거통신>인터넷</span>
-                                                        <span class="sub_class font">주거통신>월세</span>
-                                                        <span class="sub_class font">주거통신>기타</span>
+                                                    <li class="sub_income_frame">
+                                                        <span class="sub_class font">부수입>이자/배당금</span>
+                                                        <span class="sub_class font">부수입>기타</span>
                                                     </li>
-                                                    <li class="main_class">
-                                                        <span class="font">생활용품</span>
+                                                    <li class="main_class income_main">
+                                                        <span class="font">전월이월</span>
                                                     </li>
-                                                    <li class="sub_class_frame">
-                                                        <span class="sub_class font">생활용품>가구/가전</span>
-                                                        <span class="sub_class font">생활용품>주방/욕실</span>
-                                                        <span class="sub_class font">생활용품>잡화소모</span>
-                                                        <span class="sub_class font">생활용품>기타</span>
+                                                    <li class="sub_income_frame">
+                                                        <span class="sub_class font">전월이월>전월이월</span>
+                                                        <span class="sub_class font">전월이월>시작금액</span>
+                                                        <span class="sub_class font">전월이월>잔액조정</span>
+                                                        <span class="sub_class font">전월이월>기타</span>
                                                     </li>
-                                                    <li class="main_class">
-                                                        <span class="font">의복/미용</span>
-                                                    </li>
-                                                    <li class="sub_class_frame">
-                                                        <span class="sub_class font">의복/미용>의류비</span>
-                                                        <span class="sub_class font">의복/미용>패션잡화</span>
-                                                        <span class="sub_class font">의복/미용>헤어/뷰티</span>
-                                                        <span class="sub_class font">의복/미용>세탁수선비</span>
-                                                        <span class="sub_class font">의복/미용>기타</span>
-                                                    </li>
-                                                    <li class="main_class">
-                                                        <span class="font">건강/문화</span>
-                                                    </li>
-                                                    <li class="sub_class_frame">
-                                                        <span class="sub_class font">건강/문화>운동/레저</span>
-                                                        <span class="sub_class font">건강/문화>문화생활</span>
-                                                        <span class="sub_class font">건강/문화>여행</span>
-                                                        <span class="sub_class font">건강/문화>병원비</span>
-                                                        <span class="sub_class font">건강/문화>기타</span>
-                                                        <span class="sub_class font">건강/문화>보장성보험</span>
-                                                    </li>
-                                                    <li class="main_class">
-                                                        <span class="font">교육/육아</span>
-                                                    </li>
-                                                    <li class="sub_class_frame">
-                                                        <span class="sub_class font">교육/육아>등록금</span>
-                                                        <span class="sub_class font">교육/육아>학원/교재비</span>
-                                                        <span class="sub_class font">교육/육아>육아용품</span>
-                                                        <span class="sub_class font">교육/육아>기타</span>
-                                                    </li>
-                                                    <li class="main_class">
-                                                        <span class="font">교통/차량</span>
-                                                    </li>
-                                                    <li class="sub_class_frame">
-                                                        <span class="sub_class font">교통/차량>대중교통비</span>
-                                                        <span class="sub_class font">교통/차량>주유비</span>
-                                                        <span class="sub_class font">교통/차량>자동차보험</span>
-                                                        <span class="sub_class font">교통/차량>기타</span>
-                                                    </li>
-                                                    <li class="main_class">
-                                                        <span class="font">경조사/회비</span>
-                                                    </li>
-                                                    <li class="sub_class_frame">
-                                                        <span class="sub_class font">경조사/회비>경조사비</span>
-                                                        <span class="sub_class font">경조사/회비>모임회비</span>
-                                                        <span class="sub_class font">경조사/회비>데이트</span>
-                                                        <span class="sub_class font">경조사/회비>선물</span>
-                                                        <span class="sub_class font">경조사/회비>기타</span>
-                                                    </li>
-                                                    <li class="main_class">
-                                                        <span class="font">세금/이자</span>
-                                                    </li>
-                                                    <li class="sub_class_frame">
-                                                        <span class="sub_class font">세금/이자>세금</span>
-                                                        <span class="sub_class font">세금/이자>대출이자</span>
-                                                        <span class="sub_class font">세금/이자>기타</span>
-                                                    </li>
-                                                    <li class="main_class">
-                                                        <span class="font">용돈/기타</span>
-                                                    </li>
-                                                    <li class="sub_class_frame">
-                                                        <span class="sub_class font">용돈/기타>용돈</span>
-                                                        <span class="sub_class font">용돈/기타>기타</span>
-                                                    </li>
-                                                    <li class="main_class">
-                                                        <span class="font">카드대금</span>
-                                                    </li>
-                                                    <li class="sub_class_frame">
-                                                        <span class="sub_class font">카드대금>카드대금</span>
-                                                    </li>
-                                                    <li class="main_class">
+                                                    <li class="main_class income_main">
                                                         <span class="font">저축/보험</span>
                                                     </li>
-                                                    <li class="sub_class_frame">
+                                                    <li class="sub_income_frame">
                                                         <span class="sub_class font">저축/보험>예금</span>
                                                         <span class="sub_class font">저축/보험>적금</span>
                                                         <span class="sub_class font">저축/보험>펀드</span>
