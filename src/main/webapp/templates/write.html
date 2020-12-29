@@ -34,10 +34,10 @@
                 </div>
                 <div class="section_bottom">
                     <div class="section_bottom_content">
-<!--                        <div class="section_graph_container">-->
-<!--                            그래프 출력-->
-<!--                        </div>-->
                         <div id="section_write" class="section_write">
+<!--                            <div class="section_graph_container">-->
+<!--                                그래프 출력-->
+<!--                            </div>-->
                             <form id="write_form" method="POST">
                                 <table style="width: 100%">
                                     <!-- 번호 foucs -->
@@ -56,7 +56,7 @@
                                             <input type="checkbox" />
                                         </td>
                                         <td class="write_text section_write_b font">
-                                            <input id="test_today" class="font" name="ab_write_date" type="text" />
+                                            <input id="write_today" class="font" name="ab_write_date" type="text" />
                                         </td>
                                         <td class="write_text section_write_b font">
                                             <input type="text" name="AB_where_to_use" style="width: 97%" />
@@ -202,7 +202,7 @@
                                         </td>
                                     </tr>
                                     <tr style="position: relative; z-index: 0">
-                                        <td class="section_write_b" colspan="3">
+                                        <td class="section_write_b" colspan="3" height="30px">
                                             test
                                         </td>
                                         <td class="section_write_b">
@@ -211,23 +211,114 @@
                                         <td class="section_write_b">
                                             <span class="font">가격</span>
                                         </td>
-                                        <td class="section_write_b" rowspan="2">
+                                        <td class="section_write_b">
                                             <span id="write_submit" class="write_btn font">저장하기</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="section_write_b" colspan="3">
-                                            <span class="font">지출합계</span>
-                                        </td>
-                                        <td class="section_write_b" colspan="2">
-                                            <span class="font">가격</span>
                                         </td>
                                     </tr>
                                 </table>
                             </form>
                         </div>
                         <div id="section_income" class="section_income">
-                            <span>hello</span>
+                            <form id="income_form" method="POST">
+                                <table style="width: 100%">
+                                    <tr>
+                                        <td class="section_write_b" style="text-align: center; width:1%">
+                                            <input type="checkbox" />
+                                        </td>
+                                        <td class="table_text section_write_b font" style="width:6%">날짜</td>
+                                        <td class="table_text section_write_b font" style="width:24%">내역</td>
+                                        <td class="table_text section_write_b font" style="width:15%">금액</td>
+                                        <td class="table_text section_write_b font" style="width:15%">입금통장</td>
+                                        <td class="table_text section_write_b font" style="width:20%">분류</td>
+                                    </tr>
+                                    <tr class="test">
+                                        <td class="section_write_b" style="text-align: center; width: 1%">
+                                            <input type="checkbox" />
+                                        </td>
+                                        <td class="write_text section_write_b font">
+                                            <input id="income_today" class="font" name="income_today" type="text" />
+                                        </td>
+                                        <td class="write_text section_write_b font">
+                                            <input type="text" name="income_where_to_get" style="width: 97%" />
+                                        </td>
+                                        <td class="write_text section_write_b font">
+                                            <input  class="write_money"
+                                                    name="income_cost"
+                                                    type="text" onkeyup="this.value = SetComma(this.value)"
+                                                    onfocus="this.value = SetComma(this.value)"
+                                                    maxlength="13"
+                                                    style="width: 96%"
+                                            />
+                                        </td>
+                                        <td class="write_text section_write_b font">
+                                            <input class="write_money"
+                                                   name="card_cost"
+                                                   type="text" onkeyup="this.value = SetComma(this.value)"
+                                                   onfocus="this.value = SetComma(this.value)"
+                                                   maxlength="13"
+                                                   style="width: 96%"
+                                            />
+                                        </td>
+                                        <td class="write_text section_write_b font">
+                                            <div class="select_income select">
+                                                <span id="income_type" class="selected-option-income font">미분류</span>
+                                                <ul class="hide class_list">
+                                                    <li class="income_main">
+                                                        <span class="font">주수입</span>
+                                                    </li>
+                                                    <li class="sub_income_frame">
+                                                        <span class="sub_class font">주수입>급여</span>
+                                                        <span class="sub_class font">주수입>상여</span>
+                                                        <span class="sub_class font">주수입>사업소득</span>
+                                                        <span class="sub_class font">주수입>기타</span>
+                                                    </li>
+                                                    <li class="income_main">
+                                                        <span class="font">부수입</span>
+                                                    </li>
+                                                    <li class="sub_income_frame">
+                                                        <span class="sub_class font">부수입>이자/배당금</span>
+                                                        <span class="sub_class font">부수입>기타</span>
+                                                    </li>
+                                                    <li class="income_main">
+                                                        <span class="font">전월이월</span>
+                                                    </li>
+                                                    <li class="sub_income_frame">
+                                                        <span class="sub_class font">전월이월>전월이월</span>
+                                                        <span class="sub_class font">전월이월>시작금액</span>
+                                                        <span class="sub_class font">전월이월>잔액조정</span>
+                                                        <span class="sub_class font">전월이월>기타</span>
+                                                    </li>
+                                                    <li class="income_main">
+                                                        <span class="font">저축/보험</span>
+                                                    </li>
+                                                    <li class="sub_income_frame">
+                                                        <span class="sub_class font">저축/보험>예금</span>
+                                                        <span class="sub_class font">저축/보험>적금</span>
+                                                        <span class="sub_class font">저축/보험>펀드</span>
+                                                        <span class="sub_class font">저축/보험>보험</span>
+                                                        <span class="sub_class font">저축/보험>투자</span>
+                                                        <span class="sub_class font">저축/보험>기타</span>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr style="position: relative; z-index: 0">
+                                        <td class="section_write_b" colspan="3" height="30px">
+                                            test
+                                        </td>
+                                        <td class="section_write_b">
+                                            <span class=" font">가격</span>
+                                        </td>
+                                        <td class="section_write_b">
+                                            <span class="font">가격</span>
+                                        </td>
+                                        <td class="section_write_b">
+                                            <span id="income_submit" class="write_btn font">저장하기</span>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -236,6 +327,7 @@
         <script src="js/paint/footer-paint.js"></script>
     </body>
     <script src="js/section-write.js"></script>
+    <script src="js/section-income.js"></script>
     <script src="js/header.js"></script>
     <script src="js/nav.js"></script>
     <script src="js/section.js"></script>
