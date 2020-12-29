@@ -197,12 +197,7 @@ public class AccountBookServiceImpl implements AccountBookService {
                     .budget(budget.getBudget())
                     .budget_type(budget.getBudget_type())
                     .build();
-
-            if(budgetRepository.findByBudget_type(budget.getBudget_type()) == null){
-                budgetRepository.save(budgetEntity);
-            }else{
-
-            }
+            budgetRepository.save(budgetEntity);
         }catch(Exception e) {
             e.printStackTrace();
             return 0;

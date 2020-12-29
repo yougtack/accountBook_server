@@ -20,7 +20,7 @@ public interface BudgetRepository extends JpaRepository<Budget, Long> {
             "       ON SUBSTRING(a.type, 1, 2) = b.budget_type" +
             "       WHERE a.username = ?1 OR b.username = ?1" +
             "       AND b.insert_date LIKE ?2" +
-            "       GROUP BY SUBSTRING(a.type, 1, 2)"+
+            "       GROUP BY SUBSTRING(a.type, 1, 2)" +
             "       UNION" +
             "       SELECT" +
             "           IFNULL(SUBSTRING(a.type, 1, 2), b.budget_type) AS type, IFNULL(SUM(a.card_cost+a.cash_cost), 0) AS spending," +
@@ -44,12 +44,10 @@ public interface BudgetRepository extends JpaRepository<Budget, Long> {
             "       WHERE" +
             "           username = ?1" +
             "       AND " +
-            "           insert_date like ?2",nativeQuery = true)
+            "           insert_date like ?2", nativeQuery = true)
     int findByBudgetThisMonth(String username, String month);
 
     @Modifying
     @Query(value = "DELETE FROM budget WHERE budget_id = ?1", nativeQuery = true)
     int deleteByBudget_id(long budget_id);
-
-    Budget findByBudget_type(String budget_type);
 }
