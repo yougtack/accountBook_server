@@ -6,6 +6,7 @@ import com.web.account_book.repository.*;
 import com.web.account_book.service.AccountBookService;
 import com.web.account_book.util.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -39,19 +40,39 @@ public class AccountBookServiceImpl implements AccountBookService {
     @Override
     @Transactional
     public int save_account_book(AccountBook accountBook){
+        AccountBook accountBookEntity = AccountBook.builder()
+                .username(accountBook.getUsername())
+                .AB_where_to_use(accountBook.getAB_where_to_use())
+                .AB_write_date(accountBook.getAB_write_date())
+                .card_cost(accountBook.getCard_cost())
+                .cash_cost(accountBook.getCash_cost())
+                .type(accountBook.getType())
+                .build();
+        return account_book_util(accountBookEntity, accountBook);
+    }
+
+    @Override
+    @Transactional
+    public int update_account_book(AccountBook accountBook){
+        AccountBook accountBookEntity = AccountBook.builder()
+                .AB_id(accountBook.getAB_id())
+                .username(accountBook.getUsername())
+                .AB_where_to_use(accountBook.getAB_where_to_use())
+                .AB_write_date(accountBook.getAB_write_date())
+                .card_cost(accountBook.getCard_cost())
+                .cash_cost(accountBook.getCash_cost())
+                .type(accountBook.getType())
+                .build();
+
+        account_book_cost_util(accountBook);
+        return account_book_util(accountBookEntity, accountBook);
+    }
+
+    private int account_book_util(AccountBook accountBookEntity, AccountBook accountBook){
         try{
-            AccountBook accountBookEntity = AccountBook.builder()
-                    .username(accountBook.getUsername())
-                    .AB_where_to_use(accountBook.getAB_where_to_use())
-                    .AB_write_date(accountBook.getAB_write_date())
-                    .card_cost(accountBook.getCard_cost())
-                    .cash_cost(accountBook.getCash_cost())
-                    .type(accountBook.getType())
-                    .build();
             accountBookRepository.save(accountBookEntity);
 
             if(accountBook.getCash_cost() > 0){
-
                 Cash cashEntity = Cash.builder()
                         .AB_id(accountBookRepository.findByIdentifier())
                         .username(accountBook.getUsername())
@@ -74,6 +95,26 @@ public class AccountBookServiceImpl implements AccountBookService {
         }
     }
 
+    private void account_book_cost_util(AccountBook accountBook){
+        if(accountBook.getCard_cost() == 0){
+            cardRepository.deleteByAB_id(accountBook.getAB_id());
+        }else if(accountBook.getCash_cost() == 0){
+            cashRepository.deleteByAB_id(accountBook.getAB_id());
+        }
+    }
+
+    @Transactional
+    @Override
+    public int delete_account_book(long ab_id){
+        int result = 0;
+
+        result += accountBookRepository.deleteByAB_id(ab_id);
+        result += cardRepository.deleteByAB_id(ab_id);
+        result += cashRepository.deleteByAB_id(ab_id);
+
+        return result;
+    }
+
     @Override
     public int save_income(Income income) {
         try{
@@ -90,6 +131,31 @@ public class AccountBookServiceImpl implements AccountBookService {
             e.printStackTrace();
             return 0;
         }
+    }
+
+    @Override
+    public int update_income(Income income){
+        try{
+            Income incomeEntity = Income.builder()
+                    .income_id(income.getIncome_id())
+                    .username(income.getUsername())
+                    .income_date(income.getIncome_date())
+                    .income_where_to_get(income.getIncome_where_to_get())
+                    .income_cost(income.getIncome_cost())
+                    .income_type(income.getIncome_type())
+                    .build();
+            incomeRepository.save(incomeEntity);
+            return 1;
+        }catch(Exception e){
+            e.printStackTrace();
+            return 0;
+        }
+    }
+
+    @Transactional
+    @Override
+    public int delete_income(long income_id){
+        return incomeRepository.deleteByIncome_id(income_id);
     }
 
     @Override
@@ -127,10 +193,16 @@ public class AccountBookServiceImpl implements AccountBookService {
         try{
             Budget budgetEntity = Budget.builder()
                     .username(budget.getUsername())
+                    .insert_date(budget.getInsert_date())
                     .budget(budget.getBudget())
                     .budget_type(budget.getBudget_type())
                     .build();
-            budgetRepository.save(budgetEntity);
+
+            if(budgetRepository.findByBudget_type(budget.getBudget_type()) == null){
+                budgetRepository.save(budgetEntity);
+            }else{
+
+            }
         }catch(Exception e) {
             e.printStackTrace();
             return 0;
@@ -139,7 +211,37 @@ public class AccountBookServiceImpl implements AccountBookService {
         }
     }
 
-    @Override //구현중
+    @Override
+    public int update_budget(Budget budget){
+        try{
+            Budget budgetEntity = Budget.builder()
+                    .budget_id(budget.getBudget_id())
+                    .username(budget.getUsername())
+                    .insert_date(budget.getInsert_date())
+                    .budget(budget.getBudget())
+                    .budget_type(budget.getBudget_type())
+                    .build();
+
+            if(budget.getBudget() == 0){
+                budgetRepository.deleteByBudget_id(budget.getBudget_id());
+            }else{
+                budgetRepository.save(budgetEntity);
+            }
+        }catch(Exception e) {
+            e.printStackTrace();
+            return 0;
+        }finally {
+            return 1;
+        }
+    }
+
+    @Transactional
+    @Override
+    public int delete_budget(long budget_id){
+        return budgetRepository.deleteByBudget_id(budget_id);
+    }
+
+    @Override
     public CumulativeModel getCumulative(String username) {
         CumulativeModel cumulativeModel = new CumulativeModel();
         cumulativeModel.setSum_money(incomeRepository.findByIncome(username) - accountBookRepository.findBySumCash_money(username));

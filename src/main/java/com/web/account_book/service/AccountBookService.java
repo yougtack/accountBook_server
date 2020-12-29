@@ -10,11 +10,20 @@ import java.util.List;
 public interface AccountBookService {
     List<AccountBook> getAccountBookList(String username, String start, String end);
     int save_account_book(AccountBook accountBook);
+    int update_account_book(AccountBook accountBook);
+    int delete_account_book(long ab_id);
+
     int save_income(Income income);
+    int update_income(Income income);
+    int delete_income(long income_id);
 
     IncomeThisMonth spending(String username);
     List<BudgetModel> getBudget(String username, String date);
+
     int save_budget(Budget budget);
+    int update_budget(Budget budget);
+    int delete_budget(long budget_id);
+
 
     CumulativeModel getCumulative(String username);
 

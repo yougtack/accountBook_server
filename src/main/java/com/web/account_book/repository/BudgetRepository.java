@@ -3,6 +3,7 @@ package com.web.account_book.repository;
 import com.web.account_book.model.BudgetModel;
 import com.web.account_book.model.entity.Budget;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
@@ -45,4 +46,10 @@ public interface BudgetRepository extends JpaRepository<Budget, Long> {
             "       AND " +
             "           insert_date like ?2",nativeQuery = true)
     int findByBudgetThisMonth(String username, String month);
+
+    @Modifying
+    @Query(value = "DELETE FROM budget WHERE budget_id = ?1", nativeQuery = true)
+    int deleteByBudget_id(long budget_id);
+
+    Budget findByBudget_type(String budget_type);
 }

@@ -24,13 +24,34 @@ public class AccountBookController {
     }
 
     @PostMapping(value = "")
-    public int insert(@RequestBody AccountBook accountBook){
+    public int insert_account_book(@RequestBody AccountBook accountBook){
         return accountBookService.save_account_book(accountBook);
     }
 
+    @PutMapping(value = "")
+    public int update_account_book(@RequestBody AccountBook accountBook){
+        return accountBookService.update_account_book(accountBook);
+    }
+
+    @DeleteMapping(value = "/{ab_id}")
+    public int delete_account_book(@PathVariable long ab_id){
+        return accountBookService.delete_account_book(ab_id);
+    }
+
+    //수익
     @PostMapping(value = "/income")
-    public int income(@RequestBody Income income){
+    public int insert_income(@RequestBody Income income){
         return accountBookService.save_income(income);
+    }
+
+    @PutMapping(value = "/income")
+    public int update_income(@RequestBody Income income){
+        return accountBookService.update_income(income);
+    }
+
+    @DeleteMapping(value = "/income/{income_id}")
+    public int delete_income(@PathVariable long income_id){
+        return accountBookService.delete_income(income_id);
     }
 
     //지출
@@ -49,8 +70,18 @@ public class AccountBookController {
 
     //예산 쓰기
     @PostMapping(value = "/budget")
-    public int budgetInsert(@RequestBody Budget budget){
+    public int insert_budget(@RequestBody Budget budget){
         return accountBookService.save_budget(budget);
+    }
+
+    @PutMapping(value = "/budget")
+    public int update_budget(@RequestBody Budget budget){
+        return accountBookService.update_budget(budget);
+    }
+
+    @DeleteMapping(value = "/budget/{budget_id}")
+    public int delete_budget(@PathVariable long budget_id){
+        return accountBookService.delete_budget(budget_id);
     }
 
     //총 누적 자산(구현 중임)

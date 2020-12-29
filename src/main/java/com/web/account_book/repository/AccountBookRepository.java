@@ -3,6 +3,7 @@ package com.web.account_book.repository;
 import com.web.account_book.model.SpendingRankModel;
 import com.web.account_book.model.entity.AccountBook;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
@@ -52,4 +53,7 @@ public interface AccountBookRepository extends JpaRepository<AccountBook, Long>{
     @Query(value = "select subString(type,1,2) AS type, ifnull(sum(cash_cost+card_cost), 0) AS cost from account_book where username = ?1 and ab_write_date like ?2 and type not like '저축/보험>%'group by substring(type,1,2) limit 0, 4",nativeQuery = true)
     List<SpendingRankModel> findBySpendingRank(String username, String this_month);
 
+    @Modifying
+    @Query(value = "DELETE FROM account_book WHERE ab_id = ?1",nativeQuery = true)
+    int deleteByAB_id(long ab_id);
 }
