@@ -128,3 +128,37 @@ for(let i = 0; i < selectTarget.length; i++) {
         selectSubTarget[i].style.display = 'block';
     });
 }
+
+let bottomBtn = document.getElementsByClassName('bottom_btn');
+
+window.addEventListener('load', () => {
+    bottomBtn[0].style.borderBottom = 'none';
+    bottomBtn[0].style.fontWeight = '500';
+});
+
+bottomBtn[0].addEventListener('click', () => {
+    bottomBtn[0].style.borderBottom = 'none';
+    bottomBtn[0].style.fontWeight = '500';
+    bottomBtn[1].style.borderBottom = '1px solid #908F8F';
+    bottomBtn[1].style.fontWeight = '200';
+    bottomBtn[2].style.borderBottom = '1px solid #908F8F';
+    bottomBtn[2].style.fontWeight = '200';
+});
+
+bottomBtn[1].addEventListener('click', () => {
+    bottomBtn[1].style.borderBottom = 'none';
+    bottomBtn[1].style.fontWeight = '500';
+    bottomBtn[0].style.borderBottom = '1px solid #908F8F';
+    bottomBtn[0].style.fontWeight = '200';
+    bottomBtn[2].style.borderBottom = '1px solid #908F8F';
+    bottomBtn[2].style.fontWeight = '200';
+});
+
+bottomBtn[2].addEventListener('click', () => {
+    bottomBtn[2].style.borderBottom = 'none';
+    bottomBtn[2].style.fontWeight = '500';
+    bottomBtn[0].style.borderBottom = '1px solid #908F8F';
+    bottomBtn[0].style.fontWeight = '200';
+    bottomBtn[1].style.borderBottom = '1px solid #908F8F';
+    bottomBtn[1].style.fontWeight = '200';
+});

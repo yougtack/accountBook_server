@@ -58,6 +58,28 @@ Number.prototype.format = function(){
     xhttp.send();
 })();
 
+(function cumulative() {
+    let xhttp = new XMLHttpRequest();
+    const URL = "http://localhost:8080";
+
+    let data = {
+        username: USER.data[0]
+    }
+
+    xhttp.open("GET", URL + `/cumulative/${USER.data[0]}`, false);
+
+    xhttp.onreadystatechange = () => {
+        if (xhttp.status !== 200) {
+            console.log("HTTP ERROR", xhttp.status, xhttp.statusText);
+        } else {
+            console.log(JSON.parse(xhttp.responseText));
+        }
+    };
+
+    xhttp.setRequestHeader("Content-Type", "application/json");
+    xhttp.send();
+})();
+
 /* percent */
 let percentTotal = MONTH_MONEY.spendingMonth.insurance + MONTH_MONEY.spendingMonth.spending;
 let percentSpending = MONTH_MONEY.spendingMonth.spending;
