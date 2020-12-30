@@ -188,6 +188,7 @@ public class AccountBookServiceImpl implements AccountBookService {
         return budgetRepository.findTotal_cost(username, date+"%");
     }
 
+    @Transactional
     @Override
     public int save_budget(Budget budget) {
         try{
@@ -197,7 +198,11 @@ public class AccountBookServiceImpl implements AccountBookService {
                     .budget(budget.getBudget())
                     .budget_type(budget.getBudget_type())
                     .build();
-            budgetRepository.save(budgetEntity);
+            if(budgetRepository.findByUsernameLikeAndBudget_typeLike(budget.getUsername(), budget.getBudget_type()) != null){
+                budgetRepository.update(budget.getUsername(), budget.getInsert_date(), budget.getBudget(), budget.getBudget_type());
+            }else{
+                budgetRepository.save(budgetEntity);
+            }
         }catch(Exception e) {
             e.printStackTrace();
             return 0;
