@@ -1,6 +1,7 @@
-    const MONTH_MONEY = {
+const MONTH_MONEY = {
     data: [],
-    spendingMonth : []
+    spendingMonth : [],
+    cumulative: []
 };
 
 Number.prototype.format = function(){
@@ -50,7 +51,7 @@ Number.prototype.format = function(){
         if (xhttp.status !== 200) {
             console.log("HTTP ERROR", xhttp.status, xhttp.statusText);
         } else {
-            MONTH_MONEY.spendingMonth = (JSON.parse(xhttp.responseText));
+            MONTH_MONEY.spendingMonth = JSON.parse(xhttp.responseText);
         }
     };
 
@@ -60,19 +61,18 @@ Number.prototype.format = function(){
 
 (function cumulative() {
     let xhttp = new XMLHttpRequest();
-    const URL = "http://localhost:8080";
 
     let data = {
         username: USER.data[0]
     }
 
-    xhttp.open("GET", URL + `/cumulative/${USER.data[0]}`, false);
+    xhttp.open("GET", `http://localhost:8080/accountBook/cumulative/${USER.data[0]}`, false);
 
     xhttp.onreadystatechange = () => {
         if (xhttp.status !== 200) {
             console.log("HTTP ERROR", xhttp.status, xhttp.statusText);
         } else {
-            console.log(JSON.parse(xhttp.responseText));
+            MONTH_MONEY.cumulative = JSON.parse(xhttp.responseText);
         }
     };
 
@@ -239,42 +239,42 @@ navPaint +=
             <ul class="property_money nav_space">
                 <li>
                     <span class="property_text font">자산합계</span>
-                    <span class="money font">0</span>
+                    <span class="money font">${MONTH_MONEY.cumulative.total_cost.format()}</span>
                 </li>
                 <li class="property_sub_text">
                     <span class="month_arrow font">└</span>
                     <span class="money_text font">현금잔액</span>
-                    <span class="sub_money font">0</span>
+                    <span class="sub_money font">${MONTH_MONEY.cumulative.sum_money.format()}</span>
                 </li>
                 <li class="property_sub_text">
                     <span class="month_arrow font">└</span>
                     <span class="money_text font">예금</span>
-                    <span class="sub_money font">0</span>
+                    <span class="sub_money font">${MONTH_MONEY.cumulative.deposit.format()}</span>
                 </li>
                 <li class="property_sub_text">
                     <span class="month_arrow font">└</span>
                     <span class="money_text font">적금</span>
-                    <span class="sub_money font">0</span>
+                    <span class="sub_money font">${MONTH_MONEY.cumulative.save_money.format()}</span>
                 </li>
                 <li class="property_sub_text">
                     <span class="month_arrow font">└</span>
                     <span class="money_text font">펀드</span>
-                    <span class="sub_money font">0</span>
+                    <span class="sub_money font">${MONTH_MONEY.cumulative.fund.format()}</span>
                 </li>
                 <li class="property_sub_text">
                     <span class="month_arrow font">└</span>
                     <span class="money_text font">보험</span>
-                    <span class="sub_money font">0</span>
+                    <span class="sub_money font">${MONTH_MONEY.cumulative.insurance.format()}</span>
                 </li>
                 <li class="property_sub_text">
                     <span class="month_arrow font">└</span>
                     <span class="money_text font">투자</span>
-                    <span class="sub_money font">0</span>
+                    <span class="sub_money font">${MONTH_MONEY.cumulative.investment.format()}</span>
                 </li>
                 <li class="property_sub_text">
                     <span class="month_arrow font">└</span>
                     <span class="money_text font">기타</span>
-                    <span class="sub_money font">0</span>
+                    <span class="sub_money font">${MONTH_MONEY.cumulative.etc.format()}</span>
                 </li>
             </ul>
         </div>
