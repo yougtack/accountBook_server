@@ -74,17 +74,12 @@ public class AccountBookController {
         return accountBookService.save_budget(budget);
     }
 
-    @PutMapping(value = "/budget")
-    public int update_budget(@RequestBody Budget budget){
-        return accountBookService.update_budget(budget);
-    }
-
     @DeleteMapping(value = "/budget/{budget_id}")
     public int delete_budget(@PathVariable long budget_id){
         return accountBookService.delete_budget(budget_id);
     }
 
-    //총 누적 자산(구현 중임)
+    //총 누적 자산
     @GetMapping(value = "/cumulative/{username}")
     public CumulativeModel getCumulative(@PathVariable String username){
         return accountBookService.getCumulative(username);
