@@ -96,6 +96,26 @@ public class AccountBookController {
     public BudgetThisMonth income_this_month(@PathVariable String username){
         return accountBookService.budget_this_month(username);
     }
+
+    //보고서
+    @GetMapping(value = "/report/{username}/{start}/{end}")
+    public List<ReportModel> report(@PathVariable String username, @PathVariable String start, @PathVariable String end){
+        return accountBookService.getReport(username, start, end);
+    }
+
+    //보고서 상세보기
+    @GetMapping(value = "/report_detail/{username}/{start}/{end}/{type}")
+    public List<ReportModel> reportDetail(@PathVariable String username, @PathVariable String start, @PathVariable String end,
+                                            @PathVariable String type){
+        return accountBookService.getReportDetail(username, start, end, type);
+    }
+
+    //보고서 저축버튼 클릭시
+    @GetMapping(value = "report_saving/{username}/{start}/{end}")
+    public List<ReportModel> repostSaving(@PathVariable String username, @PathVariable String start, @PathVariable String end){
+        return accountBookService.getReportSaving(username, start, end);
+    }
+
 }
 
 
