@@ -211,30 +211,6 @@ public class AccountBookServiceImpl implements AccountBookService {
         }
     }
 
-    @Override
-    public int update_budget(Budget budget){
-        try{
-            Budget budgetEntity = Budget.builder()
-                    .budget_id(budget.getBudget_id())
-                    .username(budget.getUsername())
-                    .insert_date(budget.getInsert_date())
-                    .budget(budget.getBudget())
-                    .budget_type(budget.getBudget_type())
-                    .build();
-
-            if(budget.getBudget() == 0){
-                budgetRepository.deleteByBudget_id(budget.getBudget_id());
-            }else{
-                budgetRepository.save(budgetEntity);
-            }
-        }catch(Exception e) {
-            e.printStackTrace();
-            return 0;
-        }finally {
-            return 1;
-        }
-    }
-
     @Transactional
     @Override
     public int delete_budget(long budget_id){
@@ -282,4 +258,21 @@ public class AccountBookServiceImpl implements AccountBookService {
 
         return budgetThisMonth;
     }
+
+    @Override
+    public List<ReportModel> getReport(String username, String start, String end){
+        return accountBookRepository.findByReport(username, start, end);
+    }
+
+    @Override
+    public List<ReportModel> getReportDetail(String username, String start, String end, String type){
+        return accountBookRepository.findByReportDetail(username, start, end, type+"%");
+    }
+
+    @Override
+    public List<ReportModel> getReportSaving(String username, String start, String end){
+        return accountBookRepository.findByReportSaving(username, start, end);
+    }
+
 }
+

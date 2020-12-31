@@ -21,7 +21,6 @@ public interface AccountBookService {
     List<BudgetModel> getBudget(String username, String date);
 
     int save_budget(Budget budget);
-    int update_budget(Budget budget);
     int delete_budget(long budget_id);
 
 
@@ -30,4 +29,10 @@ public interface AccountBookService {
     SpendingThisMonthModel spending_this_month(String username);
 
     BudgetThisMonth budget_this_month(String username);
+
+    List<ReportModel> getReport(String username, String start, String end);
+
+    List<ReportModel> getReportDetail(String username, String start, String end, String type);
+
+    List<ReportModel> getReportSaving(String username, String start, String end);
 }
