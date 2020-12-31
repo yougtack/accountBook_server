@@ -33,7 +33,6 @@ if (USER.data.length === 1) {
     signupPaint +=`
         <div class="profile_content">
             <img class="profile" src="image/info.gif" alt="profile"/>
-            <p class="profile_name font">${USER.data[1]}</p>
         </div>`;
 }
 signupPaint +=`

@@ -6,15 +6,16 @@
 }
 
 .login_content {
-    height: 350px;
+    width: 500px;
+    height: 450px;
     margin: 60px auto;
     background-color: white;
+    justify-content: center;
     border: 1px solid gray;
     display: flex;
 }
 
 .input_frame {
-    width: 400px;
     margin-top: 30px;
     margin-right: 50px;
     margin-left: 50px;

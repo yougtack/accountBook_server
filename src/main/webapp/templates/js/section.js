@@ -19,14 +19,3 @@ btnMoneyHide.addEventListener('click', () => {
         ++btnCount;
     }
 });
-
-window.addEventListener('load', () => {
-    let now = new Date();
-    let today = document.getElementById('today');
-    let day = new Array('일', '월', '화', '수', '목', '금', '토');
-
-    today.innerText = now.getFullYear() + "." + (now.getMonth() + 1) + "." + now.getDate() + ".(" + day[now.getDay()] + ")";
-
-    document.getElementById('write_today').value = now.getFullYear() + "." + (now.getMonth() + 1) + "." + now.getDate();
-    document.getElementById('income_today').value = now.getFullYear() + "." + (now.getMonth() + 1) + "." + now.getDate();
-});
