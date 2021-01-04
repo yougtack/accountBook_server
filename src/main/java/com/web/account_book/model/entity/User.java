@@ -31,7 +31,8 @@ public class User {
     private Timestamp createDate;
 
     @Builder
-    public User(String username, String password, String email, String role, String provide, String providerId, Timestamp createDate){
+    public User(int id, String username, String password, String email, String role, String provide, String providerId, Timestamp createDate){
+        this.id = id;
         this.username = username;
         this.password = password;
         this.email = email;

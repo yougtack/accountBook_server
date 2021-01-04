@@ -3,6 +3,7 @@ package com.web.account_book.repository;
 import com.web.account_book.model.ReportModel;
 import com.web.account_book.model.SpendingRankModel;
 import com.web.account_book.model.entity.AccountBook;
+import com.web.account_book.model.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -101,4 +102,9 @@ public interface AccountBookRepository extends JpaRepository<AccountBook, Long>{
             "       GROUP BY" +
             "       SUBSTRING(type, 4, 5)", nativeQuery = true)
     List<ReportModel> findByReportSaving(String username, String start, String end);
+
+
+    List<AccountBook> findByUser(User user);
+    AccountBook findByUsername(String username);
+
 }

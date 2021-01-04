@@ -6,6 +6,8 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface IncomeRepository extends JpaRepository<Income, Long> {
 
@@ -18,4 +20,6 @@ public interface IncomeRepository extends JpaRepository<Income, Long> {
     @Modifying
     @Query(value = "DELETE FROM income WHERE income_id = ?1", nativeQuery = true)
     int deleteByIncome_id(long income_id);
+
+    List<Income> findByUsername(String username);
 }
