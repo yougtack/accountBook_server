@@ -57,22 +57,15 @@ window.addEventListener('load', () => {
 });
 
 (function test() {
-    let tt = document.getElementsByClassName('test');
+    let budgetTr = document.getElementsByClassName('budget_tr');
     console.log(BUDGET_DATA.data);
     for(value of BUDGET_DATA.data){
         for (let i = 0; i < 12; i++){
-            if (value.type === tt[i].cells[0].innerText){
-                tt[i].cells[1].textContent = value.budget.format();
-                tt[i].cells[2].textContent = value.spending.format();
-                tt[i].cells[3].textContent = value.total_cost.format();
+            if (value.type === budgetTr[i].cells[0].innerText){
+                budgetTr[i].cells[1].textContent = value.budget.format();
+                budgetTr[i].cells[2].textContent = value.spending.format();
+                budgetTr[i].cells[3].textContent = value.total_cost.format();
             }
         }
     }
 })();
-
-/* if (tt[i].cells[0].innerText === BUDGET_DATA.data[i].type) {
-            for (value of tt[i].cells) {
-                console.log(value);
-            }
-        }
- */
