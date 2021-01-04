@@ -18,6 +18,9 @@ public class AccountBookServiceImpl implements AccountBookService {
     DateUtil dateUtil = new DateUtil();
 
     @Autowired
+    UserRepository userRepository;
+
+    @Autowired
     AccountBookRepository accountBookRepository;
 
     @Autowired
@@ -25,6 +28,9 @@ public class AccountBookServiceImpl implements AccountBookService {
 
     @Autowired
     CardRepository cardRepository;
+
+    @Autowired
+    CardInfoRepository cardInfoRepository;
 
     @Autowired
     IncomeRepository incomeRepository;
@@ -40,6 +46,7 @@ public class AccountBookServiceImpl implements AccountBookService {
     @Override
     @Transactional
     public int save_account_book(AccountBook accountBook){
+        User userEntity = userRepository.findByUsername(accountBook.getUsername());
         AccountBook accountBookEntity = AccountBook.builder()
                 .username(accountBook.getUsername())
                 .AB_where_to_use(accountBook.getAB_where_to_use())
@@ -47,6 +54,7 @@ public class AccountBookServiceImpl implements AccountBookService {
                 .card_cost(accountBook.getCard_cost())
                 .cash_cost(accountBook.getCash_cost())
                 .type(accountBook.getType())
+                .user(userEntity)
                 .build();
         return account_book_util(accountBookEntity, accountBook);
     }
@@ -113,6 +121,11 @@ public class AccountBookServiceImpl implements AccountBookService {
         result += cashRepository.deleteByAB_id(ab_id);
 
         return result;
+    }
+
+    @Override
+    public List<Income> findByUsername(String username){
+        return incomeRepository.findByUsername(username);
     }
 
     @Override
@@ -272,6 +285,54 @@ public class AccountBookServiceImpl implements AccountBookService {
     @Override
     public List<ReportModel> getReportSaving(String username, String start, String end){
         return accountBookRepository.findByReportSaving(username, start, end);
+    }
+
+    @Override
+    public int saveCardInfo(CardInfo cardInfo){
+        try{
+            CardInfo cardInfoEntity;
+            if(cardInfo.getCard_checkCard() == true){
+                cardInfoEntity = CardInfo.builder()
+                    .card_name(cardInfo.getCard_name())
+                    .card_company(cardInfo.getCard_company())
+                    .card_checkCard(cardInfo.getCard_checkCard())
+                    .card_use(cardInfo.getCard_use())
+                    .username(cardInfo.getUsername())
+                    .build();
+            }else{
+                cardInfoEntity = CardInfo.builder()
+                    .card_name(cardInfo.getCard_name())
+                    .card_company(cardInfo.getCard_company())
+                    .card_checkCard(cardInfo.getCard_checkCard())
+                    .card_start_date(cardInfo.getCard_start_date())
+                    .card_end_date(cardInfo.getCard_end_date())
+                    .card_use(cardInfo.getCard_use())
+                    .username(cardInfo.getUsername())
+                    .build();
+            }
+            cardInfoRepository.save(cardInfoEntity);
+            return 1;
+        }catch(Exception e){
+            e.printStackTrace();
+            return 0;
+        }
+    }
+
+    @Override
+    public List<CardInfo> getCard_info(String username){
+        return cardInfoRepository.findByUsername(username);
+    }
+
+    @Override
+    public List<AccountBook> getTest(){
+        String username = "google_108681227504782434845";
+
+        User userEntity = userRepository.findByUsername(username);
+
+        userEntity = User.builder()
+                .id(userEntity.getId())
+                .build();
+        return accountBookRepository.findByUser(userEntity);
     }
 
 }

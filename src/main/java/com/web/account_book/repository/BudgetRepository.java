@@ -11,7 +11,7 @@ import java.util.List;
 public interface BudgetRepository extends JpaRepository<Budget, Long> {
 
     @Query(value = "SELECT "+
-            "           IFNULL(SUBSTRING(a.type, 1, 2), b.budget_type) AS type, IFNULL(SUM(a.card_cost+a.cash_cost), 0) AS spending,"+
+            "           IFNULL(SUBSTRING_INDEX(a.type, '>', 1), b.budget_type) AS type, IFNULL(SUM(a.card_cost+a.cash_cost), 0) AS spending,"+
             "           IFNULL(b.budget, 0) AS budget, IFNULL(b.budget - IFNULL(SUM(card_cost+cash_cost), 0), -IFNULL(SUM(card_cost+cash_cost), 0)) AS total_cost"+
             "       FROM " +
             "           account_book AS a " +
@@ -28,7 +28,7 @@ public interface BudgetRepository extends JpaRepository<Budget, Long> {
             "           b.budget_type" +
             "       UNION" +
             "       SELECT" +
-            "           IFNULL(SUBSTRING(a.type, 1, 2), b.budget_type) AS type, IFNULL(SUM(a.card_cost+a.cash_cost), 0) AS spending,"+
+            "           IFNULL(SUBSTRING_INDEX(a.type, '>', 1), b.budget_type) AS type, IFNULL(SUM(a.card_cost+a.cash_cost), 0) AS spending,"+
             "           IFNULL(b.budget, 0) AS budget, IFNULL(b.budget - IFNULL(SUM(card_cost+cash_cost), 0), -IFNULL(SUM(card_cost+cash_cost), 0)) AS total_cost" +
             "       FROM " +
             "           account_book AS a " +
