@@ -98,8 +98,7 @@ function selectOpt(){
 
 /* 렌더링 시 옵션의 첫번째 항목 기본 선택 */
 function selectFirst(){
-    const firstValue = opts[0].innerHTML;
-    values.innerHTML = `${firstValue}`
+    values.innerHTML = `미분류`;
 }
 
 /* 옵션밖의 영역(=바디) 클릭 시 옵션 숨김 */
@@ -161,4 +160,16 @@ bottomBtn[2].addEventListener('click', () => {
     bottomBtn[0].style.fontWeight = '200';
     bottomBtn[1].style.borderBottom = '1px solid #908F8F';
     bottomBtn[1].style.fontWeight = '200';
+});
+
+window.addEventListener('load', () => {
+    let now = new Date();
+    let today = document.getElementById('today');
+    let day = new Array('일', '월', '화', '수', '목', '금', '토');
+    let month = ((now.getMonth() + 1) <= 9) ? '0' + (now.getMonth() + 1) : (now.getMonth() + 1);
+
+    today.innerText = now.getFullYear() + "." + month + ".0" + now.getDate() + ".(" + day[now.getDay()] + ")";
+
+    document.getElementById('write_today').value = now.getFullYear() + "." + month + ".0" + now.getDate();
+    document.getElementById('income_today').value = now.getFullYear() + "." + month + ".0" + now.getDate();
 });

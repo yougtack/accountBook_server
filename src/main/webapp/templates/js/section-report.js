@@ -1,31 +1,10 @@
-let btnMoneyHide = document.getElementById('btn_money_hide');
-let btnCount = 0;
-
-btnMoneyHide.addEventListener('click', () => {
-    let money = document.getElementsByClassName('money');
-    let subMoney = document.getElementsByClassName('sub_money');
-
-    (btnCount === 0) ? moneyHide() :  location.reload();
-
-    btnMoneyHide.src = './image/btn_money_on.png';
-
-    function moneyHide(){
-        for (value of money){
-            value.textContent = '********';
-        }
-        for (value of subMoney){
-            value.textContent = '********';
-        }
-        ++btnCount;
-    }
-});
-
 window.addEventListener('load', () => {
     let now = new Date();
     let day = new Array('일', '월', '화', '수', '목', '금', '토');
+    let month = ((now.getMonth() + 1) <= 9) ? '0' + (now.getMonth() + 1) : (now.getMonth() + 1);
 
     document.getElementById('report_today').innerText =
-        now.getFullYear() + "." + (now.getMonth() + 1) + "." + now.getDate() + ".(" + day[now.getDay()] + ")";
+        now.getFullYear() + "." + month + ".0" + now.getDate() + ".(" + day[now.getDay()] + ")";
 });
 
 let bottomBtn = document.getElementsByClassName('bottom_btn');

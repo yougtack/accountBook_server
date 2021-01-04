@@ -200,3 +200,56 @@ input {
     position: relative;
     cursor: pointer;
 }
+
+ /*budget */
+
+.section_budget {
+    width: 100%;
+}
+
+.budget_top {
+    border-bottom: 1px solid #908F8F;
+}
+
+.budget_frame {
+    margin: 20px auto;
+    height: 50px;
+}
+
+.month {
+    padding: 10px;
+    margin-left: 20px;
+    background-color:rgba(3, 199, 90, 0.1);
+    color: #03c75a;
+    font-size: 22px;
+    font-weight: 700;
+    display: inline-block;
+}
+
+.month_Line {
+    width: 10px;
+    height: 4px;
+    margin-left: 20px;
+    display: inline-block;
+    background-color: #03c75a;
+}
+
+.budget_list {
+    padding-top: 7px;
+    padding-bottom: 7px;
+}
+
+.budget_c {
+    background-color: #efefef;
+}
+
+.budget_column {
+    padding-left: 10px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.budget_cost {
+    padding-right: 10px;
+    text-align: right;
+}

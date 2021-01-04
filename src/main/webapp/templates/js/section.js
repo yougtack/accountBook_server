@@ -20,13 +20,14 @@ btnMoneyHide.addEventListener('click', () => {
     }
 });
 
+let thisMonth = document.getElementById('this_month');
+
 window.addEventListener('load', () => {
     let now = new Date();
-    let today = document.getElementById('today');
-    let day = new Array('일', '월', '화', '수', '목', '금', '토');
 
-    today.innerText = now.getFullYear() + "." + (now.getMonth() + 1) + "." + now.getDate() + ".(" + day[now.getDay()] + ")";
+    let lastDay = ( new Date( now.getFullYear(), now.getMonth(), 0) ).getDate();
+    let month = ((now.getMonth() + 1) <= 9) ? '0' + (now.getMonth() + 1) : (now.getMonth() + 1);
 
-    document.getElementById('write_today').value = now.getFullYear() + "." + (now.getMonth() + 1) + "." + now.getDate();
-    document.getElementById('income_today').value = now.getFullYear() + "." + (now.getMonth() + 1) + "." + now.getDate();
+    thisMonth.textContent = now.getFullYear() + "." + month + ".0" + 1 + " - "
+        + now.getFullYear() + "." + month + "." + lastDay;
 });
