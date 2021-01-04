@@ -166,9 +166,10 @@ window.addEventListener('load', () => {
     let now = new Date();
     let today = document.getElementById('today');
     let day = new Array('일', '월', '화', '수', '목', '금', '토');
+    let month = ((now.getMonth() + 1) <= 9) ? '0' + (now.getMonth() + 1) : (now.getMonth() + 1);
 
-    today.innerText = now.getFullYear() + "." + (now.getMonth() + 1) + "." + now.getDate() + ".(" + day[now.getDay()] + ")";
+    today.innerText = now.getFullYear() + "." + month + ".0" + now.getDate() + ".(" + day[now.getDay()] + ")";
 
-    document.getElementById('write_today').value = now.getFullYear() + "." + (now.getMonth() + 1) + "." + now.getDate();
-    document.getElementById('income_today').value = now.getFullYear() + "." + (now.getMonth() + 1) + "." + now.getDate();
+    document.getElementById('write_today').value = now.getFullYear() + "." + month + ".0" + now.getDate();
+    document.getElementById('income_today').value = now.getFullYear() + "." + month + ".0" + now.getDate();
 });

@@ -74,9 +74,10 @@ window.addEventListener('load', () => {
     let now = new Date();
 
     let lastDay = ( new Date( now.getFullYear(), now.getMonth(), 0) ).getDate();
+    let month = ((now.getMonth() + 1) <= 9) ? '0' + (now.getMonth() + 1) : (now.getMonth() + 1);
     let firstDate = document.getElementById('first_date');
     let lastDate = document.getElementById('last_date');
 
-    firstDate.innerText = "( " + now.getFullYear() + "." + (now.getMonth() + 1) + "." + 1;
-    lastDate.innerText = " ~ " + now.getFullYear() + "." + (now.getMonth() + 1) + "." + (lastDay + 1) + " )";
+    firstDate.innerText = "( " + now.getFullYear() + "." + month + ".0" + 1;
+    lastDate.innerText = " ~ " + now.getFullYear() + "." + month + "." + lastDay + " )";
 });

@@ -19,3 +19,15 @@ btnMoneyHide.addEventListener('click', () => {
         ++btnCount;
     }
 });
+
+let thisMonth = document.getElementById('this_month');
+
+window.addEventListener('load', () => {
+    let now = new Date();
+
+    let lastDay = ( new Date( now.getFullYear(), now.getMonth(), 0) ).getDate();
+    let month = ((now.getMonth() + 1) <= 9) ? '0' + (now.getMonth() + 1) : (now.getMonth() + 1);
+
+    thisMonth.textContent = now.getFullYear() + "." + month + ".0" + 1 + " - "
+        + now.getFullYear() + "." + month + "." + lastDay;
+});
