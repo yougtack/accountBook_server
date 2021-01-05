@@ -27,7 +27,9 @@ document.getElementById('write_submit').addEventListener('click', () => {
     }
 
     let data = {
-        username: USER.data[0],
+        user: {
+            username: USER.data[0]
+        },
         ab_write_date: writeForm.ab_write_date.value,
         ab_where_to_use: writeForm.AB_where_to_use.value,
         cash_cost: deleteComma(writeForm.cash_cost.value),

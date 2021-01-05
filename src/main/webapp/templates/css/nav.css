@@ -247,8 +247,9 @@
 }
 
 .graph_text {
+    margin-top: 4px;
     color: #54555b;
-    font-size: 12px;
+    font-size: 8px;
     position: relative;
     float: right;
 }
