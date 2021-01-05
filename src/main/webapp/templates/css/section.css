@@ -253,3 +253,7 @@ input {
     padding-right: 10px;
     text-align: right;
 }
+
+.budget_cost:active {
+    border: 1px solid red;
+}

@@ -16,6 +16,7 @@ const BUDGET_DATA = {
             console.log("HTTP ERROR", xhttp.status, xhttp.statusText);
         } else {
             BUDGET_DATA.data = JSON.parse(xhttp.responseText);
+            console.log(JSON.parse(xhttp.responseText));
         }
     };
 
@@ -58,11 +59,10 @@ window.addEventListener('load', () => {
 
 (function test() {
     let budgetTr = document.getElementsByClassName('budget_tr');
-    console.log(BUDGET_DATA.data);
     for(value of BUDGET_DATA.data){
-        for (let i = 0; i < 12; i++){
+        for (let i = 0; i < 13; i++){
             if (value.type === budgetTr[i].cells[0].innerText){
-                budgetTr[i].cells[1].textContent = value.budget.format();
+                budgetTr[i].cells[1].value = value.budget.format();
                 budgetTr[i].cells[2].textContent = value.spending.format();
                 budgetTr[i].cells[3].textContent = value.total_cost.format();
             }
