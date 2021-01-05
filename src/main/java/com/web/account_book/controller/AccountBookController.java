@@ -133,13 +133,6 @@ public class AccountBookController {
     public int insert_card_info(@RequestBody CardInfo cardInfo){
         return accountBookService.saveCardInfo(cardInfo);
     }
-
-
-
-    @GetMapping(value = "/test")
-    public List<AccountBook> test(){
-        return accountBookService.getTest();
-    }
 }
 
 

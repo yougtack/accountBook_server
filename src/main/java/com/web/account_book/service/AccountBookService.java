@@ -42,5 +42,4 @@ public interface AccountBookService {
 
     List<CardInfo> getCard_info(String username);
 
-    List<AccountBook> getTest();
 }

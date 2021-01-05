@@ -17,15 +17,15 @@ public interface BudgetRepository extends JpaRepository<Budget, Long> {
             "           account_book AS a " +
             "       LEFT OUTER JOIN  " +
             "           budget AS b " +
-            "       ON b.budget_type = substring(a.type, 1, 2)" +
+            "       ON a.budget_id = b.budget_id" +
             "       WHERE " +
-            "           a.username = ?1 " +
+            "           a.id = ?3 " +
             "       AND " +
             "           a.type not like '저축/보험>%'" +
             "       AND" +
             "           a.ab_write_date like ?2"+
             "       GROUP BY " +
-            "           b.budget_type" +
+            "           subString_index(a.type, '>', 1)" +
             "       UNION" +
             "       SELECT" +
             "           IFNULL(SUBSTRING_INDEX(a.type, '>', 1), b.budget_type) AS type, IFNULL(SUM(a.card_cost+a.cash_cost), 0) AS spending,"+
@@ -34,18 +34,18 @@ public interface BudgetRepository extends JpaRepository<Budget, Long> {
             "           account_book AS a " +
             "       RIGHT OUTER JOIN  " +
             "           budget AS b " +
-            "       ON b.budget_type = substring(a.type, 1, 2)" +
+            "       ON a.budget_id = b.budget_id" +
             "       WHERE " +
             "           b.username = ?1 " +
             "       AND " +
-            "           a.username is null" +
+            "           a.id is null" +
             "       AND" +
             "           b.insert_date like ?2"+
             "       GROUP BY " +
-            "           b.budget_type" +
+            "           subString_index(a.type, '>', 1)" +
             "       ORDER BY 1 DESC"
             , nativeQuery = true)
-    List<BudgetModel> findTotal_cost(String username, String month);
+    List<BudgetModel> findTotal_cost(String username, String month, int user_id);
 
     @Query(value = "SELECT" +
             "           ifnull(sum(budget),0)" +
