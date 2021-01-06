@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
+import java.util.stream.Stream;
 
 @RestController
 @RequestMapping(value = "/accountBook")
@@ -18,9 +19,8 @@ public class AccountBookController {
 
     @Autowired
     AccountBookService accountBookService;
-
     @GetMapping(value = "/{username}/{start}/{end}")
-    public List<AccountBook> accountBootList(@PathVariable String username, @PathVariable String start, @PathVariable String end){
+    public List<AccountBookModel> accountBootList(@PathVariable String username, @PathVariable String start, @PathVariable String end){
         return accountBookService.getAccountBookList(username, start, end);
     }
 

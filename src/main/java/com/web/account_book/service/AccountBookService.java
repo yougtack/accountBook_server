@@ -7,9 +7,10 @@ import com.web.account_book.model.entity.CardInfo;
 import com.web.account_book.model.entity.Income;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 public interface AccountBookService {
-    List<AccountBook> getAccountBookList(String username, String start, String end);
+    List<AccountBookModel> getAccountBookList(String username, String start, String end);
     int save_account_book(AccountBook accountBook);
     int update_account_book(AccountBook accountBook);
     int delete_account_book(long ab_id);

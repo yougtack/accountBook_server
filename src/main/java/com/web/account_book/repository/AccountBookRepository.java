@@ -2,14 +2,15 @@ package com.web.account_book.repository;
 
 import com.web.account_book.model.ReportModel;
 import com.web.account_book.model.SpendingRankModel;
+import com.web.account_book.model.AccountBookModel;
 import com.web.account_book.model.entity.AccountBook;
-import com.web.account_book.model.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 @Repository
 public interface AccountBookRepository extends JpaRepository<AccountBook, Long>{
