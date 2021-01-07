@@ -254,6 +254,12 @@ input {
     text-align: right;
 }
 
-.budget_cost:active {
-    border: 1px solid red;
+.budget_cost_input {
+    cursor: pointer;
+}
+
+.budget_input {
+    padding-right: 10px;
+    width: 95%;
+    text-align: right;
 }
