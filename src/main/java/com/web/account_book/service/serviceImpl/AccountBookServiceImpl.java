@@ -11,7 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Stream;
 
 @Service
@@ -30,9 +29,6 @@ public class AccountBookServiceImpl implements AccountBookService {
 
     @Autowired
     CardRepository cardRepository;
-
-    @Autowired
-    CardInfoRepository cardInfoRepository;
 
     @Autowired
     IncomeRepository incomeRepository;
@@ -329,42 +325,6 @@ public class AccountBookServiceImpl implements AccountBookService {
     public List<ReportModel> getReportSaving(String username, String start, String end){
         User userEntity = userRepository.findByUsername(username);
         return accountBookRepository.findByReportSaving(userEntity.getId(), start, end);
-    }
-
-    @Override
-    public int saveCardInfo(CardInfo cardInfo){
-        try{
-            CardInfo cardInfoEntity;
-            if(cardInfo.getCard_checkCard() == true){
-                cardInfoEntity = CardInfo.builder()
-                    .card_name(cardInfo.getCard_name())
-                    .card_company(cardInfo.getCard_company())
-                    .card_checkCard(cardInfo.getCard_checkCard())
-                    .card_use(cardInfo.getCard_use())
-                    .username(cardInfo.getUsername())
-                    .build();
-            }else{
-                cardInfoEntity = CardInfo.builder()
-                    .card_name(cardInfo.getCard_name())
-                    .card_company(cardInfo.getCard_company())
-                    .card_checkCard(cardInfo.getCard_checkCard())
-                    .card_start_date(cardInfo.getCard_start_date())
-                    .card_end_date(cardInfo.getCard_end_date())
-                    .card_use(cardInfo.getCard_use())
-                    .username(cardInfo.getUsername())
-                    .build();
-            }
-            cardInfoRepository.save(cardInfoEntity);
-            return 1;
-        }catch(Exception e){
-            e.printStackTrace();
-            return 0;
-        }
-    }
-
-    @Override
-    public List<CardInfo> getCard_info(String username){
-        return cardInfoRepository.findByUsername(username);
     }
 }
 

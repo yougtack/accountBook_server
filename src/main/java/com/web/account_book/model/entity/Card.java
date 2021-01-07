@@ -19,7 +19,6 @@ public class Card {
     private long AB_id;
     private int card_cost;
 
-
     @Builder
     public Card(long card_id, String username, long AB_id, int card_cost){
         this.card_id = card_id;

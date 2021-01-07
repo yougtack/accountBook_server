@@ -3,11 +3,9 @@ package com.web.account_book.service;
 import com.web.account_book.model.*;
 import com.web.account_book.model.entity.AccountBook;
 import com.web.account_book.model.entity.Budget;
-import com.web.account_book.model.entity.CardInfo;
 import com.web.account_book.model.entity.Income;
 
 import java.util.List;
-import java.util.stream.Stream;
 
 public interface AccountBookService {
     List<AccountBookModel> getAccountBookList(String username, String start, String end);
@@ -38,9 +36,4 @@ public interface AccountBookService {
     List<ReportModel> getReportDetail(String username, String start, String end, String type);
 
     List<ReportModel> getReportSaving(String username, String start, String end);
-
-    int saveCardInfo(CardInfo cardInfo);
-
-    List<CardInfo> getCard_info(String username);
-
 }
