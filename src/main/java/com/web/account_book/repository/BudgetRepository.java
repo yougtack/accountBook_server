@@ -38,7 +38,7 @@ public interface BudgetRepository extends JpaRepository<Budget, Long> {
             "       WHERE " +
             "           b.username = ?1 " +
             "       AND " +
-            "           a.id is null" +
+            "           a.username is null" +
             "       AND" +
             "           b.insert_date like ?2"+
             "       GROUP BY " +
