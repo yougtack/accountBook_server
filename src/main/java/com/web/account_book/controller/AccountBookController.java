@@ -74,8 +74,8 @@ public class AccountBookController {
 
     //예산 쓰기
     @PostMapping(value = "/budget")
-    public int insert_budget(@RequestBody Budget budget){
-        return accountBookService.save_budget(budget);
+    public int insert_budget(@RequestBody List<Budget> budgetList){
+        return accountBookService.save_budget(budgetList);
     }
 
     @DeleteMapping(value = "/budget/{budget_id}")

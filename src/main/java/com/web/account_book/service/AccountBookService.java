@@ -21,7 +21,7 @@ public interface AccountBookService {
     IncomeThisMonth spending(String username);
     List<BudgetModel> getBudget(String username, String date);
 
-    int save_budget(Budget budget);
+    int save_budget(List<Budget> budgetList);
     int delete_budget(long budget_id);
 
 

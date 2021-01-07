@@ -15,6 +15,6 @@ public class AccountBookModel {
     private int card_cost;
     private String type;
     private UserModel user;
-    private int budget_id;
+    private long budget_id;
 
 }

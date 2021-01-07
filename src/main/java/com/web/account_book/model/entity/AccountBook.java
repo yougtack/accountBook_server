@@ -25,11 +25,11 @@ public class AccountBook {
     @JoinColumn(name = "username")
     private User user;
 
-    private int budget_id;
+    private long budget_id;
 
     @Builder
     public AccountBook(long AB_id, String AB_write_date, String AB_where_to_use,
-                       int cash_cost, int card_cost, String type, User user){
+                       int cash_cost, int card_cost, String type, User user, long budget_id){
         this.AB_id = AB_id;
         this.AB_write_date = AB_write_date;
         this.AB_where_to_use = AB_where_to_use;
@@ -37,6 +37,7 @@ public class AccountBook {
         this.card_cost = card_cost;
         this.type = type;
         this.user = user;
+        this.budget_id = budget_id;
     }
 
     public void update(String AB_write_date, String AB_where_to_use,

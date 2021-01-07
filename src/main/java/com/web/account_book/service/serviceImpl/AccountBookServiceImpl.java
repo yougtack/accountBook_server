@@ -77,6 +77,7 @@ public class AccountBookServiceImpl implements AccountBookService {
                 .cash_cost(accountBook.getCash_cost())
                 .type(accountBook.getType())
                 .user(userEntity)
+                .budget_id(budget_util(accountBook.getUser().getUsername(), accountBook.getType()))
                 .build();
         return account_book_util(accountBookEntity, accountBook);
     }
@@ -93,6 +94,7 @@ public class AccountBookServiceImpl implements AccountBookService {
                 .cash_cost(accountBook.getCash_cost())
                 .type(accountBook.getType())
                 .user(userEntity)
+                .budget_id(budget_util(accountBook.getUser().getUsername(), accountBook.getType()))
                 .build();
 
         account_book_cost_util(accountBook);
@@ -123,6 +125,14 @@ public class AccountBookServiceImpl implements AccountBookService {
         }catch(Exception e){
             e.printStackTrace();
             return 0;
+        }
+    }
+
+    public long budget_util(String username, String type){
+        if(budgetRepository.findByUsernameAndBudget_type(username, type) != null){
+            return budgetRepository.findByUsernameAndBudget_type(username, type).getBudget_id();
+        }else{
+           return 0;
         }
     }
 
@@ -226,21 +236,23 @@ public class AccountBookServiceImpl implements AccountBookService {
 
     @Transactional
     @Override
-    public int save_budget(Budget budget) {
+    public int save_budget(List<Budget> budgetList) {
         try{
-            Budget budgetEntity = Budget.builder()
-                    .username(budget.getUsername())
-                    .insert_date(budget.getInsert_date())
-                    .budget(budget.getBudget())
-                    .budget_type(budget.getBudget_type())
-                    .build();
-            if(budgetRepository.findByUsernameLikeAndBudget_typeLike(budget.getUsername(), budget.getBudget_type()) != null){
-                budgetRepository.update(budget.getUsername(), budget.getInsert_date(), budget.getBudget(), budget.getBudget_type());
-            }else{
-                budgetRepository.save(budgetEntity);
-                budgetEntity = budgetRepository.findByUsernameLikeAndBudget_typeLike(budget.getUsername(), budget.getBudget_type());
+            for(Budget budget: budgetList){
+                Budget budgetEntity = Budget.builder()
+                        .username(budget.getUsername())
+                        .insert_date(budget.getInsert_date())
+                        .budget(budget.getBudget())
+                        .budget_type(budget.getBudget_type())
+                        .build();
+                if(budgetRepository.findByUsernameLikeAndBudget_typeLike(budget.getUsername(), budget.getBudget_type()) != null){
+                    budgetRepository.update(budget.getUsername(), budget.getInsert_date(), budget.getBudget(), budget.getBudget_type());
+                }else{
+                    budgetRepository.save(budgetEntity);
+                    budgetEntity = budgetRepository.findByUsernameLikeAndBudget_typeLike(budget.getUsername(), budget.getBudget_type());
 
-                accountBookRepository.updateBudget_id(budgetEntity.getBudget_id(), budget.getUsername(), budgetEntity.getBudget_type()+"%");
+                    accountBookRepository.updateBudget_id(budgetEntity.getBudget_id(), budget.getUsername(), budgetEntity.getBudget_type()+"%");
+                }
             }
         }catch(Exception e) {
             e.printStackTrace();
