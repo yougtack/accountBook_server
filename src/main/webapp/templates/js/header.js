@@ -13,3 +13,9 @@ NAV_ICON.addEventListener('click', () => {
         nav_state = 'no';
     }
 });
+
+let profileDiv = document.getElementById('profile_div');
+
+document.getElementsByClassName('profile')[0].addEventListener('click', () => {
+    (profileDiv.style.display === 'none') ? profileDiv.style.display = 'block' : profileDiv.style.display = 'none';
+});

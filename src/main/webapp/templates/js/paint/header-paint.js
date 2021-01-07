@@ -35,6 +35,14 @@ if (USER.data.length === 1) {
     signupPaint +=`
         <div class="profile_content">
             <img class="profile" src="image/info.gif" alt="profile"/>
+            <div id="profile_div" class="profile_div">
+                <img class="profile_image" src="image/info.gif" />
+                <div class="info">
+                    <span class="profile_text font">${USER.data[0]}님</span>
+                    <span id="logout" class="logout font">로그아웃</span>
+                    <span class="profile_email font">${USER.data[1]}</span>
+                </div>
+            </div>
         </div>`;
 }
 signupPaint +=`
@@ -42,3 +50,19 @@ signupPaint +=`
     </header>`;
 
 document.write(signupPaint);
+
+document.getElementById('logout').addEventListener('click', () => {
+    let xhttp = new XMLHttpRequest();
+
+    xhttp.open("GET", `http://localhost:8080/user/logout`, false);
+
+    xhttp.onreadystatechange = () => {
+        if (xhttp.status !== 200) {
+            console.log("HTTP ERROR", xhttp.status, xhttp.statusText);
+        } else {
+            location.href = 'write.html';
+        }
+    };
+    xhttp.setRequestHeader("Content-Type", "application/json");
+    xhttp.send();
+});

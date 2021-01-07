@@ -16,7 +16,6 @@ const BUDGET_DATA = {
             console.log("HTTP ERROR", xhttp.status, xhttp.statusText);
         } else {
             BUDGET_DATA.data = JSON.parse(xhttp.responseText);
-            console.log(JSON.parse(xhttp.responseText));
         }
     };
 
@@ -59,13 +58,54 @@ window.addEventListener('load', () => {
 
 (function test() {
     let budgetTr = document.getElementsByClassName('budget_tr');
+    let budgetCost = 0, spendCost = 0, cost = 0;
+    let budgetTotal = document.getElementById('budget_total');
+    let spendTotal = document.getElementById('spend_total');
+    let totalCost = document.getElementById('total');
     for(value of BUDGET_DATA.data){
         for (let i = 0; i < 13; i++){
             if (value.type === budgetTr[i].cells[0].innerText){
-                budgetTr[i].cells[1].value = value.budget.format();
-                budgetTr[i].cells[2].textContent = value.spending.format();
-                budgetTr[i].cells[3].textContent = value.total_cost.format();
+                (value.type === '미분류')
+                    ? budgetTr[i].cells[1].children[0].textContent = '-'
+                    : budgetTr[i].cells[1].children[0].textContent = value.budget.format();
+                budgetTr[i].cells[2].children[0].textContent = value.spending.format();
+                (value.total_cost < 0)
+                    ? budgetTr[i].cells[3].style.color = '#ff5658'
+                    : budgetTr[i].cells[3].style.color = 'black';
+                budgetTr[i].cells[3].children[0].textContent = value.total_cost.format();
+                budgetCost += value.budget;
+                spendCost += value.spending;
+                cost += value.total_cost;
             }
         }
     }
+    budgetTotal.textContent = budgetCost.format();
+    spendTotal.textContent = spendCost.format();
+    (cost < 0 ) ? totalCost.style.color = '#ff5658' : totalCost.style.color = 'black';
+    totalCost.textContent = cost.format();
 })();
+
+function SetComma(str) {
+    str = str.replace(/,/g, '');
+    let retValue = "";
+    if (isNaN(str) == false) {
+        for (let i = 1; i <= str.length; i++) {
+            if (i > 1 && (i % 3) == 1) retValue = str.charAt(str.length - i) + "," + retValue; else retValue = str.charAt(str.length - i) + retValue;
+        }
+    }
+    return retValue;
+}
+
+const budgetCostInput = document.getElementsByClassName('budget_cost_input');
+
+for(let i = 0; i < budgetCostInput.length; i++){
+    budgetCostInput[i].addEventListener('click', () => {
+        budgetCostInput[i].style.display = 'none';
+        document.getElementsByClassName('input_list')[i].innerHTML =
+            `<input class="budget_input font budget_cost_input" type="text"
+                onkeyup="this.value = SetComma(this.value)" 
+                onfocus="this.value = SetComma(this.value)"
+                maxlength="13"
+                value="${100}"/>`;
+    });
+}

@@ -19,10 +19,6 @@ Number.prototype.format = function(){
     let xhttp = new XMLHttpRequest();
     const URL = "http://localhost:8080";
 
-    let data = {
-        username:USER.data[0]
-    }
-
     xhttp.open("GET", URL + `/accountBook/spending/${USER.data[0]}`, false);
 
     xhttp.onreadystatechange = () => {
@@ -41,10 +37,6 @@ Number.prototype.format = function(){
     let xhttp = new XMLHttpRequest();
     const URL = "http://localhost:8080";
 
-    let data = {
-        username:USER.data[0]
-    }
-
     xhttp.open("GET", URL + `/accountBook/spending_month/${USER.data[0]}`, false);
 
     xhttp.onreadystatechange = () => {
@@ -61,10 +53,6 @@ Number.prototype.format = function(){
 
 (function cumulative() {
     let xhttp = new XMLHttpRequest();
-
-    let data = {
-        username: USER.data[0]
-    }
 
     xhttp.open("GET", `http://localhost:8080/accountBook/cumulative/${USER.data[0]}`, false);
 
