@@ -3,8 +3,10 @@ package com.web.account_book.controller;
 import com.web.account_book.model.*;
 import com.web.account_book.model.entity.AccountBook;
 import com.web.account_book.model.entity.Budget;
+import com.web.account_book.model.entity.HopeGoal;
 import com.web.account_book.model.entity.Income;
 import com.web.account_book.service.AccountBookService;
+import org.apache.ibatis.annotations.Delete;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -118,6 +120,32 @@ public class AccountBookController {
     @GetMapping(value = "/report_saving/{username}/{start}/{end}")
     public List<ReportModel> repostSaving(@PathVariable String username, @PathVariable String start, @PathVariable String end){
         return accountBookService.getReportSaving(username, start, end);
+    }
+
+    //희망목표
+    @PostMapping(value = "/hope_goal")
+    public int insert_hopeGoal(@RequestBody HopeGoal hopeGoal){
+        return accountBookService.save_hopeGoal(hopeGoal);
+    }
+
+    @PutMapping(value = "/hope_goal")
+    public int update_hopeGoal(@RequestBody HopeGoal hopeGoal){
+        return accountBookService.update_hopeGoal(hopeGoal);
+    }
+
+    @DeleteMapping(value = "/hope_goal/{hope_id}")
+    public int delete_hopeGoal(@PathVariable long hope_id){
+        return accountBookService.delete_hopeGoal(hope_id);
+    }
+    @GetMapping(value = "/hope_goal/{username}")
+    public List<HopeGoal> hopeGoal(@PathVariable String username){
+        return accountBookService.getHopeGoal(username);
+    }
+
+    //타입만 보여주는 api
+    @GetMapping(value = "/hope_goal_only_type/{username}")
+    public List<AccountBookOnlyTypeModel> onlyType(@PathVariable String username){
+        return accountBookService.getOnlyType(username);
     }
 }
 

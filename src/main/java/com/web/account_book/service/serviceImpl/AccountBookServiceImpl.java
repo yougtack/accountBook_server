@@ -36,6 +36,9 @@ public class AccountBookServiceImpl implements AccountBookService {
     @Autowired
     BudgetRepository budgetRepository;
 
+    @Autowired
+    HopeGoalRepository hopeGoalRepository;
+
     //컬렉션 스트림을 이용해서 dto로 부어라(프론트와 서버를 연결)
     @Override
     public List<AccountBookModel> getAccountBookList(String username, String start, String end){
@@ -324,6 +327,69 @@ public class AccountBookServiceImpl implements AccountBookService {
     @Override
     public List<ReportModel> getReportSaving(String username, String start, String end){
         return accountBookRepository.findByReportSaving(username, start, end);
+    }
+
+    @Override
+    @Transactional
+    public int save_hopeGoal(HopeGoal hopeGoal){
+        try{
+            HopeGoal hopeGoalEntity = HopeGoal.builder()
+                    .title(hopeGoal.getTitle())
+                    .goal_cost(hopeGoal.getGoal_cost())
+                    .start_date(hopeGoal.getStart_date())
+                    .end_date(hopeGoal.getEnd_date())
+                    .username(hopeGoal.getUsername())
+                    .references_type(hopeGoal.getReferences_type())
+                    .build();
+            hopeGoalRepository.save(hopeGoalEntity);
+            return 1;
+        }catch(Exception e){
+            e.printStackTrace();
+            return 0;
+        }
+    }
+
+    @Override
+    @Transactional
+    public int update_hopeGoal(HopeGoal hopeGoal){
+        try{
+            HopeGoal hopeGoalEntity = HopeGoal.builder()
+                    .hope_id(hopeGoal.getHope_id())
+                    .title(hopeGoal.getTitle())
+                    .goal_cost(hopeGoal.getGoal_cost())
+                    .start_date(hopeGoal.getStart_date())
+                    .end_date(hopeGoal.getEnd_date())
+                    .username(hopeGoal.getUsername())
+                    .references_type(hopeGoal.getReferences_type())
+                    .build();
+            hopeGoalRepository.save(hopeGoalEntity);
+            return 1;
+        }catch(Exception e){
+            e.printStackTrace();
+            return 0;
+        }
+    }
+
+    @Override
+    @Transactional
+    public int delete_hopeGoal(long hope_id){
+        try{
+            hopeGoalRepository.deleteById(hope_id);
+            return 1;
+        }catch(Exception e){
+            e.printStackTrace();
+            return 0;
+        }
+    }
+
+    @Override
+    public List<HopeGoal> getHopeGoal(String username){
+        return hopeGoalRepository.findByUsername(username);
+    }
+
+    @Override
+    public List<AccountBookOnlyTypeModel> getOnlyType(String username){
+        return accountBookRepository.findByOnlyType(username);
     }
 }
 
