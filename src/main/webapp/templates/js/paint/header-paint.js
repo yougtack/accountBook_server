@@ -59,6 +59,8 @@ document.getElementById('logout').addEventListener('click', () => {
     xhttp.onreadystatechange = () => {
         if (xhttp.status !== 200) {
             console.log("HTTP ERROR", xhttp.status, xhttp.statusText);
+        } else {
+            location.href = 'write.html';
         }
     };
     xhttp.setRequestHeader("Content-Type", "application/json");
