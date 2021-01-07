@@ -19,7 +19,7 @@ public interface BudgetRepository extends JpaRepository<Budget, Long> {
             "           budget AS b " +
             "       ON a.budget_id = b.budget_id" +
             "       WHERE " +
-            "           a.id = ?3 " +
+            "           a.username = ?1 " +
             "       AND " +
             "           a.type not like '저축/보험>%'" +
             "       AND" +
@@ -45,7 +45,7 @@ public interface BudgetRepository extends JpaRepository<Budget, Long> {
             "           subString_index(a.type, '>', 1)" +
             "       ORDER BY 1 DESC"
             , nativeQuery = true)
-    List<BudgetModel> findTotal_cost(String username, String month, int user_id);
+    List<BudgetModel> findTotal_cost(String username, String month);
 
     @Query(value = "SELECT" +
             "           ifnull(sum(budget),0)" +

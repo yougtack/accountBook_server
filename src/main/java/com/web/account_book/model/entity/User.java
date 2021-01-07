@@ -17,9 +17,8 @@ import java.sql.Timestamp;
 @NoArgsConstructor
 public class User {
     @Id // primary key
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
     private String username;
+
     private String password;
     private String email;
     private String role; //ROLE_USER, ROLE_ADMIN
@@ -31,8 +30,7 @@ public class User {
     private Timestamp createDate;
 
     @Builder
-    public User(int id, String username, String password, String email, String role, String provide, String providerId, Timestamp createDate){
-        this.id = id;
+    public User(String username, String password, String email, String role, String provide, String providerId, Timestamp createDate){
         this.username = username;
         this.password = password;
         this.email = email;

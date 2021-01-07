@@ -22,7 +22,7 @@ public class AccountBook {
     private String type;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "username")
     private User user;
 
     private int budget_id;
