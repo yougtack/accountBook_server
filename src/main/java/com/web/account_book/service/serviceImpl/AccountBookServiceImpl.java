@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 @Service
 @Transactional(readOnly = true)
@@ -29,9 +31,6 @@ public class AccountBookServiceImpl implements AccountBookService {
     CardRepository cardRepository;
 
     @Autowired
-    CardInfoRepository cardInfoRepository;
-
-    @Autowired
     IncomeRepository incomeRepository;
 
     @Autowired
@@ -39,9 +38,33 @@ public class AccountBookServiceImpl implements AccountBookService {
 
     //컬렉션 스트림을 이용해서 dto로 부어라(프론트와 서버를 연결)
     @Override
-    public List<AccountBook> getAccountBookList(String username, String start, String end){
-        User userEntity = userRepository.findByUsername(username);
-        return accountBookRepository.findByDate(userEntity.getId(), start, end);
+    public List<AccountBookModel> getAccountBookList(String username, String start, String end){
+        User userEntity = userRepository.findByUsername(username); //username을 통해 userEntitiy를 가져옴(유저 식별키를 얻기위함)
+        List<AccountBook> list_temp = accountBookRepository.findByDate(userEntity.getId(), start, end);
+
+        List<AccountBookModel> list = new ArrayList<>();
+        Stream<AccountBook> stream = list_temp.stream();
+        stream.forEach(s -> {
+            AccountBookModel accountBookModel = new AccountBookModel();
+            UserModel userModel = new UserModel();
+
+            accountBookModel.setAb_id(s.getAB_id());
+            accountBookModel.setAb_where_to_use(s.getAB_where_to_use());
+            accountBookModel.setAb_write_date(s.getAB_write_date());
+            accountBookModel.setCard_cost(s.getCard_cost());
+            accountBookModel.setCash_cost(s.getCash_cost());
+            accountBookModel.setType(s.getType());
+            accountBookModel.setBudget_id(s.getBudget_id());
+
+            userModel.setId(s.getUser().getId());
+            userModel.setUsername(s.getUser().getUsername());
+            userModel.setEmail(s.getUser().getEmail());
+
+            accountBookModel.setUser(userModel);
+            list.add(accountBookModel);
+        });
+
+        return list;
     }
 
     @Override
@@ -302,42 +325,6 @@ public class AccountBookServiceImpl implements AccountBookService {
     public List<ReportModel> getReportSaving(String username, String start, String end){
         User userEntity = userRepository.findByUsername(username);
         return accountBookRepository.findByReportSaving(userEntity.getId(), start, end);
-    }
-
-    @Override
-    public int saveCardInfo(CardInfo cardInfo){
-        try{
-            CardInfo cardInfoEntity;
-            if(cardInfo.getCard_checkCard() == true){
-                cardInfoEntity = CardInfo.builder()
-                    .card_name(cardInfo.getCard_name())
-                    .card_company(cardInfo.getCard_company())
-                    .card_checkCard(cardInfo.getCard_checkCard())
-                    .card_use(cardInfo.getCard_use())
-                    .username(cardInfo.getUsername())
-                    .build();
-            }else{
-                cardInfoEntity = CardInfo.builder()
-                    .card_name(cardInfo.getCard_name())
-                    .card_company(cardInfo.getCard_company())
-                    .card_checkCard(cardInfo.getCard_checkCard())
-                    .card_start_date(cardInfo.getCard_start_date())
-                    .card_end_date(cardInfo.getCard_end_date())
-                    .card_use(cardInfo.getCard_use())
-                    .username(cardInfo.getUsername())
-                    .build();
-            }
-            cardInfoRepository.save(cardInfoEntity);
-            return 1;
-        }catch(Exception e){
-            e.printStackTrace();
-            return 0;
-        }
-    }
-
-    @Override
-    public List<CardInfo> getCard_info(String username){
-        return cardInfoRepository.findByUsername(username);
     }
 }
 

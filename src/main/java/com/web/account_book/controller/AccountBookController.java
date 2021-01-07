@@ -3,7 +3,6 @@ package com.web.account_book.controller;
 import com.web.account_book.model.*;
 import com.web.account_book.model.entity.AccountBook;
 import com.web.account_book.model.entity.Budget;
-import com.web.account_book.model.entity.CardInfo;
 import com.web.account_book.model.entity.Income;
 import com.web.account_book.service.AccountBookService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +17,8 @@ public class AccountBookController {
 
     @Autowired
     AccountBookService accountBookService;
-
     @GetMapping(value = "/{username}/{start}/{end}")
-    public List<AccountBook> accountBootList(@PathVariable String username, @PathVariable String start, @PathVariable String end){
+    public List<AccountBookModel> accountBootList(@PathVariable String username, @PathVariable String start, @PathVariable String end){
         return accountBookService.getAccountBookList(username, start, end);
     }
 
@@ -120,18 +118,6 @@ public class AccountBookController {
     @GetMapping(value = "/report_saving/{username}/{start}/{end}")
     public List<ReportModel> repostSaving(@PathVariable String username, @PathVariable String start, @PathVariable String end){
         return accountBookService.getReportSaving(username, start, end);
-    }
-
-    //카드 정보 출력
-    @GetMapping(value = "/card_info/{username}")
-    public List<CardInfo> card_info(@PathVariable String username){
-        return accountBookService.getCard_info(username);
-    }
-
-    //카드 정보 입력
-    @PostMapping(value = "/card_info")
-    public int insert_card_info(@RequestBody CardInfo cardInfo){
-        return accountBookService.saveCardInfo(cardInfo);
     }
 }
 
