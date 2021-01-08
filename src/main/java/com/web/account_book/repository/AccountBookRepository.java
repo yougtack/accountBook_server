@@ -1,5 +1,6 @@
 package com.web.account_book.repository;
 
+import com.web.account_book.model.AccountBookOnlyTypeModel;
 import com.web.account_book.model.ReportModel;
 import com.web.account_book.model.SpendingRankModel;
 import com.web.account_book.model.AccountBookModel;
@@ -107,4 +108,7 @@ public interface AccountBookRepository extends JpaRepository<AccountBook, Long>{
             "       GROUP BY" +
             "       SUBSTRING(type, 4, 5)", nativeQuery = true)
     List<ReportModel> findByReportSaving(String username, String start, String end);
+
+    @Query(value = "SELECT SUBSTRING_INDEX(type, '>', 1) FROM account_book WHERE username = ?1 GROUP BY SUBSTRING_INDEX(type, '>', 1)",nativeQuery = true)
+    List<AccountBookOnlyTypeModel> findByOnlyType(String username);
 }

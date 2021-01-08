@@ -3,6 +3,7 @@ package com.web.account_book.service;
 import com.web.account_book.model.*;
 import com.web.account_book.model.entity.AccountBook;
 import com.web.account_book.model.entity.Budget;
+import com.web.account_book.model.entity.HopeGoal;
 import com.web.account_book.model.entity.Income;
 
 import java.util.List;
@@ -36,4 +37,11 @@ public interface AccountBookService {
     List<ReportModel> getReportDetail(String username, String start, String end, String type);
 
     List<ReportModel> getReportSaving(String username, String start, String end);
+
+    int save_hopeGoal(HopeGoal hopeGoal);
+    int update_hopeGoal(HopeGoal hopeGoal);
+    int delete_hopeGoal(long hope_id);
+    List<HopeGoal> getHopeGoal(String username);
+
+    List<AccountBookOnlyTypeModel> getOnlyType(String username);
 }
