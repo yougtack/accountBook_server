@@ -10,6 +10,7 @@ import org.apache.ibatis.annotations.Delete;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
@@ -147,6 +148,11 @@ public class AccountBookController {
     @GetMapping(value = "/hope_goal_only_type/{username}")
     public List<AccountBookOnlyTypeModel> onlyType(@PathVariable String username){
         return accountBookService.getOnlyType(username);
+    }
+
+    @GetMapping(value = "/test")
+    public void test(HttpServletRequest request){
+        System.out.println(request.getHeader("user-agent"));
     }
 }
 

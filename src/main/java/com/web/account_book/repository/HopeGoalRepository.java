@@ -29,6 +29,10 @@ public interface HopeGoalRepository extends JpaRepository<HopeGoal, Long> {
             "           a.username is null" +
             "       AND " +
             "           h.username = ?1" +
+            "       AND" +
+            "           a.ab_write_date between h.start_date and h.end_date" +
+            "       OR" +
+            "           a.ab_write_date is null" +
             "       GROUP BY subString_index(a.type, '>',1)",nativeQuery = true)
     List<HopeGoalModel> findByHopeGoal(String username);
 }
