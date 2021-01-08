@@ -20,12 +20,6 @@ document.getElementById('write_submit').addEventListener('click', () => {
     let xhttp = new XMLHttpRequest();
     let writeForm = document.getElementById('write_form');
 
-    function deleteComma(str) {
-        let num = parseInt(str.replace(/,/g,""))
-
-        return num;
-    }
-
     let data = {
         user: {
             username: USER.data[0]
@@ -169,9 +163,10 @@ window.addEventListener('load', () => {
     let today = document.getElementById('today');
     let day = new Array('일', '월', '화', '수', '목', '금', '토');
     let month = ((now.getMonth() + 1) <= 9) ? '0' + (now.getMonth() + 1) : (now.getMonth() + 1);
+    let date = ((now.getDate() + 1) <= 9) ? '0' + now.getDate() : now.getDate();
 
-    today.innerText = now.getFullYear() + "." + month + ".0" + now.getDate() + ".(" + day[now.getDay()] + ")";
+    today.innerText = now.getFullYear() + "." + month + "." + date + ".(" + day[now.getDay()] + ")";
 
-    document.getElementById('write_today').value = now.getFullYear() + "." + month + ".0" + now.getDate();
-    document.getElementById('income_today').value = now.getFullYear() + "." + month + ".0" + now.getDate();
+    document.getElementById('write_today').value = now.getFullYear() + "-" + month + "-" + date;
+    document.getElementById('income_today').value = now.getFullYear() + "-" + month + "-" + date;
 });

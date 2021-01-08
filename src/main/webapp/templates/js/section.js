@@ -31,3 +31,9 @@ window.addEventListener('load', () => {
     thisMonth.textContent = now.getFullYear() + "." + month + ".0" + 1 + " - "
         + now.getFullYear() + "." + month + "." + lastDay;
 });
+
+function deleteComma(str) {
+    let num = parseInt(str.replace(/,/g,""))
+
+    return num;
+}
