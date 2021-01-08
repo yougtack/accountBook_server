@@ -137,8 +137,9 @@ public class AccountBookController {
     public int delete_hopeGoal(@PathVariable long hope_id){
         return accountBookService.delete_hopeGoal(hope_id);
     }
+
     @GetMapping(value = "/hope_goal/{username}")
-    public List<HopeGoal> hopeGoal(@PathVariable String username){
+    public List<HopeGoalModel> hopeGoal(@PathVariable String username){
         return accountBookService.getHopeGoal(username);
     }
 

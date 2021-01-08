@@ -383,8 +383,8 @@ public class AccountBookServiceImpl implements AccountBookService {
     }
 
     @Override
-    public List<HopeGoal> getHopeGoal(String username){
-        return hopeGoalRepository.findByUsername(username);
+    public List<HopeGoalModel> getHopeGoal(String username){
+        return hopeGoalRepository.findByHopeGoal(username);
     }
 
     @Override
