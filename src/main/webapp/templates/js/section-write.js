@@ -170,3 +170,7 @@ window.addEventListener('load', () => {
     document.getElementById('write_today').value = now.getFullYear() + "-" + month + "-" + date;
     document.getElementById('income_today').value = now.getFullYear() + "-" + month + "-" + date;
 });
+
+document.getElementById('test').addEventListener('click', () => {
+   alert("HI");
+});

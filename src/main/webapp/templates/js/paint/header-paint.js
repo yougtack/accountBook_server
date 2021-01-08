@@ -29,8 +29,8 @@ if (USER.data.length === 1) {
         <div class="profile_content">
             <span class="header_login font" onclick="location.href = 'login.html'">로그인</span>
         </div>`;
-    alert("로그인 후 이용할 수 있는 페이지 입니다.");
-    location.href = 'login.html';
+    // alert("로그인 후 이용할 수 있는 페이지 입니다.");
+    // location.href = 'login.html';
 } else {
     signupPaint +=`
         <div class="profile_content">
