@@ -2,9 +2,9 @@ window.addEventListener('load', () => {
     let now = new Date();
     let day = new Array('일', '월', '화', '수', '목', '금', '토');
     let month = ((now.getMonth() + 1) <= 9) ? '0' + (now.getMonth() + 1) : (now.getMonth() + 1);
-
+    let date = ((now.getDate() + 1) <= 9) ? '0' + now.getDate() : now.getDate();
     document.getElementById('report_today').innerText =
-        now.getFullYear() + "." + month + ".0" + now.getDate() + ".(" + day[now.getDay()] + ")";
+        now.getFullYear() + "." + month + "." + date + ".(" + day[now.getDay()] + ")";
 });
 
 let bottomBtn = document.getElementsByClassName('bottom_btn');

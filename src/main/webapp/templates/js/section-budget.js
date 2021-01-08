@@ -16,6 +16,7 @@ const BUDGET_DATA = {
             console.log("HTTP ERROR", xhttp.status, xhttp.statusText);
         } else {
             BUDGET_DATA.data = JSON.parse(xhttp.responseText);
+            console.log(BUDGET_DATA.data);
         }
     };
 
@@ -48,16 +49,18 @@ window.addEventListener('load', () => {
     let day = new Array('일', '월', '화', '수', '목', '금', '토');
     let lastDay = ( new Date( now.getFullYear(), now.getMonth(), 0) ).getDate();
     let month = ((now.getMonth() + 1) <= 9) ? '0' + (now.getMonth() + 1) : (now.getMonth() + 1);
+    let date = ((now.getDate() + 1) <= 9) ? '0' + now.getDate() : now.getDate();
 
     document.getElementById('budget_today').innerText =
-        now.getFullYear() + "." + month + ".0" + now.getDate() + ".(" + day[now.getDay()] + ")";
+        now.getFullYear() + "." + month + "." + date + ".(" + day[now.getDay()] + ")";
 
     document.getElementById('budget_first').innerText = (now.getMonth() + 1) + "-" + 1;
     document.getElementById('budget_last').innerText = (now.getMonth() + 1) + "-" + lastDay;
 });
 
+let budgetTr = document.getElementsByClassName('budget_tr');
+
 (function test() {
-    let budgetTr = document.getElementsByClassName('budget_tr');
     let budgetCost = 0, spendCost = 0, cost = 0;
     let budgetTotal = document.getElementById('budget_total');
     let spendTotal = document.getElementById('spend_total');
@@ -90,7 +93,9 @@ function SetComma(str) {
     let retValue = "";
     if (isNaN(str) == false) {
         for (let i = 1; i <= str.length; i++) {
-            if (i > 1 && (i % 3) == 1) retValue = str.charAt(str.length - i) + "," + retValue; else retValue = str.charAt(str.length - i) + retValue;
+            if (i > 1 && (i % 3) == 1)
+                retValue = str.charAt(str.length - i)
+                    + "," + retValue; else retValue = str.charAt(str.length - i) + retValue;
         }
     }
     return retValue;
@@ -106,6 +111,37 @@ for(let i = 0; i < budgetCostInput.length; i++){
                 onkeyup="this.value = SetComma(this.value)" 
                 onfocus="this.value = SetComma(this.value)"
                 maxlength="13"
-                value="${100}"/>`;
+                value="${budgetTr[i].cells[1].children[0].textContent}"/>`;
     });
 }
+
+document.getElementById('testBtn').addEventListener('click', () => {
+    let xhttp = new XMLHttpRequest();
+    let data = [];
+    let month = ((now.getMonth() + 1) <= 9) ? '0' + (now.getMonth() + 1) : (now.getMonth() + 1);
+    let date = ((now.getDate() + 1) <= 9) ? '0' + now.getDate() : now.getDate();
+
+    for (value of budgetTr) {
+        if (value.cells[1].children[0].value > "0"
+            && value.cells[1].children[0].value !== undefined) {
+            data.push(
+                {
+                    username : USER.data[0],
+                    insert_date : now.getFullYear() + "-" + month + "-" + date,
+                    budget: deleteComma(value.cells[1].children[0].value),
+                    budget_type: value.cells[0].textContent
+                })
+        }
+    }
+    xhttp.open("POST",
+        "http://localhost:8080/accountBook/budget", false);
+    xhttp.onreadystatechange = () => {
+        if (xhttp.status !== 200) {
+            console.log("HTTP ERROR", xhttp.status, xhttp.statusText);
+        } else {
+            location.href = "budget.html";
+        }
+    };
+    xhttp.setRequestHeader("Content-Type", "application/json");
+    xhttp.send(JSON.stringify(data));
+});

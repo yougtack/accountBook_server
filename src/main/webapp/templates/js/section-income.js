@@ -2,12 +2,6 @@ document.getElementById('income_submit').addEventListener('click', () => {
     let xhttp = new XMLHttpRequest();
     let incomeForm = document.getElementById('income_form');
 
-    function deleteComma(str) {
-        let num = parseInt(str.replace(/,/g,""))
-
-        return num;
-    }
-
     let data = {
         username: USER.data[0],
         income_date: incomeForm.income_today.value,
