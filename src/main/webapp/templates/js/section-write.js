@@ -171,6 +171,6 @@ window.addEventListener('load', () => {
     document.getElementById('income_today').value = now.getFullYear() + "-" + month + "-" + date;
 });
 
-document.getElementById('test').addEventListener('click', () => {
+function alertTest() {
    alert("HI");
-});
+}
