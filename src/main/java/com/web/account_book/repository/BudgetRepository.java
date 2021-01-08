@@ -42,7 +42,7 @@ public interface BudgetRepository extends JpaRepository<Budget, Long> {
             "       AND" +
             "           b.insert_date like ?2"+
             "       GROUP BY " +
-            "           subString_index(a.type, '>', 1)" +
+            "           subString_index(b.budget_type, '>', 1)" +
             "       ORDER BY 1 DESC"
             , nativeQuery = true)
     List<BudgetModel> findTotal_cost(String username, String month);
