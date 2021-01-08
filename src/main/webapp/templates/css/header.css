@@ -94,10 +94,12 @@
 
 .profile_text {
     font-size: 14px;
+    display: block;
 }
 
 .profile_email {
     font-size: 10px;
+    display: block;
 }
 
 .logout {
