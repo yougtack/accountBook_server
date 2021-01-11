@@ -33,6 +33,7 @@ public class UserController {
     public String login(@AuthenticationPrincipal PrincipalDetails principalDetails, HttpSession session){
         if(principalDetails != null){
             session.setAttribute("username", principalDetails.getUser().getUsername());
+            session.setMaxInactiveInterval(60 * 30);
             return principalDetails.getUser().getUsername()+", "+principalDetails.getUser().getEmail();
         }else{
             return "로그인이 되지 않아 정보를 불러 올 수 없습니다.";
