@@ -6,11 +6,13 @@ import com.web.account_book.model.entity.Budget;
 import com.web.account_book.model.entity.HopeGoal;
 import com.web.account_book.model.entity.Income;
 import com.web.account_book.service.AccountBookService;
+import com.web.account_book.util.LoginUtil;
 import org.apache.ibatis.annotations.Delete;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
@@ -26,17 +28,26 @@ public class AccountBookController {
     }
 
     @PostMapping(value = "")
-    public int insert_account_book(@RequestBody AccountBook accountBook){
+    public int insert_account_book(@RequestBody AccountBook accountBook, HttpSession session, HttpServletResponse response){
+        if(!LoginUtil.login_check(accountBook.getUser().getUsername(), session, response).equals("Success_200")){
+            return 0;
+        }
         return accountBookService.save_account_book(accountBook);
     }
 
     @PutMapping(value = "")
-    public int update_account_book(@RequestBody AccountBook accountBook){
+    public int update_account_book(@RequestBody AccountBook accountBook, HttpSession session, HttpServletResponse response){
+        if(!LoginUtil.login_check(accountBook.getUser().getUsername(), session, response).equals("Success_200")){
+            return 0;
+        }
         return accountBookService.update_account_book(accountBook);
     }
 
-    @DeleteMapping(value = "/{ab_id}")
-    public int delete_account_book(@PathVariable long ab_id){
+    @DeleteMapping(value = "/{ab_id}/{username}")
+    public int delete_account_book(@PathVariable long ab_id, @PathVariable String username, HttpSession session, HttpServletResponse response){
+        if(!LoginUtil.login_check(username, session, response).equals("Success_200")) {
+            return 0;
+        }
         return accountBookService.delete_account_book(ab_id);
     }
 
@@ -47,23 +58,32 @@ public class AccountBookController {
     }
 
     @PostMapping(value = "/income")
-    public int insert_income(@RequestBody Income income){
+    public int insert_income(@RequestBody Income income, HttpSession session, HttpServletResponse response){
+        if(!LoginUtil.login_check(income.getUsername(), session, response).equals("Success_200")) {
+            return 0;
+        }
         return accountBookService.save_income(income);
     }
 
     @PutMapping(value = "/income")
-    public int update_income(@RequestBody Income income){
+    public int update_income(@RequestBody Income income, HttpSession session, HttpServletResponse response){
+        if(!LoginUtil.login_check(income.getUsername(), session, response).equals("Success_200")) {
+            return 0;
+        }
         return accountBookService.update_income(income);
     }
 
-    @DeleteMapping(value = "/income/{income_id}")
-    public int delete_income(@PathVariable long income_id){
+    @DeleteMapping(value = "/income/{income_id}/{username}")
+    public int delete_income(@PathVariable long income_id, @PathVariable String username, HttpSession session, HttpServletResponse response){
+        if(!LoginUtil.login_check(username, session, response).equals("Success_200")) {
+            return 0;
+        }
         return accountBookService.delete_income(income_id);
     }
 
-    //지출
+    //지출(사이드 바)
     @GetMapping(value = "/spending/{username}")
-    public IncomeThisMonth total(@PathVariable String username, HttpSession session){
+    public IncomeThisMonth total(@PathVariable String username){
         //인증
         //입력받은 username과 세션의 session.getAttribute("username")으로 비교해야함
         return accountBookService.spending(username);
@@ -77,12 +97,20 @@ public class AccountBookController {
 
     //예산 쓰기
     @PostMapping(value = "/budget")
-    public int insert_budget(@RequestBody List<Budget> budgetList){
+    public int insert_budget(@RequestBody List<Budget> budgetList, HttpSession session, HttpServletResponse response){
+        for(Budget budget: budgetList){
+            if(!LoginUtil.login_check(budget.getUsername(), session, response).equals("Success_200")) {
+                return 0;
+            }
+        }
         return accountBookService.save_budget(budgetList);
     }
 
-    @DeleteMapping(value = "/budget/{budget_id}")
-    public int delete_budget(@PathVariable long budget_id){
+    @DeleteMapping(value = "/budget/{budget_id}/{username}")
+    public int delete_budget(@PathVariable long budget_id, @PathVariable String username, HttpSession session, HttpServletResponse response){
+        if(!LoginUtil.login_check(username, session, response).equals("Success_200")) {
+            return 0;
+        }
         return accountBookService.delete_budget(budget_id);
     }
 
@@ -125,17 +153,26 @@ public class AccountBookController {
 
     //희망목표
     @PostMapping(value = "/hope_goal")
-    public int insert_hopeGoal(@RequestBody HopeGoal hopeGoal){
+    public int insert_hopeGoal(@RequestBody HopeGoal hopeGoal, HttpSession session, HttpServletResponse response){
+        if(!LoginUtil.login_check(hopeGoal.getUsername(), session, response).equals("Success_200")) {
+            return 0;
+        }
         return accountBookService.save_hopeGoal(hopeGoal);
     }
 
     @PutMapping(value = "/hope_goal")
-    public int update_hopeGoal(@RequestBody HopeGoal hopeGoal){
+    public int update_hopeGoal(@RequestBody HopeGoal hopeGoal, HttpSession session, HttpServletResponse response){
+        if(!LoginUtil.login_check(hopeGoal.getUsername(), session, response).equals("Success_200")) {
+            return 0;
+        }
         return accountBookService.update_hopeGoal(hopeGoal);
     }
 
-    @DeleteMapping(value = "/hope_goal/{hope_id}")
-    public int delete_hopeGoal(@PathVariable long hope_id){
+    @DeleteMapping(value = "/hope_goal/{hope_id}/{username}")
+    public int delete_hopeGoal(@PathVariable long hope_id, @PathVariable String username, HttpSession session, HttpServletResponse response){
+        if(!LoginUtil.login_check(username, session, response).equals("Success_200")) {
+            return 0;
+        }
         return accountBookService.delete_hopeGoal(hope_id);
     }
 
@@ -150,9 +187,9 @@ public class AccountBookController {
         return accountBookService.getOnlyType(username);
     }
 
-    @GetMapping(value = "/test")
-    public void test(HttpServletRequest request){
-        System.out.println(request.getHeader("user-agent"));
+    @GetMapping(value = "/test/{username}")
+    public void test(@PathVariable String username, HttpSession session, HttpServletResponse response){
+        System.out.println(LoginUtil.login_check(username, session, response));
     }
 }
 
