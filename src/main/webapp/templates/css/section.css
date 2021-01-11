@@ -192,16 +192,7 @@ input {
     border: none;
 }
 
-.write_btn {
-    font-size: 12px;
-    border-radius: 5px;
-    background-color: #31b0e5;
-    border: 1px solid #31b0e5;
-    position: relative;
-    cursor: pointer;
-}
-
- /*budget */
+/*budget */
 
 .section_budget {
     width: 100%;
@@ -262,4 +253,19 @@ input {
     padding-right: 10px;
     width: 95%;
     text-align: right;
+}
+
+.submit_frame {
+    text-align: right;
+}
+
+.submit_btn {
+    padding: 10px;
+    margin-right: 10px;
+    background-color: #03c75a;
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-block;
 }

@@ -1,3 +1,31 @@
+let monthReportView = document.getElementById('month_report_view'),
+    yearReportView = document.getElementById('year_report_view'),
+    spendReportView = document.getElementById('spend_report_view');
+
+(function reset() {
+    monthReportView.style.display = 'block';
+    yearReportView.style.display = 'none';
+    spendReportView.style.display = 'none';
+})();
+
+document.getElementById('month_report').addEventListener('click', () => {
+    monthReportView.style.display = 'block';
+    yearReportView.style.display = 'none';
+    spendReportView.style.display = 'none';
+});
+
+document.getElementById('year_report').addEventListener('click', () => {
+    monthReportView.style.display = 'none';
+    yearReportView.style.display = 'block';
+    spendReportView.style.display = 'none';
+});
+
+document.getElementById('spend_report').addEventListener('click', () => {
+    monthReportView.style.display = 'none';
+    yearReportView.style.display = 'none';
+    spendReportView.style.display = 'block';
+});
+
 window.addEventListener('load', () => {
     let now = new Date();
     let day = new Array('일', '월', '화', '수', '목', '금', '토');

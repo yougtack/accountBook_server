@@ -1,19 +1,29 @@
 let writeView = document.getElementById('section_write');
 let incomeView = document.getElementById('section_income');
+let calendarView = document.getElementById('section_calendar');
 
 (function reset() {
     writeView.style.display = 'block';
     incomeView.style.display = 'none';
+    calendarView.style.display = 'none';
 })();
 
 document.getElementById('write_view').addEventListener('click', () => {
     writeView.style.display = 'block';
     incomeView.style.display = 'none';
+    calendarView.style.display = 'none';
 });
 
 document.getElementById('income_view').addEventListener('click', () => {
     writeView.style.display = 'none';
     incomeView.style.display = 'block';
+    calendarView.style.display = 'none';
+});
+
+document.getElementById('calendar_view').addEventListener('click', () => {
+    writeView.style.display = 'none';
+    incomeView.style.display = 'none';
+    calendarView.style.display = 'block';
 });
 
 document.getElementById('write_submit').addEventListener('click', () => {
