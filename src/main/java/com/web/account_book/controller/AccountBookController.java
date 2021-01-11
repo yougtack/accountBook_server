@@ -22,6 +22,7 @@ public class AccountBookController {
 
     @Autowired
     AccountBookService accountBookService;
+
     @GetMapping(value = "/{username}/{start}/{end}")
     public List<AccountBookModel> accountBootList(@PathVariable String username, @PathVariable String start, @PathVariable String end){
         return accountBookService.getAccountBookList(username, start, end);
@@ -187,9 +188,9 @@ public class AccountBookController {
         return accountBookService.getOnlyType(username);
     }
 
-    @GetMapping(value = "/test/{username}")
-    public void test(@PathVariable String username, HttpSession session, HttpServletResponse response){
-        System.out.println(LoginUtil.login_check(username, session, response));
+    @GetMapping(value = "/test")
+    public void test(HttpServletRequest request){
+        System.out.println(request.getHeader("user-agent"));
     }
 }
 
