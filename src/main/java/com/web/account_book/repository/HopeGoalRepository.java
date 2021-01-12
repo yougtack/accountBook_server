@@ -2,10 +2,12 @@ package com.web.account_book.repository;
 
 import com.web.account_book.model.HopeGoalModel;
 import com.web.account_book.model.entity.HopeGoal;
+import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import org.springframework.data.domain.Pageable;
 import java.util.List;
 
 @Repository
@@ -35,4 +37,7 @@ public interface HopeGoalRepository extends JpaRepository<HopeGoal, Long> {
             "           a.ab_write_date is null" +
             "       GROUP BY subString_index(a.type, '>',1)",nativeQuery = true)
     List<HopeGoalModel> findByHopeGoal(String username);
+
+    @Query(value = "SELECT * FROM hope_goal WHERE username = ?2 limit ?1", nativeQuery = true)
+    Page<HopeGoal> findAllByUsername(Pageable pageable, String username);
 }
