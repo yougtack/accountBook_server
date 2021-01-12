@@ -7,8 +7,10 @@ import com.web.account_book.model.entity.HopeGoal;
 import com.web.account_book.model.entity.Income;
 import com.web.account_book.service.AccountBookService;
 import com.web.account_book.util.LoginUtil;
-import org.apache.ibatis.annotations.Delete;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -189,8 +191,8 @@ public class AccountBookController {
     }
 
     @GetMapping(value = "/test")
-    public void test(HttpServletRequest request){
-        System.out.println(request.getHeader("user-agent"));
+    public Page<HopeGoal> test(@PageableDefault Pageable pageable){
+        return accountBookService.findBoardList(pageable);
     }
 }
 
