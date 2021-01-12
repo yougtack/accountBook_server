@@ -8,6 +8,7 @@
 }
 
 .footer_container {
+    width: 100%;
     padding-top: 6px;
     padding-left: 30px;
     color: #808080;
@@ -16,4 +17,33 @@
 .footer_text {
     font-size: 14px;
     font-weight: 700;
+}
+
+.footer_graph_frame {
+    width: 5%;
+    height: 8px;
+    border: 1px solid #9B9B9B;
+    border-radius: 3px;
+    display: inline-block;
+}
+
+.footer_graph {
+    width: 0%;
+    height: 8px;
+    background-color: #03DE2F;
+    display: flex;
+    z-index: 3;
+}
+
+.footer_budget {
+    color: #03DE2F;
+}
+
+.slash {
+    font-weight: 600;
+}
+
+.footer_cost {
+    font-size: 14px;
+    font-weight: 600;
 }
