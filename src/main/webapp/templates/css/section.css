@@ -250,8 +250,8 @@ input {
 }
 
 .budget_input {
-    padding-right: 10px;
-    width: 95%;
+    margin-left: 10px;
+    width: 93%;
     text-align: right;
 }
 
