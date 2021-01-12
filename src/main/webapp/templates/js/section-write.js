@@ -182,6 +182,5 @@ window.addEventListener('load', () => {
 });
 
 function alertTest() {
-    // window.webkit.messageHandlers.(name).postMessage(message);
-   alert("HI");
+    alert("HI");
 }
