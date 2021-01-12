@@ -398,7 +398,8 @@ public class AccountBookServiceImpl implements AccountBookService {
     @Override
     public Page<HopeGoal> findBoardList(Pageable pageable){
         pageable = PageRequest.of(pageable.getPageNumber() <= 0 ? 0 : pageable.getPageNumber() - 1, pageable.getPageSize());
-        return hopeGoalRepository.findAllByUsername(pageable);
+        System.out.println("asdasd:"+pageable);
+        return hopeGoalRepository.findAllByUsername(pageable, "google_108681227504782434845");
     }
 }
 
