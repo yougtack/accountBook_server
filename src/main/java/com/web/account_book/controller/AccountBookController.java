@@ -9,9 +9,6 @@ import com.web.account_book.service.AccountBookService;
 import com.web.account_book.util.LoginUtil;
 import com.web.account_book.util.enums.HttpStatusEnums;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
@@ -110,6 +107,12 @@ public class AccountBookController {
         return accountBookService.save_budget(budgetList);
     }
 
+    //예산 반성
+    @GetMapping(value = "/budget/{username}/{start}/{end}")
+    public List<BudgetLookBackModel> budget_look_back(@PathVariable String username, @PathVariable String start, @PathVariable String end){
+        return accountBookService.budget_look_back(username, start, end);
+    }
+
     @DeleteMapping(value = "/budget/{budget_id}/{username}")
     public int delete_budget(@PathVariable long budget_id, @PathVariable String username, HttpSession session, HttpServletResponse response){
         if(!LoginUtil.login_check(username, session, response).equals(HttpStatusEnums.Success_200)) {
@@ -189,11 +192,6 @@ public class AccountBookController {
     @GetMapping(value = "/hope_goal_only_type/{username}")
     public List<AccountBookOnlyTypeModel> onlyType(@PathVariable String username){
         return accountBookService.getOnlyType(username);
-    }
-
-    @GetMapping(value = "/test")
-    public Page<HopeGoal> test(@PageableDefault Pageable pageable){
-        return accountBookService.findBoardList(pageable);
     }
 }
 
