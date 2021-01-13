@@ -103,7 +103,7 @@ let navPaint =
                 <li class="list_target" onclick="location.href='story.html'">
                     <div class="list_content">
                         <img class="list_icon" src="image/hope_icon.png" alt="list_icon" />
-                        <p class="list_text font">희망목표/이야기</p>
+                        <p class="list_text font">희망목표</p>
                     </div>
                 </li>
             </ul>

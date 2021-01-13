@@ -93,8 +93,12 @@
 }
 
 .profile_text {
+    width: 50%;
     font-size: 14px;
-    display: block;
+    display: inline-block;
+    white-space : nowrap;
+    overflow : hidden;
+    text-overflow:ellipsis;
 }
 
 .profile_email {
