@@ -1,5 +1,6 @@
 package com.web.account_book.repository;
 
+import com.web.account_book.model.BudgetLookBackModel;
 import com.web.account_book.model.BudgetModel;
 import com.web.account_book.model.entity.Budget;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -71,4 +72,48 @@ public interface BudgetRepository extends JpaRepository<Budget, Long> {
     @Modifying
     @Query(value = "UPDATE budget SET insert_date = ?2, budget = ?3 WHERE username = ?1 AND budget_type = ?4", nativeQuery = true)
     int update(String username, String insert_date, long budget, String budget_type);
+
+    @Query(value = "SELECT" +
+            "           IFNULL(SUBSTRING_INDEX(a.type, '>', 1), b.budget_type) AS type," +
+            "           IFNULL(b.budget - IFNULL(SUM(card_cost+cash_cost), 0), -IFNULL(SUM(card_cost+cash_cost), 0)) AS total_cost," +
+            "           IFNULL(SUBSTRING(a.ab_write_date, 1, 7), SUBSTRING(b.insert_date, 1, 7)) AS date" +
+            "       FROM" +
+            "           account_book AS a" +
+            "       LEFT OUTER JOIN" +
+            "           budget AS b" +
+            "       ON " +
+            "           a.budget_id = b.budget_id" +
+            "       WHERE" +
+            "           a.username = ?1" +
+            "       AND" +
+            "           a.type not like '저축/보험>%'" +
+            "       AND " +
+            "           a.ab_write_date >= ?2" +
+            "       AND" +
+            "           a.ab_write_date <= ?3" +
+            "       GROUP BY" +
+            "           subString(a.ab_write_date, 1, 7), subString_index(a.type, '>', 1)" +
+            "       UNION" +
+            "       SELECT" +
+            "           IFNULL(SUBSTRING_INDEX(a.type, '>', 1), b.budget_type) AS type," +
+            "           IFNULL(b.budget - IFNULL(SUM(card_cost+cash_cost), 0), -IFNULL(SUM(card_cost+cash_cost), 0)) AS total_cost," +
+            "           IFNULL(SUBSTRING(a.ab_write_date, 1, 7), SUBSTRING(b.insert_date, 1, 7)) AS date" +
+            "       FROM" +
+            "           account_book AS a" +
+            "       RIGHT OUTER JOIN" +
+            "           budget AS b" +
+            "       ON " +
+            "           a.budget_id = b.budget_id" +
+            "       WHERE" +
+            "           b.username = ?1" +
+            "       AND " +
+            "           a.username is null" +
+            "       AND" +
+            "           b.insert_date >= ?2" +
+            "       AND" +
+            "           b.insert_date <= ?3" +
+            "       GROUP BY" +
+            "           subString(b.insert_date, 1, 7),subString_index(b.budget_type, '>', 1)" +
+            "       ORDER BY 3 ASC, 1 DESC", nativeQuery = true)
+    List<BudgetLookBackModel> findByBudgetLookBack(String username, String start, String end);
 }

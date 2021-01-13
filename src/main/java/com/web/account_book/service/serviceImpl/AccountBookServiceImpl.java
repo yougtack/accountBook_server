@@ -6,9 +6,6 @@ import com.web.account_book.repository.*;
 import com.web.account_book.service.AccountBookService;
 import com.web.account_book.util.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -268,6 +265,11 @@ public class AccountBookServiceImpl implements AccountBookService {
         }
     }
 
+    @Override
+    public List<BudgetLookBackModel> budget_look_back(String username, String start, String end){
+        return budgetRepository.findByBudgetLookBack(username, start, end);
+    }
+
     @Transactional
     @Override
     public int delete_budget(long budget_id){
@@ -393,13 +395,6 @@ public class AccountBookServiceImpl implements AccountBookService {
     @Override
     public List<AccountBookOnlyTypeModel> getOnlyType(String username){
         return accountBookRepository.findByOnlyType(username);
-    }
-
-    @Override
-    public Page<HopeGoal> findBoardList(Pageable pageable){
-        pageable = PageRequest.of(pageable.getPageNumber() <= 0 ? 0 : pageable.getPageNumber() - 1, pageable.getPageSize());
-        System.out.println("asdasd:"+pageable);
-        return hopeGoalRepository.findAllByUsername(pageable, "google_108681227504782434845");
     }
 }
 
