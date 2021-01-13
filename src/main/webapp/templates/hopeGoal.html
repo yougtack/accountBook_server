@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>money</title>
+        <link rel="stylesheet" type="text/css" href="css/reset.css" />
+        <link rel="stylesheet" type="text/css" href="css/header.css" />
+        <link rel="stylesheet" type="text/css" href="css/section.css" />
+        <link rel="stylesheet" type="text/css" href="css/nav.css" />
+        <link rel="stylesheet" type="text/css" href="css/footer.css" />
+        <link rel="shortcut icon" href="#">
+    </head>
+    <body>
+        <script src="js/paint/header-paint.js"></script>
+        <section class="section_wrapper">
+            <script src="js/paint/nav-paint.js"></script>
+            <div class="section_container">
+                <div class="section_top">
+                    <div class="section_top_content">
+                        <span class="section_top_label font">희망목표</span>
+                        <img id="btn_money_hide" class="btn_money_hide" src="image/btn_money_off.png" alt="btn_money" />
+                        <span id="hopeGoal_today" class="today font"></span>
+                    </div>
+                </div>
+                <div id="hopeGoal_list">
+                    <div class="section_middle">
+                        <div class="section_middle_content">
+                            <span id="this_month" class="this_month font"></span>
+                        </div>
+                    </div>
+                    <div class="section_bottom">
+                        <div  class="hopeGoal_container">
+                            <div class="hopeGoal_top"></div>
+                            <div class="hopeGoal_content">
+                                <div class="content_top">
+                                    <span class="hopeGoal_top_text font">내희망목표(0)</span>
+                                    <span id="hopeGoal_write_btn" class="hopeGoal_write font">목표만들기</span>
+                                </div>
+                                <div class="content_middle">
+                                    <table style="width: 100%;">
+                                        <tr>
+                                            <td class="hopeGoal_label" style="width: 60%">
+                                                <span class="hopeGoal_label_text font">목표내용</span>
+                                            </td>
+                                            <td class="hopeGoal_label" style="width: 10%">
+                                                <span class="hopeGoal_label_text font">작성일</span>
+                                            </td>
+                                            <td class="hopeGoal_label" style="width: 10%">
+                                                <span class="hopeGoal_label_text font">목표금액</span>
+                                            </td>
+                                            <td class="hopeGoal_label" style="width: 20%">
+                                                <span class="hopeGoal_label_text font">목표달성률</span>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="hopeGoal_write" class="hopeGoal_container" style="display: none;">
+                    <div class="hopeGoal_write_content">
+                        <div class="hopeGoal_write_top">
+                            <span class="hopeGoal_write_text font">내 희망목표쓰기</span>
+                        </div>
+                        <div class="hopeGoal_middle">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <script src="js/paint/footer-paint.js"></script>
+    </body>
+    <script src="js/header.js"></script>
+    <script src="js/nav.js"></script>
+    <script src="js/footer.js"></script>
+    <script src="js/section.js"></script>
+    <script src="js/section-hopeGoal.js"></script>
+</html>
