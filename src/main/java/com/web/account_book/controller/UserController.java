@@ -66,7 +66,7 @@ public class UserController {
     }
 
     @PutMapping(value = "/profile/{username}")
-    public void update_profile(MultipartHttpServletRequest multipartHttpServletRequest, @PathVariable String username) throws IOException {
-        userService.update_profile(multipartHttpServletRequest, username);
+    public int update_profile(MultipartHttpServletRequest multipartHttpServletRequest, @PathVariable String username) throws IOException {
+        return userService.update_profile(multipartHttpServletRequest, username);
     }
 }
