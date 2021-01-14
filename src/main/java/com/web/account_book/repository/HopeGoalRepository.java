@@ -26,7 +26,7 @@ public interface HopeGoalRepository extends JpaRepository<HopeGoal, Long> {
             "       ON subString_index(a.type, '>', 1) = h.references_type" +
             "       WHERE" +
             "           h.username = ?1" +
-            "       GROUP BY subString_index(a.type, '>', 1)",nativeQuery = true)
+            "       GROUP BY subString_index(a.type, '>', 1), h.hope_id",nativeQuery = true)
     List<HopeGoalModel> findByHopeGoal(String username);
 
     @Query(value = "SELECT * FROM hope_goal WHERE username = ?2 limit ?1", nativeQuery = true)
