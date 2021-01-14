@@ -76,7 +76,7 @@ document.getElementById('hopeGoal_submit').addEventListener('click', () => {
         if (xhttp.status !== 200) {
             console.log("HTTP ERROR", xhttp.status, xhttp.statusText);
         } else {
-            // location.href = "hopeGoal.html";
+            location.href = "hopeGoal.html";
         }
     };
 
