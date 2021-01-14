@@ -23,7 +23,9 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public int update_profile(MultipartHttpServletRequest multipartHttpServletRequest, String username) throws IOException {
         User userEntity = userRepository.findByUsername(username);
-        FileUtil.fileDelete(userEntity.getProfile_name(), 2);
+        if(!userEntity.getProfile_name().equals("default.png")){
+            FileUtil.fileDelete(userEntity.getProfile_name(), 2);
+        }
 
         List<MultipartFile> multipartFiles = multipartHttpServletRequest.getFiles("profile");
         if (!multipartFiles.isEmpty()) {
