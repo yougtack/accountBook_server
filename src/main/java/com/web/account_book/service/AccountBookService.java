@@ -5,6 +5,8 @@ import com.web.account_book.model.entity.AccountBook;
 import com.web.account_book.model.entity.Budget;
 import com.web.account_book.model.entity.HopeGoal;
 import com.web.account_book.model.entity.Income;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
@@ -45,4 +47,6 @@ public interface AccountBookService {
     List<HopeGoalModel> getHopeGoal(String username);
 
     List<AccountBookOnlyTypeModel> getOnlyType(String username);
+
+    Page<HopeGoal> test(Pageable pageable);
 }

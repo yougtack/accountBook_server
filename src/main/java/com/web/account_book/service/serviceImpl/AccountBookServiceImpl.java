@@ -6,6 +6,9 @@ import com.web.account_book.repository.*;
 import com.web.account_book.service.AccountBookService;
 import com.web.account_book.util.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -338,14 +341,25 @@ public class AccountBookServiceImpl implements AccountBookService {
     @Transactional
     public int save_hopeGoal(HopeGoal hopeGoal){
         try{
-            HopeGoal hopeGoalEntity = HopeGoal.builder()
-                    .title(hopeGoal.getTitle())
-                    .goal_cost(hopeGoal.getGoal_cost())
-                    .start_date(hopeGoal.getStart_date())
-                    .end_date(hopeGoal.getEnd_date())
-                    .username(hopeGoal.getUsername())
-                    .references_type(hopeGoal.getReferences_type())
-                    .build();
+            HopeGoal hopeGoalEntity;
+            if(!hopeGoal.getReferences_type().equals("")){
+                hopeGoalEntity = HopeGoal.builder()
+                        .title(hopeGoal.getTitle())
+                        .goal_cost(hopeGoal.getGoal_cost())
+                        .start_date(hopeGoal.getStart_date())
+                        .end_date(hopeGoal.getEnd_date())
+                        .username(hopeGoal.getUsername())
+                        .references_type(hopeGoal.getReferences_type())
+                        .build();
+            }else{
+                hopeGoalEntity = HopeGoal.builder()
+                        .title(hopeGoal.getTitle())
+                        .goal_cost(hopeGoal.getGoal_cost())
+                        .start_date(hopeGoal.getStart_date())
+                        .end_date(hopeGoal.getEnd_date())
+                        .username(hopeGoal.getUsername())
+                        .build();
+            }
             hopeGoalRepository.save(hopeGoalEntity);
             return 1;
         }catch(Exception e){
@@ -395,6 +409,12 @@ public class AccountBookServiceImpl implements AccountBookService {
     @Override
     public List<AccountBookOnlyTypeModel> getOnlyType(String username){
         return accountBookRepository.findByOnlyType(username);
+    }
+
+    @Override
+    public Page<HopeGoal> test(Pageable pageable){
+        pageable = PageRequest.of(pageable.getPageNumber() <= 0 ? 0 : pageable.getPageNumber() - 1, pageable.getPageSize());
+        return hopeGoalRepository.findAll(pageable);
     }
 }
 

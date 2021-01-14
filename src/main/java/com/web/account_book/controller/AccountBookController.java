@@ -9,6 +9,9 @@ import com.web.account_book.service.AccountBookService;
 import com.web.account_book.util.LoginUtil;
 import com.web.account_book.util.enums.HttpStatusEnums;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
@@ -192,6 +195,11 @@ public class AccountBookController {
     @GetMapping(value = "/hope_goal_only_type/{username}")
     public List<AccountBookOnlyTypeModel> onlyType(@PathVariable String username){
         return accountBookService.getOnlyType(username);
+    }
+
+    @GetMapping(value = "/test")
+    public Page<HopeGoal> test(@PageableDefault Pageable pageable){
+        return accountBookService.test(pageable);
     }
 }
 
