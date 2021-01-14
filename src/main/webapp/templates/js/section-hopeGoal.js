@@ -32,6 +32,7 @@ window.addEventListener('load', () => {
         now.getFullYear() + "." + month + "." + date + ".(" + day[now.getDay()] + ")";
 
     hopeGoalWrite.style.display = 'none';
+    document.getElementById('hopeGoal_cnt').textContent = `내 희망목표(${hopeGoalData.data.length}/5)`;
 });
 
 document.getElementById('hopeGoal_write_btn').addEventListener('click', () => {
@@ -82,4 +83,8 @@ document.getElementById('hopeGoal_submit').addEventListener('click', () => {
     console.log(data);
     xhttp.setRequestHeader("Content-Type", "application/json");
     xhttp.send(JSON.stringify(data));
+});
+
+document.getElementById('hopeGoal_cancel').addEventListener('click', () => {
+   location.href = "hopeGoal.html";
 });
