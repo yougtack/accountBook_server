@@ -68,16 +68,57 @@
                         </div>
                         <div class="hopeGoal_middle">
                             <div class="hopeGoal_side">
-                                <span class="side_content" style="height: 180px;"></span>
+                                <span class="side_content" style="height: 180px;">정보</span>
                                 <span class="side_content font" style="height: 200px;">태그달기</span>
-                                <span class="side_content font" style="height: 200px;">나의다짐</span>
                             </div>
                             <div class="hopeGoal_write_middle">
-                                <div class="write_content" style="height: 180px;"></div>
-                                <div class="write_content" style="height: 200px;"></div>
-                                <div class="write_content" style="height: 200px;"></div>
+                                <div class="write_content" style="height: 175px;">
+                                    <div class="hoeGoal_content_frame">
+                                        <span class="hopeGoal_content_label font">목적</span>
+                                        <span class="hopeGoal_content_text font">재테크 목적은
+                                            <input class="hopeGoal_content_input font"
+                                                   type="text"
+                                                   style="width: 378px;"
+                                            /> 입니다.
+                                        </span>
+                                    </div>
+                                    <div class="hoeGoal_content_frame">
+                                        <span class="hopeGoal_content_label font">목표</span>
+                                        <span class="hopeGoal_content_text font">
+                                            <input class="hopeGoal_content_input font"
+                                                   type="text"
+                                                   style="width: 122px;"
+                                            />
+                                            원 만들기가 목표입니다.
+                                        </span>
+                                        <br>
+                                        <span class="hopeGoal_content_ex font">(예: 1000원 만들기가 목표 입니다.)</span>
+                                    </div>
+                                    <div class="hoeGoal_content_frame">
+                                        <span class="hopeGoal_content_label font">기간</span>
+                                        <span class="hopeGoal_content_text font">
+                                            <input id="hopeGoal_start_date" class="hopeGoal_content_input font"
+                                                   type="date"
+                                            />
+                                            부터
+                                            <input id="hopeGoal_end_date" class="hopeGoal_content_input font" type="date" />
+                                            까지 실천한 예정입니다.
+                                        </span>
+                                        <br>
+                                        <span class="hopeGoal_content_ex font">(예: 2020.01.01부터 2021.01.31까지)</span>
+                                    </div>
+                                </div>
+                                <div class="write_content" style="height: 200px;">
+                                    <div>
+                                        <div class="hopeGoal_content_textarea font"></div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+                    </div>
+                    <div class="hopeGoal_btn_frame">
+                        <span id="hopeGoal_submit" class="hopeGoal_submit font">목표만들기</span>
+                        <span class="hopeGoal_cancel font">취소</span>
                     </div>
                 </div>
             </div>
