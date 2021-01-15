@@ -1,6 +1,7 @@
 package com.web.account_book.controller;
 
 import com.web.account_book.config.auth.PrincipalDetails;
+import com.web.account_book.model.UserInfoModel;
 import com.web.account_book.model.entity.User;
 import com.web.account_book.repository.UserRepository;
 import com.web.account_book.service.UserService;
@@ -33,13 +34,19 @@ public class UserController {
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @GetMapping(value = {"","/"})
-    public String login(@AuthenticationPrincipal PrincipalDetails principalDetails, HttpSession session){
+    public UserInfoModel login(@AuthenticationPrincipal PrincipalDetails principalDetails, HttpSession session){
+        UserInfoModel userInfoModel = new UserInfoModel();
         if(principalDetails != null){
+            userInfoModel.setUsername(principalDetails.getUser().getUsername());
+            userInfoModel.setEmail(principalDetails.getUser().getEmail());
+            userInfoModel.setProfile_path(principalDetails.getUser().getProfile_path());
+
             session.setAttribute("username", principalDetails.getUser().getUsername());
             session.setMaxInactiveInterval(60 * 30);
-            return principalDetails.getUser().getUsername()+", "+principalDetails.getUser().getEmail();
+
+            return userInfoModel;
         }else{
-            return "로그인이 되지 않아 정보를 불러 올 수 없습니다.";
+            return userInfoModel;
         }
     }
 
@@ -66,7 +73,7 @@ public class UserController {
     }
 
     @PutMapping(value = "/profile/{username}")
-    public void update_profile(MultipartHttpServletRequest multipartHttpServletRequest, @PathVariable String username) throws IOException {
-        userService.update_profile(multipartHttpServletRequest, username);
+    public int update_profile(MultipartHttpServletRequest multipartHttpServletRequest, @PathVariable String username) throws IOException {
+        return userService.update_profile(multipartHttpServletRequest, username);
     }
 }
