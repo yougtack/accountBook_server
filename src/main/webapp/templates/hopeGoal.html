@@ -56,6 +56,9 @@
                                             </td>
                                         </tr>
                                     </table>
+                                    <div id="hopeGoal_table" class="hopeGoal_list_frame">
+
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -67,50 +70,66 @@
                             <span class="hopeGoal_write_text font">내 희망목표쓰기</span>
                         </div>
                         <div class="hopeGoal_middle">
-                            <div class="hopeGoal_side">
-                                <span class="side_content" style="height: 180px;">정보</span>
-                                <span class="side_content font" style="height: 200px;">태그달기</span>
-                            </div>
                             <div class="hopeGoal_write_middle">
-                                <div class="write_content" style="height: 175px;">
-                                    <div class="hoeGoal_content_frame">
-                                        <span class="hopeGoal_content_label font">목적</span>
-                                        <span class="hopeGoal_content_text font">재테크 목적은
-                                            <input class="hopeGoal_content_input font"
-                                                   type="text"
-                                                   style="width: 378px;"
-                                            /> 입니다.
-                                        </span>
-                                    </div>
-                                    <div class="hoeGoal_content_frame">
-                                        <span class="hopeGoal_content_label font">목표</span>
-                                        <span class="hopeGoal_content_text font">
-                                            <input class="hopeGoal_content_input font"
-                                                   type="text"
-                                                   style="width: 122px;"
-                                            />
-                                            원 만들기가 목표입니다.
-                                        </span>
-                                        <br>
-                                        <span class="hopeGoal_content_ex font">(예: 1000원 만들기가 목표 입니다.)</span>
-                                    </div>
-                                    <div class="hoeGoal_content_frame">
-                                        <span class="hopeGoal_content_label font">기간</span>
-                                        <span class="hopeGoal_content_text font">
-                                            <input id="hopeGoal_start_date" class="hopeGoal_content_input font"
-                                                   type="date"
-                                            />
-                                            부터
-                                            <input id="hopeGoal_end_date" class="hopeGoal_content_input font" type="date" />
-                                            까지 실천한 예정입니다.
-                                        </span>
-                                        <br>
-                                        <span class="hopeGoal_content_ex font">(예: 2020.01.01부터 2021.01.31까지)</span>
+                                <div class="hopeGoal_content_container">
+                                    <span class="side_content" style="height: 180px;">정보</span>
+                                    <div class="write_content" style="height: 175px;">
+                                        <div class="hopeGoal_content_frame">
+                                            <span class="hopeGoal_content_label font">목적</span>
+                                            <span class="hopeGoal_content_text font">재테크 목적은
+                                                <input class="hopeGoal_content_input font"
+                                                       type="text"
+                                                       style="width: 60%;"
+                                                /> 입니다.
+                                            </span>
+                                        </div>
+                                        <div class="hopeGoal_content_frame">
+                                            <span class="hopeGoal_content_label font">목표</span>
+                                            <span class="hopeGoal_content_text font">
+                                                <input class="hopeGoal_content_input font"
+                                                       type="text"
+                                                       style="width: 30%;"
+                                                />
+                                                원 만들기가 목표입니다.
+                                            </span>
+                                            <br>
+                                            <span class="hopeGoal_content_ex font">(예: 1000원 만들기가 목표 입니다.)</span>
+                                        </div>
+                                        <div class="hopeGoal_content_frame">
+                                            <span class="hopeGoal_content_label font">기간</span>
+                                            <span class="hopeGoal_content_text font">
+                                                <input id="hopeGoal_start_date"
+                                                       class="hopeGoal_content_input hopeGoal_input_date font"
+                                                       type="date"
+                                                />
+                                                부터
+                                                <input id="hopeGoal_end_date"
+                                                       class="hopeGoal_content_input hopeGoal_input_date font"
+                                                       type="date" />
+                                                까지 실천한 예정입니다.
+                                            </span>
+                                            <br>
+                                            <span class="hopeGoal_content_ex font">(예: 2020.01.01부터 2021.01.31까지)</span>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="write_content" style="height: 200px;">
-                                    <div>
-                                        <div class="hopeGoal_content_textarea font"></div>
+                                <div class="hopeGoal_content_container">
+                                    <span class="side_content font" style="height: 200px; margin-right: 25px;">태그달기</span>
+                                    <div class="write_content" style="height: 200px;">
+                                        <div class="hopeGoal_content_textarea font">
+                                            <span class="hopeGoal_tag font">식비</span>
+                                            <span class="hopeGoal_tag font">주거/통신</span>
+                                            <span class="hopeGoal_tag font">생활용품</span>
+                                            <span class="hopeGoal_tag font">의복/미용</span>
+                                            <span class="hopeGoal_tag font">건강/문화</span>
+                                            <span class="hopeGoal_tag font">교육/육아</span>
+                                            <span class="hopeGoal_tag font">교통/차량</span>
+                                            <span class="hopeGoal_tag font">경조사/회비</span>
+                                            <span class="hopeGoal_tag font">세금/이자</span>
+                                            <span class="hopeGoal_tag font">용돈/기타</span>
+                                            <span class="hopeGoal_tag font">저축/보험</span>
+                                        </div>
+                                        <span id="click_tag" class="click_tag"></span>
                                     </div>
                                 </div>
                             </div>
