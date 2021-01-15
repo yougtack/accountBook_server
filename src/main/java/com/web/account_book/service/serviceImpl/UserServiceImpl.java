@@ -35,6 +35,11 @@ public class UserServiceImpl implements UserService {
                 userRepository.update(file_name, file_path, username);
                 return 1;
             }
+        }else{
+                String file_name = "default.png";
+                String file_path = "/member_images/"+ file_name;
+                userRepository.update(file_name, file_path, username);
+                return 1;
         }
         return 0;
     }
