@@ -19,7 +19,7 @@ Number.prototype.format = function(){
     let xhttp = new XMLHttpRequest();
     const URL = "http://localhost:8080";
 
-    xhttp.open("GET", URL + `/accountBook/spending/${USER.data[0]}`, false);
+    xhttp.open("GET", URL + `/accountBook/spending/${USER.data.username}`, false);
 
     xhttp.onreadystatechange = () => {
         if (xhttp.status !== 200) {
@@ -37,7 +37,7 @@ Number.prototype.format = function(){
     let xhttp = new XMLHttpRequest();
     const URL = "http://localhost:8080";
 
-    xhttp.open("GET", URL + `/accountBook/spending_month/${USER.data[0]}`, false);
+    xhttp.open("GET", URL + `/accountBook/spending_month/${USER.data.username}`, false);
 
     xhttp.onreadystatechange = () => {
         if (xhttp.status !== 200) {
@@ -54,7 +54,7 @@ Number.prototype.format = function(){
 (function cumulative() {
     let xhttp = new XMLHttpRequest();
 
-    xhttp.open("GET", `http://localhost:8080/accountBook/cumulative/${USER.data[0]}`, false);
+    xhttp.open("GET", `http://localhost:8080/accountBook/cumulative/${USER.data.username}`, false);
 
     xhttp.onreadystatechange = () => {
         if (xhttp.status !== 200) {

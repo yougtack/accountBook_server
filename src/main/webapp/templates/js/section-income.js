@@ -3,7 +3,7 @@ document.getElementById('income_submit').addEventListener('click', () => {
     let incomeForm = document.getElementById('income_form');
 
     let data = {
-        username: USER.data[0],
+        username: USER.data.username,
         income_date: incomeForm.income_today.value,
         income_where_to_get: incomeForm.income_where_to_get.value,
         income_cost: deleteComma(incomeForm.income_cost.value),

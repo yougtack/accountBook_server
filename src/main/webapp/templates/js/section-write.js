@@ -32,7 +32,7 @@ document.getElementById('write_submit').addEventListener('click', () => {
 
     let data = {
         user: {
-            username: USER.data[0]
+            username: USER.data.username
         },
         ab_write_date: writeForm.ab_write_date.value,
         ab_where_to_use: writeForm.AB_where_to_use.value,

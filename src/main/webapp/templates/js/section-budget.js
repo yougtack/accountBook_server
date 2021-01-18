@@ -28,7 +28,7 @@ const BUDGET_DATA = {
     (month <= 9) ? month = '0' + month : month;
 
     xhttp.open("GET",
-        `http://localhost:8080/accountBook/budget/${USER.data[0]}/${now.getFullYear()}-${month}`, false);
+        `http://localhost:8080/accountBook/budget/${USER.data.username}/${now.getFullYear()}-${month}`, false);
     xhttp.onreadystatechange = () => {
         if (xhttp.status !== 200) {
             console.log("HTTP ERROR", xhttp.status, xhttp.statusText);
@@ -143,7 +143,7 @@ document.getElementById('budget_submit').addEventListener('click', () => {
             && value.cells[1].children[0].value !== undefined) {
             data.push(
                 {
-                    username : USER.data[0],
+                    username : USER.data.username,
                     insert_date : now.getFullYear() + "-" + month + "-" + date,
                     budget: deleteComma(value.cells[1].children[0].value),
                     budget_type: value.cells[0].textContent
