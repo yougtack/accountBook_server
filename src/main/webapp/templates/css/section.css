@@ -582,7 +582,7 @@ input {
 
 .hopeGoalView_info {
     margin-left: 20px;
-    height: 150px;
+    height: 200px;
 }
 
 .hopeGoalView_image {
@@ -657,4 +657,28 @@ input {
 
 .hopeGoalView_text_tag {
     font-size: 12px;
+}
+
+.hopeGoalView_bottom {
+    margin-top: 20px;
+}
+
+.hopeGoalView_list_frame {
+    text-align: left;
+    display: inline-block;
+}
+
+.hopeGoalView_edit_frame {
+    float: right;
+    display: inline-block;
+}
+
+.hopeGoalView_btn {
+    padding: 5px 9px 5px 9px;
+    font-size: 13px;
+    background-color: #fff;
+    border: 1px solid #d9d9d9;
+    border-radius: 2px;
+    display: inline-block;
+    cursor: pointer;
 }

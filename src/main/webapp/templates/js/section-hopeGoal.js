@@ -16,6 +16,7 @@ let date = ((now.getDate() + 1) <= 9) ? '0' + now.getDate() : now.getDate();
             console.log("HTTP ERROR", xhttp.status, xhttp.statusText);
         } else {
             hopeGoalData.data = JSON.parse(xhttp.responseText);
+            console.log(hopeGoalData.data);
         }
     };
 
@@ -103,7 +104,6 @@ document.getElementById('hopeGoal_write_btn').addEventListener('click', () => {
                 console.log("HTTP ERROR", xhttp.status, xhttp.statusText);
             } else {
                 hopeGoalData.tag = JSON.parse(xhttp.responseText);
-                console.log(hopeGoalData.tag);
             }
         };
 
@@ -168,7 +168,6 @@ document.getElementById('hopeGoal_submit').addEventListener('click', () => {
         }
     };
 
-    console.log(data);
     xhttp.setRequestHeader("Content-Type", "application/json");
     xhttp.send(JSON.stringify(data));
 });

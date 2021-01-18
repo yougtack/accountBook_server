@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>money</title>
+        <link rel="stylesheet" type="text/css" href="css/reset.css" />
+        <link rel="stylesheet" type="text/css" href="css/header.css" />
+        <link rel="stylesheet" type="text/css" href="css/section.css" />
+        <link rel="stylesheet" type="text/css" href="css/nav.css" />
+        <link rel="stylesheet" type="text/css" href="css/footer.css" />
+        <link rel="shortcut icon" href="#">
+    </head>
+    <body>
+        <script src="js/paint/header-paint.js"></script>
+        <section class="section_wrapper">
+            <script src="js/paint/nav-paint.js"></script>
+            <div class="section_container">
+                <div class="section_top">
+                    <div class="section_top_content">
+                        <span class="section_top_label font">희망목표</span>
+                        <img id="btn_money_hide" class="btn_money_hide" src="image/btn_money_off.png" alt="btn_money"/>
+                        <span id="hopeGoal_today" class="today font"></span>
+                    </div>
+                </div>
+                <div class="section_middle" style="display: none;">
+                    <div class="section_middle_content">
+                        <span id="this_month" class="this_month font"></span>
+                    </div>
+                </div>
+                <div class="section_bottom">
+                    <div class="hopeGoal_write_content">
+                        <div class="hopeGoal_write_top">
+                            <span class="hopeGoal_write_text font">내 희망목표쓰기</span>
+                        </div>
+                        <div class="hopeGoal_middle">
+                            <div class="hopeGoal_write_middle">
+                                <div class="hopeGoal_content_container">
+                                    <span class="side_content" style="height: 180px;">정보</span>
+                                    <div class="write_content" style="height: 175px;">
+                                        <div class="hopeGoal_content_frame">
+                                            <span class="hopeGoal_content_label font">목적</span>
+                                            <span class="hopeGoal_content_text font">재테크 목적은
+                                                <input id="hopeGoal_content_title"
+                                                       class="hopeGoal_content_input font"
+                                                       type="text"
+                                                       style="width: 60%;"
+                                                /> 입니다.
+                                            </span>
+                                        </div>
+                                        <div class="hopeGoal_content_frame">
+                                            <span class="hopeGoal_content_label font">목표</span>
+                                            <span class="hopeGoal_content_text font">
+                                                <input id="hopeGoal_content_cost"
+                                                       class="hopeGoal_content_input font"
+                                                       type="text"
+                                                       style="width: 30%;"
+                                                />
+                                                원 만들기가 목표입니다.
+                                            </span>
+                                            <br>
+                                            <span class="hopeGoal_content_ex font">(예: 1000원 만들기가 목표 입니다.)</span>
+                                        </div>
+                                        <div class="hopeGoal_content_frame">
+                                            <span class="hopeGoal_content_label font">기간</span>
+                                            <span class="hopeGoal_content_text font">
+                                                <input id="hopeGoal_start_date"
+                                                       class="hopeGoal_content_input hopeGoal_input_date font"
+                                                       type="date"
+                                                />
+                                                부터
+                                                <input id="hopeGoal_end_date"
+                                                       class="hopeGoal_content_input hopeGoal_input_date font"
+                                                       type="date"/>
+                                                까지 실천할 예정입니다.
+                                            </span>
+                                            <br>
+                                            <span class="hopeGoal_content_ex font">(예: 2020.01.01부터 2021.01.31까지)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="hopeGoal_content_container">
+                                    <span class="side_content font"
+                                          style="height: 200px; margin-right: 25px;">태그달기</span>
+                                    <div class="write_content" style="height: 200px;">
+                                        <div id="hopeGoal_content_tag" class="hopeGoal_content_textarea font"></div>
+                                        <span id="click_tag" class="click_tag"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="hopeGoal_btn_frame">
+                    <span id="hopeGoalEdit_submit" class="hopeGoal_submit font">저장</span>
+                    <span id="hopeGoalEdit_cancel" class="hopeGoal_cancel font">취소</span>
+                </div>
+            </div>
+        </section>
+        <script src="js/paint/footer-paint.js"></script>
+    </body>
+    <script src="js/header.js"></script>
+    <script src="js/nav.js"></script>
+    <script src="js/footer.js"></script>
+    <script src="js/section.js"></script>
+    <script src="js/section-hopeGoalEdit.js"></script>
+</html>
