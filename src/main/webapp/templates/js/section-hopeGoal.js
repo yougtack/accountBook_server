@@ -1,5 +1,6 @@
 let hopeGoalData = {
-  data: []
+    data: [],
+    tag: []
 };
 
 let now = new Date();
@@ -15,7 +16,23 @@ let date = ((now.getDate() + 1) <= 9) ? '0' + now.getDate() : now.getDate();
             console.log("HTTP ERROR", xhttp.status, xhttp.statusText);
         } else {
             hopeGoalData.data = JSON.parse(xhttp.responseText);
-            console.log(hopeGoalData.data);
+        }
+    };
+
+    xhttp.setRequestHeader("Content-Type", "application/json");
+    xhttp.send();
+})();
+
+(function hopeGoalTag() {
+    let xhttp = new XMLHttpRequest();
+    xhttp.open("GET", `http://localhost:8080/accountBook/hope_goal_only_type/${USER.data.username}`, false);
+
+    xhttp.onreadystatechange = () => {
+        if (xhttp.status !== 200) {
+            console.log("HTTP ERROR", xhttp.status, xhttp.statusText);
+        } else {
+            hopeGoalData.tag = JSON.parse(xhttp.responseText);
+            console.log(hopeGoalData.tag);
         }
     };
 
@@ -37,10 +54,19 @@ window.addEventListener('load', () => {
     for (value of hopeGoalData.data){
         let hopeGoalTable = document.getElementById('hopeGoal_table');
         let hopeGoalPercent = value.sum_cost * value.goal_cost / 100;
+        let image = 1;
+
+        if(hopeGoalPercent >= 60) {
+            image = 3;
+        } else if (hopeGoalPercent >= 30) {
+            image = 2;
+        } else {
+            image = 1;
+        }
 
         hopeGoalTable.innerHTML +=
             `<div class="hopeGoal_list_div"><div class="hopeGoal_content_list" style="width: 35%; padding-left: 3px;">
-                <img class="hopeGoal_image" src="image/hopeGoal(1).png" alt="image" />
+                <img class="hopeGoal_image" src="image/hopeGoal(${image}).png" alt="image" />
                 <div class="hopeGoal_click_div">
                     <span class="hopeGoal_title font">${value.title}</span>
                     <span class="hopeGoal_date font">
@@ -74,7 +100,7 @@ window.addEventListener('load', () => {
                     </span>
                 </div>
             </div>
-</div>`;
+        </div>`;
     }
 });
 
@@ -89,6 +115,11 @@ document.getElementById('hopeGoal_write_btn').addEventListener('click', () => {
         now.getFullYear() + "-" + month + "-" + date;
     document.getElementById('hopeGoal_end_date').value =
         now.getFullYear() + 1 + "-" + month + "-" + date;
+
+    for(value of hopeGoalData.tag) {
+        document.getElementById('hopeGoal_content_tag').innerHTML += `
+            <span class="hopeGoal_tag font">${value.type}</span>`;
+    }
 });
 
 document.getElementById('hopeGoal_submit').addEventListener('click', () => {
@@ -137,9 +168,11 @@ document.getElementById('hopeGoal_cancel').addEventListener('click', () => {
 });
 
 let hopeGoalTag = document.getElementsByClassName('hopeGoal_tag');
+console.log(hopeGoalTag[0].textContent)
 
 for (let i = 0; i < hopeGoalTag.length; i++){
     hopeGoalTag[i].addEventListener('click', () => {
+        console.log("Hi");
        document.getElementById('click_tag').textContent = "선택태그 : " + hopeGoalTag[i].textContent;
     });
 }

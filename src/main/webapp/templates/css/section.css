@@ -369,13 +369,6 @@ input {
     width: 100%;
 }
 
-.write_content {
-    width: 80%;
-    margin-bottom: 20px;
-    margin-left: 10px;
-    display: inline-block;
-}
-
 @media all and (max-width: 1024px) {
     .hopeGoal_content_label {
         margin-left: -20px;
@@ -386,9 +379,16 @@ input {
         margin-left: 18px;
     }
 
-    .hopeGoal_input_date {
-        width: 8%;
+    .hopeGoal_content_text {
+        margin-left: 30px;
     }
+}
+
+.write_content {
+    width: 80%;
+    margin-bottom: 20px;
+    margin-left: 10px;
+    display: inline-block;
 }
 
 .hopeGoal_content_label {
@@ -398,6 +398,7 @@ input {
 
 .hopeGoal_content_container {
     margin-top: 60px;
+    padding-bottom: 60px;
     display: flex;
 }
 
@@ -527,13 +528,13 @@ input {
     margin-left: 10px;
     width: 50%;
     height: 14px;
-    border: 1px solid #ddd;
     display: inline-block;
+    background-color: #dfdfdf
 }
 
 .hopeGoal_graph {
     height: 14px;
-    background-color: #31b0e5;
+    background-color: #03c75a;
     display: inline-block;
 }
 
@@ -548,4 +549,112 @@ input {
     width: 50%;
     display: inline-block;
     cursor: pointer;
+}
+
+/* hopeGoalView */
+
+.hopeGoalView_container {
+    width: 100%;
+}
+
+.hopeGoalView_top {
+    margin-top: 25px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #c6c6c6;
+}
+
+.hopeGoalView_title {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.hopeGoalView_date {
+    margin-right: 10px;
+    font-size: 12px;
+    float: right;
+}
+
+.hopeGoalView_middle {
+    margin-top: 15px;
+    width: 100%;
+    border-bottom: 1px solid #c6c6c6;
+}
+
+.hopeGoalView_info {
+    margin-left: 20px;
+    height: 150px;
+}
+
+.hopeGoalView_image {
+    margin-top: 5px;
+    height: 132px;
+    float: left;
+}
+
+@media all and (max-width: 1024px) {
+    .hopeGoalView_image {
+        width: 75px;
+        height: 130px;
+    }
+}
+
+.hopeGoalView_middle_text {
+    width: 60%;
+    height: auto;
+    display: inline-block;
+}
+
+.hopeGoalView_text_div {
+    margin-top: 20px;
+    margin-left: 30px;
+    display: flex;
+    align-items: center;
+}
+
+.hopeGoalView_text_label {
+    width: 80px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.hopeGoalView_cost {
+    color: #03c75a;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.hopeGoalView_text_date {
+    color: #777;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+@media all and (max-width: 1024px) {
+    .hopeGoalView_text_date {
+        line-height: 24px;
+    }
+}
+
+.hopeGoalView_graph_frame {
+    width: 28%;
+    height: 12px;
+    display: inline-block;
+    background-color: #dfdfdf;
+}
+
+.hopeGoalView_graph {
+    width: 0%;
+    height: 12px;
+    background-color: #3e7aff;
+}
+
+.hopeGoalView_percent {
+    margin-left: 15px;
+    color: #3e7aff;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.hopeGoalView_text_tag {
+    font-size: 12px;
 }
