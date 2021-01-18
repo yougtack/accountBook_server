@@ -38,8 +38,8 @@ if (USER.data.username === null) {
             <div id="profile_div" class="profile_div">
                 <img class="profile_image" src="image/info.gif" />
                 <div class="info">
-                    <span class="profile_text font">${USER.data[0]}</span>
-                    <span class="profile_email font">${USER.data[1]}</span>
+                    <span class="profile_text font">${USER.data.username}</span>
+                    <span class="profile_email font">${USER.data.email}</span>
                     <span id="logout" class="logout font">로그아웃</span>
                 </div>
             </div>

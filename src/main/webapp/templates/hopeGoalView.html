@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>money</title>
+        <link rel="stylesheet" type="text/css" href="css/reset.css" />
+        <link rel="stylesheet" type="text/css" href="css/header.css" />
+        <link rel="stylesheet" type="text/css" href="css/section.css" />
+        <link rel="stylesheet" type="text/css" href="css/nav.css" />
+        <link rel="stylesheet" type="text/css" href="css/footer.css" />
+        <link rel="shortcut icon" href="#">
+    </head>
+    <body>
+        <script src="js/paint/header-paint.js"></script>
+        <section class="section_wrapper">
+            <script src="js/paint/nav-paint.js"></script>
+            <div class="section_container">
+                <div class="section_top">
+                    <div class="section_top_content">
+                        <span class="section_top_label font">희망목표</span>
+                        <img id="btn_money_hide" class="btn_money_hide" src="image/btn_money_off.png" alt="btn_money"/>
+                        <span id="hopeGoal_today" class="today font"></span>
+                    </div>
+                </div>
+                <div class="section_middle" style="display: none;">
+                    <div class="section_middle_content">
+                        <span id="this_month" class="this_month font"></span>
+                    </div>
+                </div>
+                <div class="section_bottom">
+                    <div class="hopeGoal_write_content">
+                        <div class="hopeGoal_write_top">
+                            <span class="hopeGoal_write_text font">희망목표</span>
+                        </div>
+                        <div class="hopeGoal_middle">
+                            <div class="hopeGoalView_container">
+                                <div class="hopeGoalView_top">
+                                    <span id="hopeGoalView_title" class="hopeGoalView_title font">ㅋ</span>
+                                    <span id="hopeGoalView_create" class="hopeGoalView_date font">2021.01.14 12:48</span>
+                                </div>
+                                <div class="hopeGoalView_middle">
+                                    <div class="hopeGoalView_info">
+                                        <img id="hopeGoalView_image" class="hopeGoalView_image" src="image/hopeGoal(1).png" alt="image" />
+                                        <div class="hopeGoalView_middle_text">
+                                            <div class="hopeGoalView_text_div">
+                                                <span class="hopeGoalView_text_label font">목표금액</span>
+                                                <span id="hopeGoalView_cost" class="hopeGoalView_cost font"></span>
+                                            </div>
+                                            <div class="hopeGoalView_text_div">
+                                                <span class="hopeGoalView_text_label font">기간</span>
+                                                <span id="hopeGoalView_date" class="hopeGoalView_text_date font">Start 2021.01.03 ~ End 2021.02.02</span>
+                                            </div>
+                                            <div class="hopeGoalView_text_div">
+                                                <span class="hopeGoalView_text_label font">달성</span>
+                                                <div class="hopeGoalView_graph_frame">
+                                                    <div id="hopeGoalView_graph" class="hopeGoalView_graph"></div>
+                                                </div>
+                                                <span id="hopeGoalView_percent" class="hopeGoalView_percent font"></span>
+                                            </div>
+                                            <div class="hopeGoalView_text_div">
+                                                <span class="hopeGoalView_text_label font">태그</span>
+                                                <span id="hopeGoalView_tag" class="hopeGoalView_text_tag font"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="hopeGoalView_bottom">
+                                    <div class="hopeGoalView_list_frame">
+                                        <span class="hopeGoalView_btn font" onclick="location.href = 'hopeGoal.html'">목록</span>
+                                    </div>
+                                    <div class="hopeGoalView_edit_frame">
+                                        <span id="hopeGoalView_edit" class="hopeGoalView_btn font">수정</span>
+                                        <span id="hopeGoalView_delete" class="hopeGoalView_btn font">삭제</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <script src="js/paint/footer-paint.js"></script>
+    </body>
+    <script src="js/header.js"></script>
+    <script src="js/nav.js"></script>
+    <script src="js/footer.js"></script>
+    <script src="js/section.js"></script>
+    <script src="js/section-hopeGoalView.js"></script>
+</html>
