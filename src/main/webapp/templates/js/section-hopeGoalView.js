@@ -12,3 +12,19 @@ window.addEventListener('load', () => {
         now.getFullYear() + "." + month + "." + date + ".(" + day[now.getDay()] + ")";
 });
 
+(function hopeGoalViewData() {
+    let hope_id = location.search.split('=');
+    let xhttp = new XMLHttpRequest();
+    xhttp.open("GET", `http://localhost:8080/accountBook/hope_goal_detail/${hope_id[1]}`, false);
+
+    xhttp.onreadystatechange = () => {
+        if (xhttp.status !== 200) {
+            console.log("HTTP ERROR", xhttp.status, xhttp.statusText);
+        } else {
+            hopeGoalView.data = JSON.parse(xhttp.responseText);
+        }
+    };
+
+    xhttp.setRequestHeader("Content-Type", "application/json");
+    xhttp.send();
+})();

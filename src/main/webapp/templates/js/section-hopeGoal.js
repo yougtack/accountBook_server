@@ -23,23 +23,6 @@ let date = ((now.getDate() + 1) <= 9) ? '0' + now.getDate() : now.getDate();
     xhttp.send();
 })();
 
-(function hopeGoalTag() {
-    let xhttp = new XMLHttpRequest();
-    xhttp.open("GET", `http://localhost:8080/accountBook/hope_goal_only_type/${USER.data.username}`, false);
-
-    xhttp.onreadystatechange = () => {
-        if (xhttp.status !== 200) {
-            console.log("HTTP ERROR", xhttp.status, xhttp.statusText);
-        } else {
-            hopeGoalData.tag = JSON.parse(xhttp.responseText);
-            console.log(hopeGoalData.tag);
-        }
-    };
-
-    xhttp.setRequestHeader("Content-Type", "application/json");
-    xhttp.send();
-})();
-
 let hopeGoalList = document.getElementById('hopeGoal_list'),
     hopeGoalWrite = document.getElementById('hopeGoal_write');
 
@@ -65,42 +48,43 @@ window.addEventListener('load', () => {
         }
 
         hopeGoalTable.innerHTML +=
-            `<div class="hopeGoal_list_div"><div class="hopeGoal_content_list" style="width: 35%; padding-left: 3px;">
-                <img class="hopeGoal_image" src="image/hopeGoal(${image}).png" alt="image" />
-                <div class="hopeGoal_click_div">
-                    <span class="hopeGoal_title font">${value.title}</span>
-                    <span class="hopeGoal_date font">
-                        ${value.start_date} ~ ${value.end_date}
-                    </span>
+            `<div class="hopeGoal_list_div">
+                <div class="hopeGoal_content_list" style="width: 35%; padding-left: 3px;">
+                    <img class="hopeGoal_image" src="image/hopeGoal(${image}).png" alt="image" />
+                    <div class="hopeGoal_click_div" onclick="location.href = 'hopeGoalView.html?hope_id=${value.hope_id}'">
+                        <span class="hopeGoal_title font">${value.title}</span>
+                        <span class="hopeGoal_date font">
+                            ${value.start_date} ~ ${value.end_date}
+                        </span>
+                    </div>
                 </div>
-            </div>
-            <div class="hopeGoal_content_list" style="width: 20%; text-align: center;">
-                <div class="hopeGoal_list_div">
-                    <span class="hopeGoal_list_text font">
-                        ${value.create_date}
-                    </span>
+                <div class="hopeGoal_content_list" style="width: 20%; text-align: center;">
+                    <div class="hopeGoal_list_div">
+                        <span class="hopeGoal_list_text font">
+                            ${value.create_date}
+                        </span>
+                    </div>
                 </div>
-            </div>
-            <div class="hopeGoal_content_list" style="width: 20%; text-align: right;">
-                <div class="hopeGoal_list_div">
-                    <span class="hopeGoal_list_text font" style="margin-right: 10px;">
-                        ${value.goal_cost.format()}
-                    </span>
+                <div class="hopeGoal_content_list" style="width: 20%; text-align: right;">
+                    <div class="hopeGoal_list_div">
+                        <span class="hopeGoal_list_text font" style="margin-right: 10px;">
+                            ${value.goal_cost.format()}
+                        </span>
+                    </div>
                 </div>
-            </div>
-            <div class="hopeGoal_content_list" style="width: 25%;">
-                <div class="hopeGoal_list_div">
-                    <div class="hopeGoal_graph_frame hopeGoal_list_text">
-                        <div class="hopeGoal_graph" 
-                            style="width: ${(hopeGoalPercent >= 50) ? 100 : hopeGoalPercent}%">
-                        </div>
-                    </div>              
-                    <span class="hopeGoal_list_text hopeGoal_percent font">
-                        ${hopeGoalPercent}%
-                    </span>
+                <div class="hopeGoal_content_list" style="width: 25%;">
+                    <div class="hopeGoal_list_div">
+                        <div class="hopeGoal_graph_frame hopeGoal_list_text">
+                            <div class="hopeGoal_graph" 
+                                style="width: ${(hopeGoalPercent >= 50) ? 100 : hopeGoalPercent}%">
+                            </div>
+                        </div>              
+                        <span class="hopeGoal_list_text hopeGoal_percent font">
+                            ${hopeGoalPercent}%
+                        </span>
+                    </div>
                 </div>
-            </div>
-        </div>`;
+            </div>`;
     }
 });
 
@@ -109,6 +93,24 @@ document.getElementById('hopeGoal_write_btn').addEventListener('click', () => {
         alert("작성할 수 있는 글의 개수는 5개입니다.");
         return false;
     }
+
+    (function hopeGoalTagData() {
+        let xhttp = new XMLHttpRequest();
+        xhttp.open("GET", `http://localhost:8080/accountBook/hope_goal_only_type/${USER.data.username}`, false);
+
+        xhttp.onreadystatechange = () => {
+            if (xhttp.status !== 200) {
+                console.log("HTTP ERROR", xhttp.status, xhttp.statusText);
+            } else {
+                hopeGoalData.tag = JSON.parse(xhttp.responseText);
+                console.log(hopeGoalData.tag);
+            }
+        };
+
+        xhttp.setRequestHeader("Content-Type", "application/json");
+        xhttp.send();
+    })();
+
     hopeGoalList.style.display = 'none';
     hopeGoalWrite.style.display = 'block';
     document.getElementById('hopeGoal_start_date').value =
@@ -119,6 +121,14 @@ document.getElementById('hopeGoal_write_btn').addEventListener('click', () => {
     for(value of hopeGoalData.tag) {
         document.getElementById('hopeGoal_content_tag').innerHTML += `
             <span class="hopeGoal_tag font">${value.type}</span>`;
+    }
+
+    let hopeGoalTag = document.getElementsByClassName('hopeGoal_tag');
+
+    for (let i = 0; i < hopeGoalTag.length; i++){
+        hopeGoalTag[i].addEventListener('click', () => {
+            document.getElementById('click_tag').textContent = "선택태그 : " + hopeGoalTag[i].textContent;
+        });
     }
 });
 
@@ -166,13 +176,3 @@ document.getElementById('hopeGoal_submit').addEventListener('click', () => {
 document.getElementById('hopeGoal_cancel').addEventListener('click', () => {
    location.href = "hopeGoal.html";
 });
-
-let hopeGoalTag = document.getElementsByClassName('hopeGoal_tag');
-console.log(hopeGoalTag[0].textContent)
-
-for (let i = 0; i < hopeGoalTag.length; i++){
-    hopeGoalTag[i].addEventListener('click', () => {
-        console.log("Hi");
-       document.getElementById('click_tag').textContent = "선택태그 : " + hopeGoalTag[i].textContent;
-    });
-}
