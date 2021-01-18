@@ -407,14 +407,20 @@ public class AccountBookServiceImpl implements AccountBookService {
     }
 
     @Override
+    public HopeGoalModel getHopeGoalDetail(long hope_id){
+        return hopeGoalRepository.findByHopeGoalDetail(hope_id);
+    }
+
+    @Override
     public List<AccountBookOnlyTypeModel> getOnlyType(String username){
         return accountBookRepository.findByOnlyType(username);
     }
 
     @Override
-    public Page<HopeGoal> test(Pageable pageable){
+    public Page<HopeGoalModel> test(Pageable pageable){
         pageable = PageRequest.of(pageable.getPageNumber() <= 0 ? 0 : pageable.getPageNumber() - 1, pageable.getPageSize());
-        return hopeGoalRepository.findAll(pageable);
+        System.out.println("pageable:"+pageable);
+        return hopeGoalRepository.findAllByUsername(pageable, "Babo");
     }
 }
 

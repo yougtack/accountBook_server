@@ -29,6 +29,35 @@ public interface HopeGoalRepository extends JpaRepository<HopeGoal, Long> {
             "       GROUP BY subString_index(a.type, '>', 1), h.hope_id",nativeQuery = true)
     List<HopeGoalModel> findByHopeGoal(String username);
 
-    @Query(value = "SELECT * FROM hope_goal WHERE username = ?2 limit ?1", nativeQuery = true)
-    Page<HopeGoal> findAllByUsername(Pageable pageable, String username);
+
+    @Query(value = "SELECT " +
+            "           h.hope_id, h.title, h.goal_cost, h.username, h.start_date," +
+            "           h.end_date, h.create_date, IFNULL(h.references_type, 'empty') AS references_type," +
+            "           IFNULL(SUM(card_cost+cash_cost), 0) AS sum_cost" +
+            "       FROM" +
+            "           account_book as a" +
+            "       RIGHT OUTER JOIN" +
+            "           hope_goal AS h" +
+            "       ON subString_index(a.type, '>', 1) = h.references_type" +
+            "       WHERE" +
+            "           h.hope_id = ?1" +
+            "       GROUP BY subString_index(a.type, '>', 1), h.hope_id",nativeQuery = true)
+    HopeGoalModel findByHopeGoalDetail(long hope_id);
+
+
+    @Query(value = "SELECT " +
+            "           h.hope_id, h.title, h.goal_cost, h.username, h.start_date," +
+            "           h.end_date, h.create_date, IFNULL(h.references_type, 'empty') AS references_type," +
+            "           IFNULL(SUM(card_cost+cash_cost), 0) AS sum_cost" +
+            "       FROM" +
+            "           account_book as a" +
+            "       RIGHT OUTER JOIN" +
+            "           hope_goal AS h" +
+            "       ON subString_index(a.type, '>', 1) = h.references_type" +
+            "       WHERE" +
+            "           h.username = ?2" +
+            "       GROUP BY subString_index(a.type, '>', 1), h.hope_id"
+            , countQuery = "SELECT COUNT(*) FROM account_book"
+            , nativeQuery = true)
+    Page<HopeGoalModel> findAllByUsername(Pageable pageable, String username);
 }

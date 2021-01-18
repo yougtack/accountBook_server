@@ -191,6 +191,11 @@ public class AccountBookController {
         return accountBookService.getHopeGoal(username);
     }
 
+    @GetMapping(value = "/hope_gaol_detail/{hope_id}")
+    public HopeGoalModel hopeGoalDetail(@PathVariable long hope_id){
+        return accountBookService.getHopeGoalDetail(hope_id);
+    }
+
     //타입만 보여주는 api
     @GetMapping(value = "/hope_goal_only_type/{username}")
     public List<AccountBookOnlyTypeModel> onlyType(@PathVariable String username){
@@ -198,7 +203,7 @@ public class AccountBookController {
     }
 
     @GetMapping(value = "/test")
-    public Page<HopeGoal> test(@PageableDefault Pageable pageable){
+    public Page<HopeGoalModel> test(@PageableDefault Pageable pageable){
         return accountBookService.test(pageable);
     }
 }
