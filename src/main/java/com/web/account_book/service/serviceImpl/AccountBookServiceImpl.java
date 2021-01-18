@@ -420,7 +420,8 @@ public class AccountBookServiceImpl implements AccountBookService {
     public Page<HopeGoalModel> test(Pageable pageable){
         pageable = PageRequest.of(pageable.getPageNumber() <= 0 ? 0 : pageable.getPageNumber() - 1, pageable.getPageSize());
         System.out.println("pageable:"+pageable);
-        return hopeGoalRepository.findAllByUsername(pageable, "Babo");
+        String username = "Babo";
+        return hopeGoalRepository.findAllByUsername(username, pageable);
     }
 }
 

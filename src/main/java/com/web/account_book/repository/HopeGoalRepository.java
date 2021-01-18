@@ -55,9 +55,9 @@ public interface HopeGoalRepository extends JpaRepository<HopeGoal, Long> {
             "           hope_goal AS h" +
             "       ON subString_index(a.type, '>', 1) = h.references_type" +
             "       WHERE" +
-            "           h.username = ?2" +
+            "           h.username = ?1" +
             "       GROUP BY subString_index(a.type, '>', 1), h.hope_id"
-            , countQuery = "SELECT COUNT(*) FROM account_book"
+            , countQuery = "SELECT COUNT(*) FROM hope_goal"
             , nativeQuery = true)
-    Page<HopeGoalModel> findAllByUsername(Pageable pageable, String username);
+    Page<HopeGoalModel> findAllByUsername(String username, Pageable pageable);
 }

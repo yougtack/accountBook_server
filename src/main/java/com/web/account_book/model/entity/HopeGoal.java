@@ -4,6 +4,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -26,7 +27,7 @@ public class HopeGoal {
     String username;
     String references_type;
 
-    @CreationTimestamp
+    @UpdateTimestamp
     private Timestamp createDate;
 
     @Builder
