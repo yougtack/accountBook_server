@@ -5,7 +5,7 @@ let FOOTER_COST = {
 (function budgetMonth() {
     let xhttp = new XMLHttpRequest();
 
-    xhttp.open("GET", `http://localhost:8080/accountBook/budget_month/${USER.data[0]}`, false);
+    xhttp.open("GET", `http://localhost:8080/accountBook/budget_month/${USER.data.username}`, false);
 
     xhttp.onreadystatechange = () => {
         if (xhttp.status !== 200) {

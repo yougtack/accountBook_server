@@ -8,7 +8,7 @@ let date = ((now.getDate() + 1) <= 9) ? '0' + now.getDate() : now.getDate();
 
 (function hopeGoal() {
     let xhttp = new XMLHttpRequest();
-    xhttp.open("GET", `http://localhost:8080/accountBook/hope_goal/${USER.data[0]}`, false);
+    xhttp.open("GET", `http://localhost:8080/accountBook/hope_goal/${USER.data.username}`, false);
 
     xhttp.onreadystatechange = () => {
         if (xhttp.status !== 200) {
@@ -98,7 +98,7 @@ document.getElementById('hopeGoal_submit').addEventListener('click', () => {
         goal_cost: "",
         start_date: document.getElementById('hopeGoal_start_date').value,
         end_date: document.getElementById('hopeGoal_end_date').value,
-        username: USER.data[0],
+        username: USER.data.username,
         references_type: document.getElementById('click_tag').textContent.split(":")[1]
     };
 
