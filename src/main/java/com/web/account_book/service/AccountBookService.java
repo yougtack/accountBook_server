@@ -45,8 +45,9 @@ public interface AccountBookService {
     int update_hopeGoal(HopeGoal hopeGoal);
     int delete_hopeGoal(long hope_id);
     List<HopeGoalModel> getHopeGoal(String username);
+    HopeGoalModel getHopeGoalDetail(long hope_id);
 
     List<AccountBookOnlyTypeModel> getOnlyType(String username);
 
-    Page<HopeGoal> test(Pageable pageable);
+    Page<HopeGoalModel> test(Pageable pageable);
 }

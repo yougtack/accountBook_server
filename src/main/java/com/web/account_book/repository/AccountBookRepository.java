@@ -111,6 +111,6 @@ public interface AccountBookRepository extends JpaRepository<AccountBook, Long> 
             "       SUBSTRING(type, 4, 5)", nativeQuery = true)
     List<ReportModel> findByReportSaving(String username, String start, String end);
 
-    @Query(value = "SELECT SUBSTRING_INDEX(type, '>', 1) AS type FROM account_book WHERE username = ?1 GROUP BY SUBSTRING_INDEX(type, '>', 1)", nativeQuery = true)
+    @Query(value = "SELECT SUBSTRING_INDEX(type, '>', 1) AS type FROM account_book WHERE username = ?1 and SUBSTRING_INDEX(type, '>', 1) not like '미분류' GROUP BY SUBSTRING_INDEX(type, '>', 1)", nativeQuery = true)
     List<AccountBookOnlyTypeModel> findByOnlyType(String username);
 }
