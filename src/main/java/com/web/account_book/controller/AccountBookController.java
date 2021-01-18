@@ -191,7 +191,7 @@ public class AccountBookController {
         return accountBookService.getHopeGoal(username);
     }
 
-    @GetMapping(value = "/hope_gaol_detail/{hope_id}")
+    @GetMapping(value = "/hope_goal_detail/{hope_id}")
     public HopeGoalModel hopeGoalDetail(@PathVariable long hope_id){
         return accountBookService.getHopeGoalDetail(hope_id);
     }
