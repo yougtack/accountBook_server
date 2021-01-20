@@ -35,8 +35,11 @@ if (USER.data.username === null) {
     signupPaint +=`
         <div class="profile_content">
             <img class="profile" src="image/info.gif" alt="profile"/>
-            <div id="profile_div" class="profile_div">
-                <img class="profile_image" src="image/info.gif" />
+            <div id="profile_div" class="profile_div">              
+                <div class="profile_frame">
+                    <img class="profile_image" src="image/info.gif" />
+                    <span class="font">프로필 변경</span>
+                </div>
                 <div class="info">
                     <span class="profile_text font">${USER.data.username}</span>
                     <span class="profile_email font">${USER.data.email}</span>
