@@ -33,7 +33,12 @@ if (USER.data.username === null) {
     // location.href = 'login.html';
 } else {
     signupPaint +=`
-        
+        <div class="image_modal">
+            <div class="modal_container">
+                <img src="${USER.data.profile_path}" alt="profile" />
+            </div>
+            <span class="modal_cancel"></span>
+        </div>
         <div class="profile_content">
             <img class="profile" src="${USER.data.profile_path}" alt="profile"/>
             <div id="profile_div" class="profile_div">              
