@@ -206,21 +206,6 @@ public class AccountBookController {
 //    public Page<HopeGoalModel> test(@PageableDefault Pageable pageable){
 //        return accountBookService.test(pageable);
 //    }
-
-//    @GetMapping(value = "/test")
-//    public List<User> test(){
-//        EntityManagerFactory emf = Persistence.createEntityManagerFactory("jpabook");
-//        EntityManager em = emf.createEntityManager();
-//
-//        CriteriaBuilder cb = em.getCriteriaBuilder();
-//        CriteriaQuery<User> cq = cb.createQuery(User.class);
-//
-//        Root<User> u = cq.from(User.class);
-//        cq.select(u);
-//
-//        TypedQuery<User> query = em.createQuery(cq);
-//        return query.getResultList();
-//    }
 }
 
 
