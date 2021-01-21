@@ -13,6 +13,7 @@ const USER = {
             console.log("HTTP ERROR", xhttp.status, xhttp.statusText);
         } else {
             USER.data = JSON.parse(xhttp.responseText);
+            console.log(USER.data);
         }
     };
     xhttp.setRequestHeader("Content-Type", "application/json");
@@ -34,9 +35,12 @@ if (USER.data.username === null) {
 } else {
     signupPaint +=`
         <div class="profile_content">
-            <img class="profile" src="image/info.gif" alt="profile"/>
-            <div id="profile_div" class="profile_div">
-                <img class="profile_image" src="image/info.gif" />
+            <img class="profile" src="../../..${USER.data.profile_path}" alt="profile"/>
+            <div id="profile_div" class="profile_div">              
+                <div class="profile_frame">
+                    <img class="profile_image" src="${USER.data.profile_path}"/>
+                    <span class="profile_change_text font">프로필 변경</span>
+                </div>
                 <div class="info">
                     <span class="profile_text font">${USER.data.username}</span>
                     <span class="profile_email font">${USER.data.email}</span>
