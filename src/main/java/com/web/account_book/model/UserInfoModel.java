@@ -8,5 +8,6 @@ import lombok.Setter;
 public class UserInfoModel {
     String username;
     String email;
+    String role;
     String profile_path;
 }

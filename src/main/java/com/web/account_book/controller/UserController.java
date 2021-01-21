@@ -36,18 +36,17 @@ public class UserController {
     @GetMapping(value = {"","/"})
     public UserInfoModel login(@AuthenticationPrincipal PrincipalDetails principalDetails, HttpSession session){
         UserInfoModel userInfoModel = new UserInfoModel();
-        if(principalDetails != null){
+        if(principalDetails != null) {
             userInfoModel.setUsername(principalDetails.getUser().getUsername());
             userInfoModel.setEmail(principalDetails.getUser().getEmail());
+            userInfoModel.setRole(principalDetails.getUser().getRole());
             userInfoModel.setProfile_path(principalDetails.getUser().getProfile_path());
 
             session.setAttribute("username", principalDetails.getUser().getUsername());
             session.setMaxInactiveInterval(60 * 30);
 
-            return userInfoModel;
-        }else{
-            return userInfoModel;
         }
+        return userInfoModel;
     }
 
     @PostMapping(value = "/join")
