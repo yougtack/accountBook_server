@@ -24,7 +24,7 @@ let signupPaint =
     `<header class="header_wrapper">
             <div class="header_container">
                 <img id="nav_icon" class="nav_icon" src="image/list_icon.png" alt="list" />
-                <a class="header_logo font" href="write.html">가계부</a>`;
+                <span class="header_logo font" onclose="location.href='write.html'">가계부</span>`;
 if (USER.data.username === null) {
     signupPaint +=`
         <div class="profile_content">
@@ -35,10 +35,10 @@ if (USER.data.username === null) {
 } else {
     signupPaint +=`
         <div class="profile_content">
-            <img class="profile" src="../../..${USER.data.profile_path}" alt="profile"/>
+            <img class="profile" src="../../../member_profiles/default.png" alt="profile"/>
             <div id="profile_div" class="profile_div">              
                 <div class="profile_frame">
-                    <img class="profile_image" src="${USER.data.profile_path}"/>
+                    <img class="profile_image" src="../../..${USER.data.profile_path}"/>
                     <span class="profile_change_text font">프로필 변경</span>
                 </div>
                 <div class="info">
