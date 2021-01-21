@@ -1,19 +1,19 @@
 package com.web.account_book.controller;
 
 import com.web.account_book.model.*;
-import com.web.account_book.model.entity.AccountBook;
-import com.web.account_book.model.entity.Budget;
-import com.web.account_book.model.entity.HopeGoal;
-import com.web.account_book.model.entity.Income;
+import com.web.account_book.model.entity.*;
 import com.web.account_book.service.AccountBookService;
 import com.web.account_book.util.LoginUtil;
 import com.web.account_book.util.enums.HttpStatusEnums;
+import org.hibernate.jpa.HibernatePersistenceProvider;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
+import javax.persistence.*;
 
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -202,10 +202,25 @@ public class AccountBookController {
         return accountBookService.getOnlyType(username);
     }
 
-    @GetMapping(value = "/test")
-    public Page<HopeGoalModel> test(@PageableDefault Pageable pageable){
-        return accountBookService.test(pageable);
-    }
+//    @GetMapping(value = "/test")
+//    public Page<HopeGoalModel> test(@PageableDefault Pageable pageable){
+//        return accountBookService.test(pageable);
+//    }
+
+//    @GetMapping(value = "/test")
+//    public List<User> test(){
+//        EntityManagerFactory emf = Persistence.createEntityManagerFactory("jpabook");
+//        EntityManager em = emf.createEntityManager();
+//
+//        CriteriaBuilder cb = em.getCriteriaBuilder();
+//        CriteriaQuery<User> cq = cb.createQuery(User.class);
+//
+//        Root<User> u = cq.from(User.class);
+//        cq.select(u);
+//
+//        TypedQuery<User> query = em.createQuery(cq);
+//        return query.getResultList();
+//    }
 }
 
 
