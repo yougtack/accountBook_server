@@ -119,6 +119,38 @@
     margin-bottom: 2px;
     font-size: 12px;
     font-weight: 600;
-    border: 1px solid #DEDDDD;
     cursor: pointer;
+}
+
+.profile_image {
+    width: 78px;
+    height: 75px;
+}
+
+.image_modal {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background-color:rgba(0, 0,0, 0.5);
+    overflow: auto;
+    z-index: 1;
+}
+
+.modal_container {
+    height: 60%;
+    margin: 10%;
+    padding: 20px;
+    background-color: #fefefe;
+    border: 1px solid #888;
+}
+
+.modal_cancel {
+    top: 15px;
+    right: 15px;
+    width: 10px;
+    height: 10px;
+    background-color: red;
+    position: absolute;
 }
