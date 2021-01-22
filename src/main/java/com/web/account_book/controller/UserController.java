@@ -40,7 +40,7 @@ public class UserController {
             userInfoModel.setUsername(principalDetails.getUser().getUsername());
             userInfoModel.setEmail(principalDetails.getUser().getEmail());
             userInfoModel.setRole(principalDetails.getUser().getRole());
-            userInfoModel.setProfile_path(principalDetails.getUser().getProfile_path());
+            userInfoModel.setProfile_path(userRepository.findByProfile_path(principalDetails.getUser().getUsername()));
 
             session.setAttribute("username", principalDetails.getUser().getUsername());
             session.setMaxInactiveInterval(60 * 30);

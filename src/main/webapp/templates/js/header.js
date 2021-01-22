@@ -78,7 +78,7 @@ document.getElementById('modal_submit').addEventListener('click', () => {
         if (xhttp.status !== 200) {
             console.log("HTTP ERROR", xhttp.status, xhttp.statusText);
         } else {
-            // location.reload();
+            location.reload();
         }
     };
     xhttp.send(formData);
