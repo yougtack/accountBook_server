@@ -1,5 +1,6 @@
 spring:
   datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://apprentice.cgzz7jhrx4km.ap-northeast-2.rds.amazonaws.com:3306/BOARD?useUnicode=true&characterEncoding=utf8&useSSL=false
     username: board
     password: boardQwer!@34%^

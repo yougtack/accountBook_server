@@ -35,3 +35,52 @@ document.getElementById('logout').addEventListener('click', () => {
     xhttp.setRequestHeader("Content-Type", "application/json");
     xhttp.send();
 });
+
+let modal = document.getElementById('image_modal');
+
+document.getElementById('profile_modal').addEventListener('click', () => {
+    if(modal.style.display === 'none') {
+        modal.style.display = 'block';
+        profileDiv.style.display = 'none';
+    } else {
+        modal.style.display = 'none';
+    }
+});
+
+document.getElementById('modal_cancel').addEventListener('click', () => {
+    modal.style.display = 'none';
+});
+
+document.getElementById('modal_image_cancel').addEventListener('click', () => {
+    modal.style.display = 'none';
+});
+
+function showImage(input){
+    if(input.files && input.files[0]) {
+        let file = new FileReader();
+        file.onload = (e) => {
+            document.getElementById('profile_image').setAttribute('src', e.target.result);
+        }
+        file.readAsDataURL(input.files[0]);
+    }
+}
+
+document.getElementById('modal_submit').addEventListener('click', () => {
+    let xhttp = new XMLHttpRequest();
+    let file = document.getElementById("ex_file");
+    let formData = new FormData();
+
+    formData.append('profile', file.files[0]);
+
+    xhttp.open("PUT", `http://localhost:8080/user/profile/${USER.data.username}`, false);
+
+    xhttp.onreadystatechange = () => {
+        if (xhttp.status !== 200) {
+            console.log("HTTP ERROR", xhttp.status, xhttp.statusText);
+        } else {
+            // location.reload();
+        }
+    };
+    xhttp.setRequestHeader("Content-Type", "application/json");
+    xhttp.send(formData);
+});

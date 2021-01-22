@@ -33,18 +33,28 @@ if (USER.data.username === null) {
     // location.href = 'login.html';
 } else {
     signupPaint +=`
-        <div class="image_modal">
+        <div id="image_modal" class="image_modal">
             <div class="modal_container">
-                <img src="${USER.data.profile_path}" alt="profile" />
+                <img id="profile_image" class="modal_profile" src="${USER.data.profile_path}" alt="profile" />
+                <div> 
+                    <label class="file_upload_text font" for="ex_file">업로드</label> 
+                    <input type="file" class="file_input" id="ex_file" onchange="showImage(this)"> 
+                </div>
+                <div class="modal_btn_frame">
+                    <span id="modal_submit" class="modal_submit font">변경</span>
+                    <span id="modal_image_cancel" class="modal_image_cancel font">취소</span>
+                </div>
             </div>
-            <span class="modal_cancel"></span>
+            <span id="modal_cancel" class="modal_cancel">
+                <img src="image/modal_cancel.png" alt="image">
+            </span>
         </div>
         <div class="profile_content">
             <img class="profile" src="${USER.data.profile_path}" alt="profile"/>
             <div id="profile_div" class="profile_div">              
                 <div class="profile_frame">
                     <img class="profile_image" src="${USER.data.profile_path}"/>
-                    <span class="profile_change_text font">프로필 변경</span>
+                    <span id="profile_modal" class="profile_change_text font">프로필 변경</span>
                 </div>
                 <div class="info">
                     <span class="profile_text font">${USER.data.username}</span>
