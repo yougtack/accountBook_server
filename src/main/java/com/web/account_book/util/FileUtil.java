@@ -15,7 +15,7 @@ public class FileUtil {
     final static HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
     final static String root_path = request.getSession().getServletContext().getRealPath("/");
     final static String attach_path = "static/images/";
-    final static String attach_path_member = "member_profiles/";
+    final static String attach_path_member = "member_images/";
 
     public static String fileInsert(MultipartFile filePart, int type) throws IOException{
         UUID uuid = UUID.randomUUID();
