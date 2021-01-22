@@ -5,7 +5,6 @@ import com.web.account_book.model.entity.*;
 import com.web.account_book.service.AccountBookService;
 import com.web.account_book.util.LoginUtil;
 import com.web.account_book.util.enums.HttpStatusEnums;
-import org.hibernate.jpa.HibernatePersistenceProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import javax.persistence.*;
@@ -13,6 +12,7 @@ import javax.persistence.*;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Expression;
 import javax.persistence.criteria.Root;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -207,20 +207,26 @@ public class AccountBookController {
 //        return accountBookService.test(pageable);
 //    }
 
-//    @GetMapping(value = "/test")
-//    public List<User> test(){
-//        EntityManagerFactory emf = Persistence.createEntityManagerFactory("jpabook");
-//        EntityManager em = emf.createEntityManager();
-//
+    @GetMapping(value = "/test")
+    public void test(){
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("jpabook");
+        EntityManager em = emf.createEntityManager();
+        List<Object[]> users = em.createQuery("SELECT u FROM User as u").getResultList();
+        for(Object[] user:users){
+            System.out.println("username:"+user[0]);
+        }
+
 //        CriteriaBuilder cb = em.getCriteriaBuilder();
-//        CriteriaQuery<User> cq = cb.createQuery(User.class);
+//        CriteriaQuery<HopeGoal> cq = cb.createQuery(HopeGoal.class);
 //
-//        Root<User> u = cq.from(User.class);
-//        cq.select(u);
 //
-//        TypedQuery<User> query = em.createQuery(cq);
-//        return query.getResultList();
-//    }
+//        String jpql1 = "SELECT u FROM User u";
+//        TypedQuery<User> query = em.createQuery(jpql1.toString(), User.class);
+//        List<User> users = query.getResultList();
+//        for(User user : users){
+//            System.out.println("username: "+user);
+//        }
+    }
 }
 
 
