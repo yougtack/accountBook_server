@@ -81,6 +81,5 @@ document.getElementById('modal_submit').addEventListener('click', () => {
             // location.reload();
         }
     };
-    xhttp.setRequestHeader("Content-Type", "application/json");
     xhttp.send(formData);
 });
