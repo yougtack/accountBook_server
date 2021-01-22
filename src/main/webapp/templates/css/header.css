@@ -119,6 +119,98 @@
     margin-bottom: 2px;
     font-size: 12px;
     font-weight: 600;
-    border: 1px solid #DEDDDD;
+    cursor: pointer;
+}
+
+.profile_image {
+    width: 78px;
+    height: 75px;
+}
+
+.image_modal {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background-color:rgba(0, 0,0, 0.5);
+    overflow: auto;
+    z-index: 1;
+    display: none;
+}
+
+.modal_container {
+    height: 60%;
+    margin: 10%;
+    padding: 20px;
+    background-color: #fefefe;
+    border: 1px solid #888;
+    text-align: center;
+}
+
+.modal_cancel {
+    top: 15px;
+    right: 30px;
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    cursor: pointer;
+}
+
+.file_upload_text {
+    padding: .5em .75em;
+    color: #fff;
+    font-size: inherit;
+    line-height: normal;
+    vertical-align: middle;
+    background-color: #337ab7;
+    cursor: pointer;
+    display: inline-block;
+    border: 1px solid  #2e6da4;
+    border-bottom-color: #e2e2e2;
+    border-radius: .25em;
+}
+
+.file_input {
+    padding: 0;
+    margin: -1px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+    position: absolute;
+}
+
+.modal_profile {
+    height: 240px;
+}
+
+.modal_btn_frame {
+    margin-top: 150px;
+    height: 50px;
+    text-align: center;
+}
+
+.modal_submit {
+    padding: 10px;
+    height: 42px;
+    color: #fff;
+    background-color: #03c75a;
+    font-size: 16px;
+    font-weight: 700;
+    border-radius: 3px;
+    cursor: pointer
+}
+
+.modal_image_cancel {
+    height: 42px;
+    padding: 10px 15px 10px 15px;
+    color: #222;
+    font-size: 16px;
+    font-weight: 700;
+    background-color: #fff;
+    border: 1px solid #d9d9d9;
+    border-radius: 3px;
     cursor: pointer;
 }

@@ -73,6 +73,7 @@ public class UserController {
 
     @PutMapping(value = "/profile/{username}")
     public int update_profile(MultipartHttpServletRequest multipartHttpServletRequest, @PathVariable String username) throws IOException {
+        System.out.println("프로필 테스트");
         return userService.update_profile(multipartHttpServletRequest, username);
     }
 }

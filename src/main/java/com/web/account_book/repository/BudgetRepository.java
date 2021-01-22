@@ -65,8 +65,8 @@ public interface BudgetRepository extends JpaRepository<Budget, Long> {
     @Query(value = "SELECT * FROM budget WHERE username = ?1 AND budget_type like ?2", nativeQuery = true)
     Budget findByUsernameLikeAndBudget_typeLike(String username, String budget_type);
 
-    @Query(value = "SELECT * FROM budget WHERE username = ?1 AND budget_type like SUBSTRING_INDEX(?2, '>', 1)", nativeQuery = true)
-    Budget findByUsernameAndBudget_type(String username, String budget_type);
+    @Query(value = "SELECT * FROM budget WHERE username = ?1 AND insert_date like SubString(?2, 1, 7) AND budget_type like SUBSTRING_INDEX(?3, '>', 1)", nativeQuery = true)
+    Budget findByUsernameAndBudget_type(String username, String ab_write_date, String budget_type);
 
 
     @Modifying

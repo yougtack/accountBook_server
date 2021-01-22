@@ -83,7 +83,7 @@ public class AccountBookServiceImpl implements AccountBookService {
                 .cash_cost(accountBook.getCash_cost())
                 .type(accountBook.getType())
                 .user(userEntity)
-                .budget_id(budget_util(accountBook.getUser().getUsername(), accountBook.getType()))
+                .budget_id(budget_util(accountBook.getUser().getUsername(), accountBook.getAB_write_date(), accountBook.getType()))
                 .build();
         return account_book_util(accountBookEntity, accountBook);
     }
@@ -100,7 +100,7 @@ public class AccountBookServiceImpl implements AccountBookService {
                 .cash_cost(accountBook.getCash_cost())
                 .type(accountBook.getType())
                 .user(userEntity)
-                .budget_id(budget_util(accountBook.getUser().getUsername(), accountBook.getType()))
+                .budget_id(budget_util(accountBook.getUser().getUsername(), accountBook.getAB_write_date(), accountBook.getType()))
                 .build();
 
         account_book_cost_util(accountBook);
@@ -134,9 +134,9 @@ public class AccountBookServiceImpl implements AccountBookService {
         }
     }
 
-    public long budget_util(String username, String type){
-        if(budgetRepository.findByUsernameAndBudget_type(username, type) != null){
-            return budgetRepository.findByUsernameAndBudget_type(username, type).getBudget_id();
+    public long budget_util(String username, String ab_write_date, String type){
+        if(budgetRepository.findByUsernameAndBudget_type(username, ab_write_date, type) != null){
+            return budgetRepository.findByUsernameAndBudget_type(username, ab_write_date, type).getBudget_id();
         }else{
            return 0;
         }

@@ -16,7 +16,6 @@ let date = ((now.getDate() + 1) <= 9) ? '0' + now.getDate() : now.getDate();
             console.log("HTTP ERROR", xhttp.status, xhttp.statusText);
         } else {
             hopeGoalData.data = JSON.parse(xhttp.responseText);
-            console.log(hopeGoalData.data);
         }
     };
 
