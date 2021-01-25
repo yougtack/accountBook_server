@@ -19,7 +19,8 @@ document.getElementById('budget_report').addEventListener('click', () => {
 });
 
 const BUDGET_DATA = {
-    data : []
+    data : [],
+    reportData: []
 };
 
 (function budget() {
@@ -40,6 +41,31 @@ const BUDGET_DATA = {
     xhttp.setRequestHeader("Content-Type", "application/json");
     xhttp.send();
 })();
+
+(function budgetReportData() {
+    let now = new Date();
+
+    let lastDay = ( new Date( now.getFullYear(), now.getMonth(), 0) ).getDate();
+    let month = ((now.getMonth() + 1) <= 9) ? '0' + (now.getMonth() + 1) : (now.getMonth() + 1);
+    let start =  now.getFullYear() + "-" + month + "-0" + 1;
+    let end = now.getFullYear() + "-" + month + "-" + lastDay;
+
+    let xhttp = new XMLHttpRequest();
+
+    xhttp.open("GET",
+        `http://localhost:8080/accountBook/budget/${USER.data.username}/${start}/${end}`, false);
+    xhttp.onreadystatechange = () => {
+        if (xhttp.status !== 200) {
+            console.log("HTTP ERROR", xhttp.status, xhttp.statusText);
+        } else {
+            BUDGET_DATA.reportData = JSON.parse(xhttp.responseText);
+            console.log(BUDGET_DATA.reportData);
+        }
+    };
+    xhttp.setRequestHeader("Content-Type", "application/json");
+    xhttp.send();
+})();
+
 
 let bottomBtn = document.getElementsByClassName('bottom_btn');
 
@@ -162,3 +188,26 @@ document.getElementById('budget_submit').addEventListener('click', () => {
     xhttp.setRequestHeader("Content-Type", "application/json");
     xhttp.send(JSON.stringify(data));
 });
+
+(function budgetReport() {
+    let budgetReportTr = document.getElementsByClassName('budget_report_tr');
+    let budgetReportTotalTr = document.getElementsByClassName('budget_report_total');
+    let total = {
+      1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0,
+      7: 0, 8: 0, 9: 0, 10: 0, 11: 0, 12: 0
+    };
+    for (value of BUDGET_DATA.reportData){
+        for (let i = 0; i < budgetReportTr.length; i++){
+            if (value.type === budgetReportTr[i].cells[0].textContent) {
+                budgetReportTr[i].cells[Number(value.date.split("-")[1])].textContent = value.total_cost.format();
+                total[Number(value.date.split("-")[1])] += value.total_cost;
+            }
+        }
+    }
+    for (let i = 1; i <= 12; i++){
+        budgetReportTotalTr[0].cells[i].textContent = total["" + i].format();
+        (total["" + i] < 0)
+            ? budgetReportTotalTr[0].cells[i].style.color = '#ff5658'
+            : budgetReportTotalTr[0].cells[i].style.color = '#608cef';
+    }
+})();

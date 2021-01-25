@@ -4,6 +4,8 @@ let btnCount = 0;
 btnMoneyHide.addEventListener('click', () => {
     let money = document.getElementsByClassName('money');
     let subMoney = document.getElementsByClassName('sub_money');
+    let footerSpend = document.getElementById('footer_spend');
+    let footerBudget = document.getElementById('footer_budget');
 
     (btnCount === 0) ? moneyHide() :  location.reload();
 
@@ -16,6 +18,10 @@ btnMoneyHide.addEventListener('click', () => {
         for (value of subMoney){
             value.textContent = '********';
         }
+
+        footerSpend.textContent = '********';
+        footerBudget.textContent = '********';
+
         ++btnCount;
     }
 });
