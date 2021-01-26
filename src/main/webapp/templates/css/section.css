@@ -192,7 +192,7 @@ input {
     border: none;
 }
 
-/*budget */
+/* budget */
 
 .section_budget {
     width: 100%;
@@ -268,6 +268,31 @@ input {
     font-weight: 600;
     cursor: pointer;
     display: inline-block;
+}
+
+.budget_report_text {
+    padding: 10px;
+    width: 7.6%;
+    height: 15px;
+    color: #222;
+    border: 1px solid #D0D0D0;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: right;
+    white-space: nowrap;
+    overflow-x: auto;
+}
+
+.budget_report_color {
+    background-color: #efefef;
+}
+
+.budget_report_label {
+    text-align: left;
+}
+
+.budget_report_cost {
+    font-size: 12px;
 }
 
 /* hopeGoal */
@@ -549,6 +574,92 @@ input {
     width: 50%;
     display: inline-block;
     cursor: pointer;
+}
+
+.hopeGoal_top_box1 {
+    margin-top: 120px;
+    margin-left: 40px;
+    width: 180px;
+    height: 80px;
+    position: absolute;
+    border: 1px solid black;
+    border-radius: 16px;
+    cursor: pointer;
+}
+
+.hopeGoal_top_box2 {
+    margin-top: 60px;
+    margin-left: 240px;
+    width: 180px;
+    height: 80px;
+    position: absolute;
+    border: 1px solid black;
+    border-radius: 16px;
+    cursor: pointer;
+}
+
+.hopeGoal_top_box3 {
+    margin-top: 120px;
+    margin-left: 440px;
+    width: 180px;
+    height: 80px;
+    position: absolute;
+    border: 1px solid black;
+    border-radius: 16px;
+    cursor: pointer;
+}
+
+.hopeGoal_top_box4 {
+    margin-top: 60px;
+    margin-left: 640px;
+    width: 180px;
+    height: 80px;
+    position: absolute;
+    border: 1px solid black;
+    border-radius: 16px;
+    cursor: pointer;
+}
+
+.hopeGoal_top_box5 {
+    margin-top: 120px;
+    margin-left: 840px;
+    width: 180px;
+    height: 80px;
+    position: absolute;
+    border: 1px solid black;
+    border-radius: 16px;
+    cursor: pointer;
+}
+
+.hopeGoal_top_image{
+    margin-top: 12px;
+    height: 68px;
+    border-radius: 16px;
+    float: left;
+}
+
+.hopeGoal_top_box_content {
+    margin-top: 22px;
+    margin-left: 12px;
+    display: inline-block;
+}
+
+.top_box_title {
+    font-size: 16px;
+    display: block;
+}
+
+.top_box_hopeGoalCost {
+    font-size: 16px;
+    font-weight: 700;
+    display: block;
+}
+
+.top_box_percent {
+    color: #03c75a;
+    font-size: 12px;
+    font-weight: 700;
+    display: block;
 }
 
 /* hopeGoalView */

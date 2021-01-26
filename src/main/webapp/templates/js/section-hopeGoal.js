@@ -85,6 +85,18 @@ window.addEventListener('load', () => {
                     </div>
                 </div>
             </div>`;
+
+        let hopeGoalTop = document.getElementById('hopeGoal_top');
+
+        hopeGoalTop.innerHTML += `
+        <div class="hopeGoal_top_box1" onclick="location.href = 'hopeGoalView.html?hope_id=${value.hope_id}'">
+            <img class="hopeGoal_top_image" src="image/hopeGoal(${image}).png" alt="image"/>
+            <div class="hopeGoal_top_box_content">
+                <span class="top_box_title font">${value.title}</span>
+                <span class="top_box_hopeGoalCost font">${value.goal_cost.format()}</span>
+                <span class="top_box_percent font">${hopeGoalPercent}%</span>
+            </div>
+        </div>`;
     }
 });
 

@@ -14,4 +14,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Modifying
     @Query(value = "UPDATE user SET profile_name = ?1, profile_path = ?2 WHERE username = ?3", nativeQuery = true)
     void update(String profile_name, String profile_path, String username);
+
+    @Query(value = "SELECT profile_path FROM user WHERE username = ?1", nativeQuery = true)
+    String findByProfile_path(String username);
 }
