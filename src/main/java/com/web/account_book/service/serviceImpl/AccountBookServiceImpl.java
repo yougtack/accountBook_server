@@ -168,6 +168,7 @@ public class AccountBookServiceImpl implements AccountBookService {
     }
 
     @Override
+    @Transactional
     public int save_income(Income income) {
         try{
             Income incomeEntity = Income.builder()
@@ -186,6 +187,7 @@ public class AccountBookServiceImpl implements AccountBookService {
     }
 
     @Override
+    @Transactional
     public int update_income(Income income){
         try{
             Income incomeEntity = Income.builder()

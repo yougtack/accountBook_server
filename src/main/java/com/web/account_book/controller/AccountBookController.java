@@ -6,7 +6,6 @@ import com.web.account_book.repository.UserRepository;
 import com.web.account_book.service.AccountBookService;
 import com.web.account_book.util.LoginUtil;
 import com.web.account_book.util.enums.HttpStatusEnums;
-import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
