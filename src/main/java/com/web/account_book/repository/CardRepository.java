@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CardRepository extends JpaRepository<Card, Long> {
 
-    @Modifying
+    @Modifying(clearAutomatically = true)
     @Query(value = "DELETE FROM card WHERE ab_id = ?1",nativeQuery = true)
     int deleteByAB_id(long ab_id);
 }

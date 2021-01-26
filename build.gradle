@@ -36,6 +36,8 @@ dependencies {
     compile("org.mybatis.spring.boot:mybatis-spring-boot-starter:2.1.0")
     compile("org.mybatis:mybatis-spring")
     compile("org.mybatis:mybatis")
+
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 }
 
 test {
