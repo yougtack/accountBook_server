@@ -28,6 +28,7 @@ function signupCheck() {
 
     if(cnt === 3){
         signupForm.submit();
+        alert("회원가입 완료");
     }
 }
 
