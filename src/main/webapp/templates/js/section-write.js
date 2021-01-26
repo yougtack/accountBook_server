@@ -180,7 +180,3 @@ window.addEventListener('load', () => {
     document.getElementById('write_today').value = now.getFullYear() + "-" + month + "-" + date;
     document.getElementById('income_today').value = now.getFullYear() + "-" + month + "-" + date;
 });
-
-function alertTest() {
-    alert("HI");
-}

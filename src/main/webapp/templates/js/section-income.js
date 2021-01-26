@@ -21,7 +21,6 @@ document.getElementById('income_submit').addEventListener('click', () => {
     };
 
     xhttp.setRequestHeader("Content-Type", "application/json");
-    console.log(JSON.stringify(data));
     xhttp.send(JSON.stringify(data));
 });
 
