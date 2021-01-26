@@ -59,11 +59,11 @@ public interface AccountBookRepository extends JpaRepository<AccountBook, Long> 
     @Query(value = "select subString_index(type,'>',1) AS type, ifnull(sum(cash_cost+card_cost), 0) AS cost from account_book where username = ?1 and ab_write_date like ?2 and type not like '저축/보험>%'group by substring(type,1,2) limit 0, 4", nativeQuery = true)
     List<SpendingRankModel> findBySpendingRank(String username, String this_month);
 
-    @Modifying
+    @Modifying(clearAutomatically = true)
     @Query(value = "UPDATE account_book SET budget_id = ?1 WHERE username = ?2 and type like ?3", nativeQuery = true)
     int updateBudget_id(long budget_id, String username, String budget_type);
 
-    @Modifying
+    @Modifying(clearAutomatically = true)
     @Query(value = "DELETE FROM account_book WHERE ab_id = ?1", nativeQuery = true)
     int deleteByAB_id(long ab_id);
 

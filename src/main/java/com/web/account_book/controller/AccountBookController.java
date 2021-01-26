@@ -2,19 +2,16 @@ package com.web.account_book.controller;
 
 import com.web.account_book.model.*;
 import com.web.account_book.model.entity.*;
+import com.web.account_book.repository.UserRepository;
 import com.web.account_book.service.AccountBookService;
 import com.web.account_book.util.LoginUtil;
 import com.web.account_book.util.enums.HttpStatusEnums;
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import javax.persistence.*;
 
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Expression;
-import javax.persistence.criteria.Root;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -211,6 +208,10 @@ public class AccountBookController {
     @PersistenceContext
     EntityManager em;
 
+
+    @Autowired
+    UserRepository userRepository;
+
     @GetMapping(value = "/test")
     @Transactional
     public void test(){
@@ -223,13 +224,15 @@ public class AccountBookController {
 //        em.flush();
 //        em.clear();
 
-        List<User> users = em.createQuery("SELECT u FROM User AS u", User.class).getResultList();
+        List<AccountBook> accountBooks = em.createQuery("SELECT u FROM AccountBook AS u", AccountBook.class).getResultList();
 
-        for(User user:users){
-            System.out.println("username:"+user.getUsername());
-            System.out.println("email:"+user.getEmail());
-
+        for(AccountBook accountBook:accountBooks){
+            System.out.println("===================================");
         }
+
+//        System.out.println("asdasd:"+userRepository.findByUsernameLike("%Babo%"));
+
+//        return accountBookService.test(pageable);
     }
 }
 
