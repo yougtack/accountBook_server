@@ -88,12 +88,6 @@ let navPaint =
                         <p class="list_text font">쓰기</p>
                     </div>
                 </li>
-                <li class="list_target" style="padding-left: 9px;" onclick="location.href='report.html'">
-                    <div class="list_content">
-                        <img class="list_icon" src="image/report_icon.png" alt="list_icon" />
-                        <p class="list_text font">보고서</p>
-                    </div>
-                </li>
                 <li class="list_target" onclick="location.href='budget.html'">
                     <div class="list_content">
                         <img class="list_icon" src="image/budget_icon.png" alt="list_icon" />
