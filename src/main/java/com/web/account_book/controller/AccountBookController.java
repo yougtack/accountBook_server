@@ -6,6 +6,7 @@ import com.web.account_book.service.AccountBookService;
 import com.web.account_book.util.LoginUtil;
 import com.web.account_book.util.enums.HttpStatusEnums;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import javax.persistence.*;
 
@@ -207,25 +208,28 @@ public class AccountBookController {
 //        return accountBookService.test(pageable);
 //    }
 
-    @GetMapping(value = "/test")
-    public void test(){
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("jpabook");
-        EntityManager em = emf.createEntityManager();
-        List<Object[]> users = em.createQuery("SELECT u FROM User as u").getResultList();
-        for(Object[] user:users){
-            System.out.println("username:"+user[0]);
-        }
+    @PersistenceContext
+    EntityManager em;
 
-//        CriteriaBuilder cb = em.getCriteriaBuilder();
-//        CriteriaQuery<HopeGoal> cq = cb.createQuery(HopeGoal.class);
-//
-//
-//        String jpql1 = "SELECT u FROM User u";
-//        TypedQuery<User> query = em.createQuery(jpql1.toString(), User.class);
-//        List<User> users = query.getResultList();
-//        for(User user : users){
-//            System.out.println("username: "+user);
-//        }
+    @GetMapping(value = "/test")
+    @Transactional
+    public void test(){
+        //스낵샷과 디비내용을 비교해서 기존과 값이 다르면 insert를 해주고 기본키가 같은 디비의 내용이 있을때는 update를 해준다.
+//        User user1 = User.builder()
+//                .username("asdasd")
+//                .email("asd@asd.com")
+//                .build();
+//        em.persist(user1);
+//        em.flush();
+//        em.clear();
+
+        List<User> users = em.createQuery("SELECT u FROM User AS u", User.class).getResultList();
+
+        for(User user:users){
+            System.out.println("username:"+user.getUsername());
+            System.out.println("email:"+user.getEmail());
+
+        }
     }
 }
 
