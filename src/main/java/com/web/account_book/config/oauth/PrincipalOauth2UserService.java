@@ -66,6 +66,8 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService {
                     .password(password)
                     .email(email)
                     .role(role)
+                    .profile_name("default.png")
+                    .profile_path("/member_images/default.png")
                     .provide(provide)
                     .providerId(providerId)
                     .build();
