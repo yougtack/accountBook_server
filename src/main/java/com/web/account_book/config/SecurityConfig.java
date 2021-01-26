@@ -37,7 +37,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .defaultSuccessUrl("/templates/write.html")
                 .and()
                 .oauth2Login()
-                .loginPage("/templates/loginForm")
+                .loginPage("/templates/login")
                 .defaultSuccessUrl("/templates/write.html")
                 .userInfoEndpoint()
                 .userService(principalOauth2UserService);
