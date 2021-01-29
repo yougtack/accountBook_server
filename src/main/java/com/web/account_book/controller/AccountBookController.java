@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import javax.persistence.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -204,16 +205,16 @@ public class AccountBookController {
 //        return accountBookService.test(pageable);
 //    }
 
-    @PersistenceContext
-    EntityManager em;
-
-
-    @Autowired
-    UserRepository userRepository;
-
-    @GetMapping(value = "/test")
-    @Transactional
-    public void test(){
+//    @PersistenceContext
+//    EntityManager em;
+//
+//
+//    @Autowired
+//    UserRepository userRepository;
+//
+//    @GetMapping(value = "/test")
+//    @Transactional
+//    public void test(){
         //스낵샷과 디비내용을 비교해서 기존과 값이 다르면 insert를 해주고 기본키가 같은 디비의 내용이 있을때는 update를 해준다.
 //        User user1 = User.builder()
 //                .username("asdasd")
@@ -223,16 +224,16 @@ public class AccountBookController {
 //        em.flush();
 //        em.clear();
 
-        List<AccountBook> accountBooks = em.createQuery("SELECT u FROM AccountBook AS u", AccountBook.class).getResultList();
-
-        for(AccountBook accountBook:accountBooks){
-            System.out.println("===================================");
-        }
+//        List<AccountBook> accountBooks = em.createQuery("SELECT u FROM AccountBook AS u", AccountBook.class).getResultList();
+//
+//        for(AccountBook accountBook:accountBooks){
+//            System.out.println("===================================");
+//        }
 
 //        System.out.println("asdasd:"+userRepository.findByUsernameLike("%Babo%"));
 
 //        return accountBookService.test(pageable);
-    }
+//    }
 }
 
 
