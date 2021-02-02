@@ -16,12 +16,10 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.HashMap;
 
 @RestController
 @RequestMapping(value = "/user")
@@ -48,15 +46,13 @@ public class UserController {
         if(check_login){
             return userInfoModel;
         }else {
-            if(principalDetails != null) {
-                userInfoModel.setUsername(principalDetails.getUser().getUsername());
-                userInfoModel.setEmail(principalDetails.getUser().getEmail());
-                userInfoModel.setRole(principalDetails.getUser().getRole());
-                userInfoModel.setProfile_path(userRepository.findByProfile_path(principalDetails.getUser().getUsername()));
+            userInfoModel.setUsername(principalDetails.getUser().getUsername());
+            userInfoModel.setEmail(principalDetails.getUser().getEmail());
+            userInfoModel.setRole(principalDetails.getUser().getRole());
+            userInfoModel.setProfile_path(userRepository.findByProfile_path(principalDetails.getUser().getUsername()));
 
-                session.setAttribute("username", principalDetails.getUser().getUsername());
-                session.setMaxInactiveInterval(60 * 30);
-            }
+            session.setAttribute("username", principalDetails.getUser().getUsername());
+            session.setMaxInactiveInterval(60 * 30);
         }
 
         return userInfoModel;
