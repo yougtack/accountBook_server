@@ -16,15 +16,16 @@ public class SessionConfig{
     private static final Map<String, String> sessions = new HashMap<>();
 
 
-    public synchronized static void getSessionIdCheck(String type, String compareId, HttpSession session, HttpServletRequest request, HttpServletResponse response){
-        System.out.println("type:"+type+" compareId:"+compareId);
+    public synchronized static boolean getSessionIdCheck(String type, String compareId, HttpSession session, HttpServletRequest request, HttpServletResponse response){
         sessions.put(type, compareId);
         for(String key : sessions.keySet()){
             String value = sessions.get(key);
             if(session.getAttribute("username").equals(value)){
                 removeSessionForDoubleLogin(value, request, response);
+                return true;
             }
         }
+        return false;
     }
 
     private static void removeSessionForDoubleLogin(String userId, HttpServletRequest request, HttpServletResponse response){

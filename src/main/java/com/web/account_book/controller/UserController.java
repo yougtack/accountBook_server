@@ -43,17 +43,20 @@ public class UserController {
             System.out.println("세션에 아무값도 없습니다. 임시로 username에 empty를 넣습니다.");
             session.setAttribute("username", "empty");
         }
-        SessionConfig.getSessionIdCheck("username", principalDetails.getUser().getUsername(), session, request, response);
-
+        boolean check_login = SessionConfig.getSessionIdCheck("username", principalDetails.getUser().getUsername(), session, request, response);
         UserInfoModel userInfoModel = new UserInfoModel();
-        if(principalDetails != null) {
-            userInfoModel.setUsername(principalDetails.getUser().getUsername());
-            userInfoModel.setEmail(principalDetails.getUser().getEmail());
-            userInfoModel.setRole(principalDetails.getUser().getRole());
-            userInfoModel.setProfile_path(userRepository.findByProfile_path(principalDetails.getUser().getUsername()));
+        if(check_login){
+            return userInfoModel;
+        }else {
+            if(principalDetails != null) {
+                userInfoModel.setUsername(principalDetails.getUser().getUsername());
+                userInfoModel.setEmail(principalDetails.getUser().getEmail());
+                userInfoModel.setRole(principalDetails.getUser().getRole());
+                userInfoModel.setProfile_path(userRepository.findByProfile_path(principalDetails.getUser().getUsername()));
 
-            session.setAttribute("username", principalDetails.getUser().getUsername());
-            session.setMaxInactiveInterval(60 * 30);
+                session.setAttribute("username", principalDetails.getUser().getUsername());
+                session.setMaxInactiveInterval(60 * 30);
+            }
         }
 
         return userInfoModel;
