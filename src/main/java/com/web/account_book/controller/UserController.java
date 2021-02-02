@@ -1,5 +1,6 @@
 package com.web.account_book.controller;
 
+import com.web.account_book.config.SessionConfig;
 import com.web.account_book.config.auth.PrincipalDetails;
 import com.web.account_book.model.UserInfoModel;
 import com.web.account_book.model.entity.User;
@@ -15,10 +16,12 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.HashMap;
 
 @RestController
 @RequestMapping(value = "/user")
@@ -34,7 +37,14 @@ public class UserController {
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @GetMapping(value = {"","/"})
-    public UserInfoModel login(@AuthenticationPrincipal PrincipalDetails principalDetails, HttpSession session){
+
+    public UserInfoModel login(@AuthenticationPrincipal PrincipalDetails principalDetails, HttpSession session, HttpServletRequest request, HttpServletResponse response){
+        if(session.getAttribute("username") == null){
+            System.out.println("세션에 아무값도 없습니다. 임시로 username에 empty를 넣습니다.");
+            session.setAttribute("username", "empty");
+        }
+        SessionConfig.getSessionIdCheck("username", principalDetails.getUser().getUsername(), session, request, response);
+
         UserInfoModel userInfoModel = new UserInfoModel();
         if(principalDetails != null) {
             userInfoModel.setUsername(principalDetails.getUser().getUsername());
@@ -44,8 +54,8 @@ public class UserController {
 
             session.setAttribute("username", principalDetails.getUser().getUsername());
             session.setMaxInactiveInterval(60 * 30);
-
         }
+
         return userInfoModel;
     }
 
@@ -67,11 +77,15 @@ public class UserController {
     }
 
     @GetMapping(value = "/logout")
-    public void logout(HttpServletRequest request, HttpServletResponse response){
+    public ModelAndView logout(HttpServletRequest request, HttpServletResponse response){
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("redirect:/templates/login.html");
+
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (auth != null){
             new SecurityContextLogoutHandler().logout(request, response, auth);
         }
+        return mav;
     }
 
     @PutMapping(value = "/profile/{username}")
