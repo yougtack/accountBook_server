@@ -35,25 +35,23 @@ public class UserController {
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @GetMapping(value = {"","/"})
-
     public UserInfoModel login(@AuthenticationPrincipal PrincipalDetails principalDetails, HttpSession session, HttpServletRequest request, HttpServletResponse response){
-        if(session.getAttribute("username") == null){
-            System.out.println("세션에 아무값도 없습니다. 임시로 username에 empty를 넣습니다.");
-            session.setAttribute("username", "empty");
-        }
-        boolean check_login = SessionConfig.getSessionIdCheck("username", principalDetails.getUser().getUsername(), session, request, response);
+//        if(session.getAttribute("username") == null){
+//            System.out.println("세션에 아무값도 없습니다. 임시로 username에 empty를 넣습니다.");
+//            session.setAttribute("username", "empty");
+//        }
+//        boolean check_login = SessionConfig.getSessionIdCheck("username", principalDetails.getUser().getUsername(), session, request, response);
         UserInfoModel userInfoModel = new UserInfoModel();
-        if(check_login){
-            return userInfoModel;
-        }else {
-            userInfoModel.setUsername(principalDetails.getUser().getUsername());
-            userInfoModel.setEmail(principalDetails.getUser().getEmail());
-            userInfoModel.setRole(principalDetails.getUser().getRole());
-            userInfoModel.setProfile_path(userRepository.findByProfile_path(principalDetails.getUser().getUsername()));
+//        if(check_login){
+//            return userInfoModel;
+//        }
+        userInfoModel.setUsername(principalDetails.getUser().getUsername());
+        userInfoModel.setEmail(principalDetails.getUser().getEmail());
+        userInfoModel.setRole(principalDetails.getUser().getRole());
+        userInfoModel.setProfile_path(userRepository.findByProfile_path(principalDetails.getUser().getUsername()));
 
-            session.setAttribute("username", principalDetails.getUser().getUsername());
-            session.setMaxInactiveInterval(60 * 30);
-        }
+        session.setAttribute("username", principalDetails.getUser().getUsername());
+        session.setMaxInactiveInterval(60 * 30);
 
         return userInfoModel;
     }
