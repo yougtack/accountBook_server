@@ -17,7 +17,7 @@ Number.prototype.format = function(){
 
 (function accountBook() {
     let xhttp = new XMLHttpRequest();
-    const URL = "http://localhost:8080";
+    const URL = "http://3.133.28.138:8080";
 
     xhttp.open("GET", URL + `/accountBook/spending/${USER.data.username}`, false);
 
@@ -35,7 +35,7 @@ Number.prototype.format = function(){
 
 (function spendingMonth() {
     let xhttp = new XMLHttpRequest();
-    const URL = "http://localhost:8080";
+    const URL = "http://3.133.28.138:8080";
 
     xhttp.open("GET", URL + `/accountBook/spending_month/${USER.data.username}`, false);
 
@@ -54,7 +54,7 @@ Number.prototype.format = function(){
 (function cumulative() {
     let xhttp = new XMLHttpRequest();
 
-    xhttp.open("GET", `http://localhost:8080/accountBook/cumulative/${USER.data.username}`, false);
+    xhttp.open("GET", `http://3.133.28.138:8080/accountBook/cumulative/${USER.data.username}`, false);
 
     xhttp.onreadystatechange = () => {
         if (xhttp.status !== 200) {
