@@ -23,7 +23,7 @@ document.getElementsByClassName('profile')[0].addEventListener('click', () => {
 document.getElementById('logout').addEventListener('click', () => {
     let xhttp = new XMLHttpRequest();
 
-    xhttp.open("GET", `http://localhost:8080/user/logout`, false);
+    xhttp.open("GET", `http://3.133.28.138:8080/user/logout`, false);
 
     xhttp.onreadystatechange = () => {
         if (xhttp.status !== 200) {
@@ -72,7 +72,7 @@ document.getElementById('modal_submit').addEventListener('click', () => {
 
     formData.append('profile', file.files[0]);
 
-    xhttp.open("PUT", `http://localhost:8080/user/profile/${USER.data.username}`, false);
+    xhttp.open("PUT", `http://3.133.28.138:8080/user/profile/${USER.data.username}`, false);
 
     xhttp.onreadystatechange = () => {
         if (xhttp.status !== 200) {

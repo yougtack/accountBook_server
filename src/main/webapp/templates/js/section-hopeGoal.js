@@ -9,7 +9,7 @@ let date = ((now.getDate() + 1) <= 9) ? '0' + now.getDate() : now.getDate();
 
 (function hopeGoal() {
     let xhttp = new XMLHttpRequest();
-    xhttp.open("GET", `http://localhost:8080/accountBook/hope_goal/${USER.data.username}`, false);
+    xhttp.open("GET", `http://3.133.28.138:8080/accountBook/hope_goal/${USER.data.username}`, false);
 
     xhttp.onreadystatechange = () => {
         if (xhttp.status !== 200) {
@@ -108,7 +108,7 @@ document.getElementById('hopeGoal_write_btn').addEventListener('click', () => {
 
     (function hopeGoalTagData() {
         let xhttp = new XMLHttpRequest();
-        xhttp.open("GET", `http://localhost:8080/accountBook/hope_goal_only_type/${USER.data.username}`, false);
+        xhttp.open("GET", `http://3.133.28.138:8080/accountBook/hope_goal_only_type/${USER.data.username}`, false);
 
         xhttp.onreadystatechange = () => {
             if (xhttp.status !== 200) {
@@ -169,7 +169,7 @@ document.getElementById('hopeGoal_submit').addEventListener('click', () => {
     }
 
     let xhttp = new XMLHttpRequest();
-    xhttp.open("POST", `http://localhost:8080/accountBook/hope_goal`, false);
+    xhttp.open("POST", `http://3.133.28.138:8080/accountBook/hope_goal`, false);
 
     xhttp.onreadystatechange = () => {
         if (xhttp.status !== 200) {

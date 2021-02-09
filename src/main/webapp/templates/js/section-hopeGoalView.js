@@ -16,7 +16,7 @@ let hope_id = location.search.split('=');
 
 (function hopeGoalViewData() {
     let xhttp = new XMLHttpRequest();
-    xhttp.open("GET", `http://localhost:8080/accountBook/hope_goal_detail/${hope_id[1]}`, false);
+    xhttp.open("GET", `http://3.133.28.138:8080/accountBook/hope_goal_detail/${hope_id[1]}`, false);
 
     xhttp.onreadystatechange = () => {
         if (xhttp.status !== 200) {
@@ -55,7 +55,7 @@ let hope_id = location.search.split('=');
 document.getElementById('hopeGoalView_delete').addEventListener('click', () => {
     if (confirm("삭제하시겠습니까?")) {
         let xhttp = new XMLHttpRequest();
-        xhttp.open("DELETE", `http://localhost:8080/accountBook/hope_goal/${hope_id[1]}/${USER.data.username}`, false);
+        xhttp.open("DELETE", `http://3.133.28.138:8080/accountBook/hope_goal/${hope_id[1]}/${USER.data.username}`, false);
 
         xhttp.onreadystatechange = () => {
             if (xhttp.status !== 200) {

@@ -29,7 +29,7 @@ const BUDGET_DATA = {
     (month <= 9) ? month = '0' + month : month;
 
     xhttp.open("GET",
-        `http://localhost:8080/accountBook/budget/${USER.data.username}/${now.getFullYear()}-${month}`, false);
+        `http://3.133.28.138:8080/accountBook/budget/${USER.data.username}/${now.getFullYear()}-${month}`, false);
     xhttp.onreadystatechange = () => {
         if (xhttp.status !== 200) {
             console.log("HTTP ERROR", xhttp.status, xhttp.statusText);
@@ -53,7 +53,7 @@ const BUDGET_DATA = {
     let xhttp = new XMLHttpRequest();
 
     xhttp.open("GET",
-        `http://localhost:8080/accountBook/budget/${USER.data.username}/${start}/${end}`, false);
+        `http://3.133.28.138:8080/accountBook/budget/${USER.data.username}/${start}/${end}`, false);
     xhttp.onreadystatechange = () => {
         if (xhttp.status !== 200) {
             console.log("HTTP ERROR", xhttp.status, xhttp.statusText);
@@ -177,7 +177,7 @@ document.getElementById('budget_submit').addEventListener('click', () => {
         }
     }
     xhttp.open("POST",
-        "http://localhost:8080/accountBook/budget", false);
+        "http://3.133.28.138:8080/accountBook/budget", false);
     xhttp.onreadystatechange = () => {
         if (xhttp.status !== 200) {
             console.log("HTTP ERROR", xhttp.status, xhttp.statusText);

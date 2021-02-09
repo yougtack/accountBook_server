@@ -41,7 +41,7 @@ document.getElementById('write_submit').addEventListener('click', () => {
         type: document.getElementById('Type').textContent
     }
 
-    xhttp.open("POST", `http://localhost:8080/accountBook`, false);
+    xhttp.open("POST", `http://3.133.28.138:8080/accountBook`, false);
 
     xhttp.onreadystatechange = () => {
         if (xhttp.status !== 200) {

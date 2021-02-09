@@ -10,7 +10,7 @@ document.getElementById('income_submit').addEventListener('click', () => {
         income_type: document.getElementById('income_type').textContent
     }
 
-    xhttp.open("POST", `http://localhost:8080/accountBook/income`, false);
+    xhttp.open("POST", `http://3.133.28.138:8080/accountBook/income`, false);
 
     xhttp.onreadystatechange = () => {
         if (xhttp.status !== 200) {
