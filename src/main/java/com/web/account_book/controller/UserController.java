@@ -35,16 +35,9 @@ public class UserController {
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @GetMapping(value = {"","/"})
-    public UserInfoModel login(@AuthenticationPrincipal PrincipalDetails principalDetails, HttpSession session, HttpServletRequest request, HttpServletResponse response){
-//        if(session.getAttribute("username") == null){
-//            System.out.println("세션에 아무값도 없습니다. 임시로 username에 empty를 넣습니다.");
-//            session.setAttribute("username", "empty");
-//        }
-//        boolean check_login = SessionConfig.getSessionIdCheck("username", principalDetails.getUser().getUsername(), session, request, response);
+    public UserInfoModel login(@AuthenticationPrincipal PrincipalDetails principalDetails, HttpSession session){
         UserInfoModel userInfoModel = new UserInfoModel();
-//        if(check_login){
-//            return userInfoModel;
-//        }
+
         userInfoModel.setUsername(principalDetails.getUser().getUsername());
         userInfoModel.setEmail(principalDetails.getUser().getEmail());
         userInfoModel.setRole(principalDetails.getUser().getRole());
