@@ -1,6 +1,5 @@
 package com.web.account_book.controller;
 
-import com.web.account_book.config.SessionConfig;
 import com.web.account_book.config.auth.PrincipalDetails;
 import com.web.account_book.model.UserInfoModel;
 import com.web.account_book.model.entity.User;
